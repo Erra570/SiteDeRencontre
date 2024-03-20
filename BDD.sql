@@ -1,3 +1,6 @@
+CREATE USER IF NOT EXISTS 'User'@'localhost' IDENTIFIED BY 'fv_7qJ6j2_VY_T5';
+GRANT ALL PRIVILEGES ON * . * TO 'User'@'localhost';
+
 DROP DATABASE IF EXISTS BddSiteDeRencontre;
 CREATE DATABASE IF NOT EXISTS BddSiteDeRencontre;
 
