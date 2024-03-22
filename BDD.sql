@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS Account (
 	Street VARCHAR(127),
 	AdressNumber INT,
 	LoveSituation VARCHAR(30),
+	Species VARCHAR(35),
+	HumanoidGauge FLOAT(10),
 	Size DECIMAL(9,2),
 	Weight DECIMAL(9,2),
 	EyeColor VARCHAR(30),
