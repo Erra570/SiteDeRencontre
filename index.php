@@ -5,6 +5,6 @@
 		<?php include('head.html');?>
 	</head>
 	<body>
-		test
+		
 	</body>
 </html>
