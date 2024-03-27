@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <?php include('head.html');?>
-</head>
-<body>
-    <header>
-        <div class="logo"><a href="index.html"><img src="img/logo.png"></a></div>
-    </header>
-</body>
+    <div class="bandeau">
+        <div class ="logo"><a href="index.php"><img src="img/logo.png", width = 100%></a></div>
+        <a href="index.php">Accueil</a></li>
+        <a href="index.php">Recherche</a></li>
+        <a href="index.php">Messagerie</a></li>
+        <a href="index.php">Mon Profil</a></li>
+        <a href="index.php">Connexion</a></li>
+    </div>
 </html>

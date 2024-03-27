@@ -1,4 +1,26 @@
 .logo {
-    width: 18%;
+    width: 4%;
     float: left;
+}
+
+.bandeau {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.bandeau a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #343a40;
+    transition: color 0.3s ease;
+    font-size: 20px;
+}
+
+.bandeau a:hover {
+    color: orangered
 }
