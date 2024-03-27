@@ -22,18 +22,21 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 				<?php include('head.html');?>
 			</head>
 			<body>
+				<h1>Bienvenue dans la partie Administrateur</h1>
 				<div>
-					<h1>Bienvenue dans la partie Administrateur</h1>
 					<div>
 						Selectionner un compte a modifier/supprimer
-							<select name="user" id="user" required>
-								<?php
-								$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
-								while($User=$User_tab->fetch()){
-									echo '<option value="'.$User['IdAccount'].'">'.$User['Pseudo'].' ('.$User['Name'].' '.$User['FirstName'].')</option>';
-								}
-								?>
-							</select>
+						<select name="user" id="user" required>
+							<?php
+							$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
+							while($User=$User_tab->fetch()){
+								echo '<option value="'.$User['IdAccount'].'">'.$User['Pseudo'].' ('.$User['Name'].' '.$User['FirstName'].')</option>';
+							}
+							?>
+						</select>
+					</div>
+					<div>
+						Profile de l'utilisateur : 
 					</div>
 				</div>
 			</body>
