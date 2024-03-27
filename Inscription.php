@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script type="text/javascript" src="js/inscription.js"></script>
 		<?php include('head.html');?>
 	</head>
 	<body>
