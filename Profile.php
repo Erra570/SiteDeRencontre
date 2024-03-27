@@ -22,11 +22,11 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 				<link rel="stylesheet" type="text/css" href="css/profile.css" media="all" />
 			</head>
 			<body>
-				<div id="profile_pres">
-					<div>
+				<div id="profilePres">
+					<div id="profileLeft">
 						<img id="profilePicture" src="img/<?php echo $User['IdAccount'].'/'.$User['ProfilePictureFile'];?>">
 					</div>
-					<div>
+					<div id="profileRight">
 						<?php 
 							$Picture_tab = $bdd->query('SELECT ImgFile FROM Image WHERE IdAccount='.$User['IdAccount']);
 							if($Picture=$Picture_tab->fetch()){
@@ -41,6 +41,27 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 					</div>
 				</div>
 				<div>
+					<h2>Informations :</h2>
+					Pseudo : 
+					Nom :
+					Prenom :
+					<div>
+						<h3>Adresse</h3>
+						Pays : 
+						Ville : 
+						Rue : 
+						Numero : 
+					</div>
+					<div>
+						<h3>Descriptif</h3>
+						Sexe : 
+						Date de naissance : 
+						Espece : 
+						Jauge humanitée : 
+						Taille : 
+						Poids : 
+						Couleur des yeux : 
+					</div>
 					Changer le mot de passe
 					<form method="post" action="new_password.php">
 						<label for="password">Mot de passe :</label><br>
