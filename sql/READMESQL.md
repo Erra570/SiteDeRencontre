@@ -1,2 +1,2 @@
-lancer mysql dans la console puis entre :
-mysql> SOURCE ~/cheminvers/SiteDeRencontre/sql/BDD.sql
+lancer mysql dans la console (avec : sudo mysql) puis entre :
+mysql> SOURCE /home/cytech/cheminvers/SiteDeRencontre/sql/BDD.sql

@@ -87,3 +87,10 @@ CREATE TABLE IF NOT EXISTS Report (
 	IdMessage INT NOT NULL PRIMARY KEY,
 	Why TEXT,
 	FOREIGN KEY (IdMessage) REFERENCES Message(IdMessage) ON DELETE CASCADE);
+
+INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City) VALUES 
+	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau"),
+	(2, "Legolas64", "leff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "City");
+
+INSERT INTO Admin (IdAccount) VALUES
+	(1);
