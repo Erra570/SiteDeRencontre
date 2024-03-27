@@ -90,8 +90,13 @@ CREATE TABLE IF NOT EXISTS Report (
 	FOREIGN KEY (IdMessage) REFERENCES Message(IdMessage) ON DELETE CASCADE);
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City) VALUES 
-	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau"),
-	(2, "Legolas64", "leff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "City");
+	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau");
+
+INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, Street, AdressNumber, LoveSituation, Species, WelcomeMessage) VALUES 
+	(2, "Legolas64", "leff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "Stilgard", "Avenue du Palais", 3, "Celib", "Elfe", "Coucou, je suis Legolas :)");
 
 INSERT INTO Admin (IdAccount) VALUES
 	(1);
+
+INSERT INTO Image (IdAccount, IdImg, ImgFile) VALUES
+	(2, 1, "Legolas_greenleaf_orlando_bloom_lotr_by_push_pulse-d5vcniw.webp");
