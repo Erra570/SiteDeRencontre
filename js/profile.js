@@ -8,3 +8,20 @@ function modifierApparition(){
 		document.getElementById("pictureContener").style.display = "flex";
 	}
 }
+
+function getPicture(){
+     document.getElementById("picture").click();
+}
+
+function getProfilePicture(){
+     document.getElementById("profilePicture").click();
+}
+
+function showHide(id){
+	if(document.getElementById(id).style.display != "flex"){
+		document.getElementById(id).style.display = "flex";
+	}
+	else{
+		document.getElementById(id).style.display = "none";
+	}
+}

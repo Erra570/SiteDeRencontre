@@ -1,5 +1,12 @@
+html{
+    background-color: #f8f9fa;
+}
+body {
+    margin: 0;
+}
 .logo {
-    width: 4%;
+    width: 5vw;
+    height: 5vw;
     float: left;
 }
 
