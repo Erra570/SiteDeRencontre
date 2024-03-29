@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS Account (
 	Weight DECIMAL(9,2),
 	EyeColor VARCHAR(30),
 	Smoker INT(1),
-	ProfilePictureFile VARCHAR(255) DEFAULT "ProfileDefaultPicture.png",
+	ProfilPictureFile VARCHAR(255) NOT NULL DEFAULT "ProfilDefaultPicture.png",
 	WelcomeMessage TEXT);
 
 

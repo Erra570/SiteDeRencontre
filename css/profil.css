@@ -10,29 +10,33 @@
 
 
 /*Style bandeau de gauche*/
-#profilePres {
+#profilPres {
 	display: flex;
 	width: 20vw;
 }
-#profileTop{
+#profilTop{
 	height: 20vw;
+	width: 20vw;
 	justify-content: center;
 }
-#profilePicture {
-	width: 80%;
+#imgProfilPicture {
+	width: 16vw;
+	height: 16vw;
+    object-fit: cover;
+    border-radius: 50%;
 }
-.plusProfile {
+.plusProfil {
 	display: none;
 	position: absolute;
 }
-#profileTop:hover #profilePicture{
+#profilTop:hover #imgProfilPicture{
 	filter: brightness(75%);
 }
-#profileTop:hover .plusProfile {
+#profilTop:hover .plusProfil {
 	display: flex;
 	z-index: 1;
 }
-#profileBottom {
+#profilBottom {
 	/*height: 80vw;*/
     flex-direction: column;
 }
@@ -45,12 +49,18 @@
 	width: 100%;
 	padding-left: 5px;
 }
-#profileBottom p{
+#profilBottom p{
 	margin: 10px 10px 10px 0px;
 }
-#profileBottom #description {
+#profilBottom #description {
 	margin-top: 0px;
 	margin-left: 20px;
+}
+#annulerChangement{
+	display: none;
+}
+#sauvgarderChangement{
+	display: none;
 }
 
 
@@ -159,7 +169,7 @@
 /*Style de la partie modification*/
 #modifierHide{
 	display: none;
-	padding: 5vh 0 0 7vw;
+	padding-left: 7vw;
 	width: 73vw;
 }
 .blocDInfos{

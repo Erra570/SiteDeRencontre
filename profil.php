@@ -19,45 +19,43 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 		<html>
 			<head>
 				<?php include('head.html');?>
-				<link rel="stylesheet" type="text/css" href="css/profile.css" media="all" />
-				<script type="text/javascript" src="js/profile.js"></script>
+				<link rel="stylesheet" type="text/css" href="css/profil.css" media="all" />
+				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
 			<body>
 				<?php include("bandeau.php"); ?>
 				<div class="centreur">
-					<div id="profilePres">
+					<div id="profilPres">
 						<div>
-							<div class="centreHorizontalement" id="profileTop" onclick="showHide('modifyProfilePictureContener')">
-								<svg class="plus plusProfile" viewBox="0 0 100 100">
+							<div class="centreHorizontalement" id="profilTop" onclick="showHide('modifyProfilPictureContener')">
+								<svg class="plus plusProfil" viewBox="0 0 100 100">
 									<path class="line top" d="m 10 50 l 80 0" />
 									<path class="line bottom" d="m 50 10 l 0 80 " />
 								</svg>
-								<img id="profilePicture" src="img/<?php echo $User['IdAccount'].'/'.$User['ProfilePictureFile'];?>">
+								<img id="imgProfilPicture" src="img/<?php echo $User['IdAccount'].'/'.$User['ProfilPictureFile'];?>">
 							</div>
-							<div id="modifyProfilePictureContener" class="formCenter">
+							<div id="modifyProfilPictureContener" class="formCenter">
 								<div id="formPicture">
 									<h3>
-										<?php if($User['ProfilePictureFile'] == 'ProfileDefaultPicture.png'){
-											echo "Ajouter une photo de profile";
+										<?php if($User['ProfilPictureFile'] == 'ProfilDefaultPicture.png'){
+											echo "Ajouter une photo de profil";
 										}
 										else{
-											echo "Modifier la photo de profile";
+											echo "Modifier la photo de profil";
 										}?>	
 									</h3>
-									<div class="button" onclick="getProfilePicture()">
+									<div class="button" onclick="getProfilPicture()">
 										<div>Importer une photo</div>
-										<input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
-										<input type="file" name="profilePicture" id="profilePicture" accept="image/*">
+										<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+										<input type="file" name="profilPicture" id="profilPicture" value="Importer une photo" accept="image/*" onchange="newProfilPicture()">
 									</div>
-									<?php if($User['ProfilePictureFile'] != 'ProfileDefaultPicture.png'){
-										echo '<div class="button"><div>Supprimer</div></div>';
-									}?>	
-									<div class="button lastButton" onclick="showHide('modifyProfilePictureContener')">
+										<div class="button" id="rmButton" onclick="rmProfilPicture()" <?php if($User['ProfilPictureFile'] == 'ProfilDefaultPicture.png'){echo 'style="display:none;"';}?>><div>Supprimer</div></div>
+									<div class="button lastButton" onclick="showHide('modifyProfilPictureContener')">
 										<div>Annuler</div>
 									</div>
 								</div>
 							</div>
-							<div class="centreHorizontalement" id="profileBottom">
+							<div class="centreHorizontalement" id="profilBottom">
 								<div id="contenerBas">
 									<div>
 										<p><?php echo $User['Pseudo'];?></p>
@@ -73,7 +71,9 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 										<p id="description"><?php if(isset($User['WelcomeMessage'])){echo $User['WelcomeMessage'];}?></p>
 									</div>
 									<div>
-										<input type="button" name="modifierProfile" id="modifierProfile" onclick="modifierApparition()" value="modifier profile">
+										<input type="button" name="modifierProfil" id="modifierProfil" onclick="modifierApparition(); showHide('sauvgarderChangement'); showHide('annulerChangement'); hideShow('modifierProfil')" value="modifier profil">
+										<input type="button" name="sauvgarderChangement" id="sauvgarderChangement" onclick="" value="sauvgarder changement">
+										<input type="button" name="annulerChangement" id="annulerChangement" onclick="modifierApparition(); showHide('sauvgarderChangement'); showHide('modifierProfil'); showHide('annulerChangement')" value="annuler changement">
 									</div>
 								</div>
 							</div>
@@ -81,11 +81,11 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 					</div>
 					<div class="right" id="pictureContener">
 						<?php 
-							$Picture_tab = $bdd->query('SELECT ImgFile FROM Image WHERE IdAccount='.$User['IdAccount']);
+							$Picture_tab = $bdd->query('SELECT IdImg, ImgFile FROM Image WHERE IdAccount='.$User['IdAccount'].' ORDER BY IdImg');
 							if($Picture=$Picture_tab->fetch()){
 								do{
-									echo '<div class="pictureContener">
-											<img class="poubelle" src="img/poubelle_noire.png">
+									echo '<div class="pictureContener" id="img'.$Picture["IdImg"].'">
+											<img class="poubelle" src="img/poubelle_noire.png" onclick="rmPicture('.$Picture["IdImg"].')">
 											<img src="img/'.$User['IdAccount'].'/'.$Picture["ImgFile"].'">
 										</div>';
 								}while($Picture=$Picture_tab->fetch());
@@ -97,17 +97,17 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 								<path class="line bottom" d="m 50 10 l 0 80 " />
 							</svg>
 						</div>
-						<div id="addPictureContener" class="formCenter">
-							<div id="formPicture">
-								<h3>Ajouter une photo dans la galerie</h3>
-								<div class="button" onclick="getPicture()">
-									<div>Importer une photo</div>
-									<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-									<input type="file" name="picture" id="picture" value="Importer une photo" accept="image/*">
-								</div>
-								<div class="button lastButton" onclick="showHide('addPictureContener')">
-									<div>Annuler</div>
-								</div>
+					</div>
+					<div id="addPictureContener" class="formCenter">
+						<div id="formPicture">
+							<h3>Ajouter une photo dans la galerie</h3>
+							<div class="button" onclick="getPicture()">
+								<div>Importer une photo</div>
+								<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+								<input type="file" name="picture" id="picture" value="Importer une photo" accept="image/*" onchange="newPicture()">
+							</div>
+							<div class="button lastButton" onclick="showHide('addPictureContener')">
+								<div>Annuler</div>
 							</div>
 						</div>
 					</div>
@@ -161,13 +161,13 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 							<div class="h3">
 								<h3>Changer le mot de passe</h3><div class="traitSeparation"></div>
 							</div>
-							<form method="post" action="new_password.php">
+							<form method="post" action="modifyMDP.php?user=<?php echo $User['Pseudo'];?>&password=<?php echo $User['Password'];?>">
 								<label for="password">Mot de passe :</label><br>
-								<input type="password" name="password" id="password" maxlength="255" minlength="6"/><br>
+								<input type="password" name="password" id="password" maxlength="255" minlength="4"/><br>
 								<label for="newPassword">Nouveau mot de passe :</label><br>
-								<input type="password" name="newPassword" id="newPassword" maxlength="255" minlength="6"/><br>
+								<input type="password" name="newPassword" id="newPassword" maxlength="255" minlength="4"/><br>
 								<label for="password_confirm">Confirmation du mot de passe :</label><br>
-								<input type="password" name="password_confirm" id="password_confirm" maxlength="255" minlength="6"/><br>
+								<input type="password" name="password_confirm" id="password_confirm" maxlength="255" minlength="4"/><br>
 								<input type="submit" name="Ajouter" value="Changer">
 							</form>
 						</div>
