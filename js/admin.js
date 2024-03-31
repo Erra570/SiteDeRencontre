@@ -1,5 +1,6 @@
 var efface = null;
 
+/*fait en sorte que l'on ne puisse pas verifier le message de un utilisateur vers lui meme*/
 function messageriecheck(){
 	let tmp = document.getElementById("user").value;
 	document.getElementById("_"+tmp).style.display = "none";
@@ -25,4 +26,19 @@ function messageriecheck(){
 		}
 	}
 	efface = "_"+tmp;
+}
+
+function loadProfil(){
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			document.getElementById("profil").innerHTML = xhttp.responseText;
+		}
+	}
+	var file = "profilSansBandeau.php?user=Sifflet_Blanc&password=mlkjhgfdsq";
+	xhttp.open("POST", file, true);
+	/*ligne necessaire pour faire une requete post*/
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhttp.send("target="+document.getElementById("user").value);
 }

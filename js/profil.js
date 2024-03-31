@@ -35,7 +35,7 @@ function hideShow(id){
 	}
 }
 
-function newPicture(){
+function newPicture(target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
@@ -65,10 +65,13 @@ function newPicture(){
 	const formData = new FormData()
 	formData.append('picture', files[0])
 
+	if(target >= 1){
+		formData.append('target', target);
+	}
 	xhttp.send(formData);
 }
 
-function rmPicture(nb){
+function rmPicture(nb, target){
 	var n = parseInt(nb);
 
 	xhttp = new XMLHttpRequest();
@@ -81,10 +84,15 @@ function rmPicture(nb){
 	xhttp.open("POST", file, true);
 	/*ligne necessaire pour faire une requete post*/
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	xhttp.send("idimg="+n);
+	if(target >= 1){
+		xhttp.send("idimg="+n+"&target="+target);
+	}
+	else{
+		xhttp.send("idimg="+n);
+	}
 }
 
-function newProfilPicture(){
+function newProfilPicture(target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
@@ -97,14 +105,18 @@ function newProfilPicture(){
 	xhttp.open("POST", file, true);
 
 	/*recupere le fichier de l'image et l'envoie*/
-	const files = document.querySelector('[name=profilPicture]').files
-	const formData = new FormData()
-	formData.append('profilPicture', files[0])
+	const files = document.querySelector('[name=profilPicture]').files;
+	const formData = new FormData();
+	formData.append('profilPicture', files[0]);
 
+	if(target >= 1){
+		formData.append('target', target);
+	}
 	xhttp.send(formData);
+
 }
 
-function rmProfilPicture(){
+function rmProfilPicture(target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
@@ -114,7 +126,12 @@ function rmProfilPicture(){
 		}
 	}
 	var file = "rmProfilPicture.php?user=Legolas64&password=leff";
-	xhttp.open("GET", file, true);
-
-	xhttp.send();
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	if(target >= 1){
+		xhttp.send("target="+target);
+	}
+	else{
+		xhttp.send();
+	}
 }

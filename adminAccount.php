@@ -8,10 +8,15 @@ catch (Exeption $e){
 	die('Erreur : '.$e->getMessage());
 }
 
-//if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
+/*a supprimer a terme*/
 if(isset($_GET['password']) AND isset($_GET['user'])){
-	$user = htmlspecialchars($_GET['user']);
-	$password = htmlspecialchars($_GET['password']);
+	$_SESSION['user'] = htmlspecialchars($_GET['user']);
+	$_SESSION['password'] = htmlspecialchars($_GET['password']);
+}
+
+if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
+	$user = htmlspecialchars($_SESSION['user']);
+	$password = htmlspecialchars($_SESSION['password']);
 	$User_tab = $bdd->prepare('SELECT IdAccount,Pseudo,Password FROM Account WHERE Pseudo=:user AND Password=:password AND IdAccount IN (SELECT IdAccount FROM Admin)');
 	$User_tab->execute(array('user'=>$user, 'password'=>$password));
 	if($User=$User_tab->fetch()){ ?>
@@ -20,25 +25,33 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 			<head>
 				<title>Admin</title>
 				<?php include('head.html');?>
+				<link rel="stylesheet" type="text/css" href="css/admin.css" media="all" />
+				<script type="text/javascript" src="js/admin.js"></script>
+				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
 			<body>
-				<h1>Bienvenue dans la partie Administrateur</h1>
+				<?php include("bandeau.php"); ?>
+				<div class="contener">
+					<h1>Bienvenue dans la partie Administrateur</h1>
+					<div>
+						<div>
+							Selectionner un compte a modifier/supprimer
+							<select name="user" id="user" onchange="loadProfil()" required>
+								<?php
+								$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
+								while($User=$User_tab->fetch()){
+									echo '<option value="'.$User['IdAccount'].'">'.$User['Pseudo'].' ('.$User['Name'].' '.$User['FirstName'].')</option>';
+								}
+								?>
+							</select>
+						</div>
+						<div>
+							Profile de l'utilisateur : 
+							<div id="profil">
+							</div>
+						</div>
+					</div>
 				<div>
-					<div>
-						Selectionner un compte a modifier/supprimer
-						<select name="user" id="user" required>
-							<?php
-							$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
-							while($User=$User_tab->fetch()){
-								echo '<option value="'.$User['IdAccount'].'">'.$User['Pseudo'].' ('.$User['Name'].' '.$User['FirstName'].')</option>';
-							}
-							?>
-						</select>
-					</div>
-					<div>
-						Profile de l'utilisateur : 
-					</div>
-				</div>
 			</body>
 		</html>
 	<?php }
