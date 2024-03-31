@@ -5,7 +5,7 @@
         <a href="index.php">Accueil</a></li>
         <a href="index.php">Recherche</a></li>
         <a href="index.php">Messagerie</a></li>
-        <a href="index.php">Mon Profil</a></li>
+        <a href="profil.php">Mon Profil</a></li>
         <a href="index.php">Connexion</a></li>
     </div>
 </html>

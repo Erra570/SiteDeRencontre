@@ -29,7 +29,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<script type="text/javascript" src="js/admin.js"></script>
 				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
-			<body>
+			<body onload="loadProfil()">
 				<?php include("bandeau.php"); ?>
 				<div class="contener">
 					<h1>Bienvenue dans la partie Administrateur</h1>
