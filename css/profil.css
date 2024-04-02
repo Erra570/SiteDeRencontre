@@ -29,10 +29,11 @@
 	display: none;
 	position: absolute;
 }
-#profilTop:hover #imgProfilPicture{
+#profilTop #imgProfilPicture:hover{
 	filter: brightness(75%);
+	transition: filter 0.5s ease;
 }
-#profilTop:hover .plusProfil {
+#imgProfilPicture:hover .plusProfil {
 	display: flex;
 	z-index: 1;
 }
@@ -93,15 +94,18 @@
 }
 .pictureContener:hover{
 	filter: brightness(75%);
+	transition: filter 0.5s ease;
 }
+
 .pictureContener .poubelle {
-	height: 40px;
-	width: 40px;
+	height: 25px;
+	width: 25px;
 	display: none;
-    top: 5%;
-    right: 5%;
+    top: 3%;
+    right: 3%;
 	position: absolute;
 	cursor: pointer;
+	transition: all 0.3s ease;
 }
 
 .pictureContener:hover .poubelle{
