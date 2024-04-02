@@ -40,7 +40,6 @@ body {
 .infos {
     position: absolute;
     bottom: -50%;
-    width: 200%;
     text-align: center;
     margin-top: 150vh;
     background-color: #f8f9fa;
