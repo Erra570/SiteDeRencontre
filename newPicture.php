@@ -40,7 +40,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_FILES['
 				}
 				$request = $bdd->prepare('INSERT INTO Image (IdAccount, IdImg, ImgFile) VALUES (:idaccount, :idimg, :nomimg)');
 				$request->execute(array('idaccount'=>$User['IdAccount'], 'idimg'=>$idimg, 'nomimg'=>$Nom_fichier));
-				echo $User['IdAccount']."/".$Nom_fichier;
+				echo $idimg."&".$User['IdAccount']."/".$Nom_fichier;
 			}
 		}
 	}
