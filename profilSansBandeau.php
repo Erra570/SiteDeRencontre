@@ -84,7 +84,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 									</div>
 									<div>
 										<input type="button" name="modifierProfil" id="modifierProfil" onclick="modifierApparition(); showHide('sauvgarderChangement'); showHide('annulerChangement'); hideShow('modifierProfil')" value="modifier profil">
-										<input type="button" name="sauvgarderChangement" id="sauvgarderChangement" onclick="" value="sauvgarder changement">
+										<input type="button" name="sauvgarderChangement" id="sauvgarderChangement" onclick="modifyProfil(<?php if(isset($_POST['target'])){ echo $target;}?>)" value="sauvgarder changement">
 										<input type="button" name="annulerChangement" id="annulerChangement" onclick="modifierApparition(); showHide('sauvgarderChangement'); showHide('modifierProfil'); showHide('annulerChangement')" value="annuler changement">
 									</div>
 								</div>
@@ -125,52 +125,56 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 					</div>
 					<div class="right" id="modifierHide">
 						<h2>Informations :</h2>
-						<div class="blocDInfos">
-							<label for="pseudo">Pseudo : </label>
-							<input type="text" name="pseudo" id="pseudo" value="<?php echo $User['Pseudo'] ?>" required><br>
-							<label for="name">Nom :</label>
-							<input type="text" name="name" id="name" value="<?php echo $User['Name'] ?>" required><br>
-							<label for="firstName">Prenom :</label>
-							<input type="text" name="firstName" id="firstName" value="<?php echo $User['FirstName'] ?>" required><br>
-							<label for="firstname">Mail :</label>
-							<input type="text" name="mail" id="mail" value="<?php echo $User['Mail'] ?>" required><br>
-						</div>
-						<div>
-							<div class="h3">
-								<h3>Adresse</h3><div class="traitSeparation"></div>
-							</div>
+						<div id="result"></div>
+						<form id="profil" method="post">
 							<div class="blocDInfos">
-								<label for="country">Pays : </label>
-								<input type="text" name="country" id="country" value="<?php echo $User['Country'] ?>" required><br>
-								<label for="city">Ville : </label>
-								<input type="text" name="city" id="city" value="<?php echo $User['City'] ?>" required><br>
-								<label for="street">Rue : </label>
-								<input type="text" name="street" id="street" value="<?php echo $User['Street'] ?>"><br>
-								<label for="adressNumber">Numero : </label>
-								<input type="number" name="adressNumber" id="adressNumber" value="<?php echo $User['AdressNumber'] ?>"><br>
+								<?php if(isset($_POST['target'])){ echo '<input type="text" name="target" id="target" style="display: none" value="'.$target.'"/>';}?>
+								<label for="pseudo">Pseudo : </label>
+								<input type="text" name="pseudo" id="pseudo" value="<?php echo $User['Pseudo'] ?>" required><br>
+								<label for="name">Nom :</label>
+								<input type="text" name="name" id="name" value="<?php echo $User['Name'] ?>" required><br>
+								<label for="firstName">Prenom :</label>
+								<input type="text" name="firstName" id="firstName" value="<?php echo $User['FirstName'] ?>" required><br>
+								<label for="firstname">Mail :</label>
+								<input type="text" name="mail" id="mail" value="<?php echo $User['Mail'] ?>" required><br>
 							</div>
-						</div>
-						<div>
-							<div class="h3">
-								<h3>Descriptif</h3><div class="traitSeparation"></div>
+							<div>
+								<div class="h3">
+									<h3>Adresse</h3><div class="traitSeparation"></div>
+								</div>
+								<div class="blocDInfos">
+									<label for="country">Pays : </label>
+									<input type="text" name="country" id="country" value="<?php echo $User['Country'] ?>" required><br>
+									<label for="city">Ville : </label>
+									<input type="text" name="city" id="city" value="<?php echo $User['City'] ?>" required><br>
+									<label for="street">Rue : </label>
+									<input type="text" name="street" id="street" value="<?php echo $User['Street'] ?>"><br>
+									<label for="adressNumber">Numero : </label>
+									<input type="number" name="adressNumber" id="adressNumber" value="<?php echo $User['AdressNumber'] ?>"><br>
+								</div>
 							</div>
-							<div class="blocDInfos">
-								<label for="sexe">Sexe : </label>
-								<input type="text" name="sexe" id="sexe" value="<?php echo $User['Sexe'] ?>"><br>
-								<label for="dateOfBirth">Date de naissance : </label>
-								<input type="date" name="dateOfBirth" id="dateOfBirth" value="<?php echo $User['DateOfBirth'] ?>"><br>
-								<label for="species">Espece : </label>
-								<input type="text" name="species" id="species" value="<?php echo $User['Species'] ?>"><br>
-								<label for="humanoidGauge">Jauge humanitée : </label>
-								<input type="range" name="humanoidGauge" id="humanoidGauge" min="0" max="10" value="<?php echo $User['HumanoidGauge'] ?>"><br>
-								<label for="size">Taille : </label>
-								<input type="number" name="size" id="size" min="0" value="<?php echo $User['Size'] ?>"><br>
-								<label for="weight">Poids : </label>
-								<input type="number" name="weight" id="weight" min="0" value="<?php echo $User['Weight'] ?>"><br>
-								<label for="eyeColor">Couleur des yeux : </label>
-								<input type="text" name="eyeColor" id="eyeColor" value="<?php echo $User['EyeColor'] ?>"><br>
+							<div>
+								<div class="h3">
+									<h3>Descriptif</h3><div class="traitSeparation"></div>
+								</div>
+								<div class="blocDInfos">
+									<label for="sexe">Sexe : </label>
+									<input type="text" name="sexe" id="sexe" value="<?php echo $User['Sexe'] ?>"><br>
+									<label for="dateOfBirth">Date de naissance : </label>
+									<input type="date" name="dateOfBirth" id="dateOfBirth" value="<?php echo $User['DateOfBirth'] ?>"><br>
+									<label for="species">Espece : </label>
+									<input type="text" name="species" id="species" value="<?php echo $User['Species'] ?>"><br>
+									<label for="humanoidGauge">Jauge humanitée : </label>
+									<input type="range" name="humanoidGauge" id="humanoidGauge" min="0" max="10" value="<?php echo $User['HumanoidGauge'] ?>"><br>
+									<label for="size">Taille : </label>
+									<input type="number" name="size" id="size" min="0" value="<?php echo $User['Size'] ?>"><br>
+									<label for="weight">Poids : </label>
+									<input type="number" name="weight" id="weight" min="0" value="<?php echo $User['Weight'] ?>"><br>
+									<label for="eyeColor">Couleur des yeux : </label>
+									<input type="text" name="eyeColor" id="eyeColor" value="<?php echo $User['EyeColor'] ?>"><br>
+								</div>
 							</div>
-						</div>
+						</form>
 						<div>
 							<div class="h3">
 								<h3>Changer le mot de passe</h3><div class="traitSeparation"></div>

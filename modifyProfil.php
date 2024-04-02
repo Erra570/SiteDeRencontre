@@ -14,39 +14,88 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['p
 	isset($_POST['adressNumber']) AND isset($_POST['sexe']) AND isset($_POST['dateOfBirth']) AND 
 	isset($_POST['species']) AND isset($_POST['humanoidGauge']) AND isset($_POST['size']) AND 
 	isset($_POST['weight']) AND isset($_POST['eyeColor'])){
+
 	$user = htmlspecialchars($_SESSION['user']);
 	$password = htmlspecialchars($_SESSION['password']);
+
 	$load = false;
 	if(isset($_POST['target'])){
 		$target = htmlspecialchars($_POST['target']);
 		$Admin_tab = $bdd->prepare('SELECT IdAccount,Pseudo,Password FROM Account WHERE Pseudo=:user AND Password=:password AND IdAccount IN (SELECT IdAccount FROM Admin)');
 		$Admin_tab->execute(array('user'=>$user, 'password'=>$password));
-		$User_tab = $bdd->prepare('SELECT * FROM Account WHERE IdAccount=:idaccount');
+		$User_tab = $bdd->prepare('SELECT IdAccount FROM Account WHERE IdAccount=:idaccount');
 		$User_tab->execute(array('idaccount'=>$target));
 		$load = $User=$User_tab->fetch() AND $Admin=$Admin_tab->fetch();
 	}
 	else{
-		$User_tab = $bdd->prepare('SELECT * FROM Account WHERE Pseudo=:user AND Password=:password');
+		$User_tab = $bdd->prepare('SELECT IdAccount FROM Account WHERE Pseudo=:user AND Password=:password');
 		$User_tab->execute(array('user'=>$user, 'password'=>$password));
 		$load = $User=$User_tab->fetch();
 	}
 	if($load){
-		$Nom_fichier=$_FILES['profilPicture']['name'];
-		$path_f=pathinfo($Nom_fichier);
-		$Extension_fichier=$path_f['extension'];
-		$Extension_autorisée=array('png','jpg','jpeg','webp');
-		if (in_array($Extension_fichier, $Extension_autorisée)){
-			if(move_uploaded_file($_FILES['profilPicture']['tmp_name'],__DIR__."/img/".$User['IdAccount']."/".$Nom_fichier)) {
-				$request = $bdd->prepare('UPDATE Account SET ProfilPictureFile=:nomimg WHERE IdAccount = :idaccount');
-				$request->execute(array('idaccount'=>$User['IdAccount'], 'nomimg'=>$Nom_fichier));
-				echo $User['IdAccount']."/".$Nom_fichier;
-			}
+		$pseudo = htmlspecialchars($_POST['pseudo']);
+		$name = htmlspecialchars($_POST['name']);
+		$firstName = htmlspecialchars($_POST['firstName']);
+		$mail = htmlspecialchars($_POST['mail']);
+
+		$country = htmlspecialchars($_POST['country']);
+		$city = htmlspecialchars($_POST['city']);
+		$street = htmlspecialchars($_POST['street']);
+		$adressNumber = htmlspecialchars($_POST['adressNumber']);
+		if($adressNumber == ""){
+			$adressNumber = null;
 		}
-	}
-	else{
-		echo "1";
+
+		$sexe = htmlspecialchars($_POST['sexe']);
+		$dateOfBirth = htmlspecialchars($_POST['dateOfBirth']);
+		$species = htmlspecialchars($_POST['species']);
+		$humanoidGauge = htmlspecialchars($_POST['humanoidGauge']);
+		if($humanoidGauge == ""){
+			$humanoidGauge = null;
+		}
+		$size = htmlspecialchars($_POST['size']);
+		if($size == ""){
+			$size = null;
+		}
+		$weight = htmlspecialchars($_POST['weight']);
+		if($weight == ""){
+			$weight = null;
+		}
+		$eyeColor = htmlspecialchars($_POST['eyeColor']);
+
+		$request = $bdd->prepare('UPDATE Account SET 
+			Pseudo = :pseudo,
+			Name = :name,
+			FirstName = :firstName,
+			Mail = :mail,
+			Country = :country,
+			City = :city,
+			Street = :street,
+			AdressNumber = :adressNumber,
+			Sexe = :sexe,
+			DateOfBirth = :dateOfBirth,
+			Species = :species,
+			HumanoidGauge = :humanoidGauge,
+			Size = :size,
+			Weight = :weight,
+			EyeColor = :eyeColor
+			WHERE IdAccount = :idaccount');
+		$request->execute(array('idaccount'=>$User['IdAccount'], 
+			'pseudo' => $pseudo,
+			'name' => $name,
+			'firstName' => $firstName,
+			'mail' => $mail,
+			'country' => $country,
+			'city' => $city,
+			'street' => $street,
+			'adressNumber' => $adressNumber,
+			'sexe' => $sexe,
+			'dateOfBirth' => $dateOfBirth,
+			'species' => $species,
+			'humanoidGauge' => $humanoidGauge,
+			'size' => $size,
+			'weight' => $weight,
+			'eyeColor' => $eyeColor));
 	}
 }
-else{
-	echo "2";
-}?>
+?>

@@ -39,6 +39,8 @@ function newPicture(target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
+			let text = xhttp.responseText.split("&");
+
 			var pere = document.getElementById("pictureContener");
 
 			var e = document.createElement("div");
@@ -47,17 +49,18 @@ function newPicture(target){
 			var ip = document.createElement("img");
 			ip.src = "img/poubelle_noire.png";
 			ip.className = "poubelle";
+			ip.onclick = 'rmPicture('+text[0]+','+target+')';
 			e.appendChild(ip);
 
 			var i = document.createElement("img");
-			i.src = "img/"+xhttp.responseText;
+			i.src = "img/"+text[1];
 			e.appendChild(i);
 
 			pere.insertBefore(e,pere.lastChild.previousSibling);
 			showHide('addPictureContener');
 		}
 	}
-	var file = "newPicture.php?user=Legolas64&password=leff";
+	var file = "newPicture.php";
 	xhttp.open("POST", file, true);
 
 	/*recupere le fichier de l'image et l'envoie*/
@@ -80,7 +83,7 @@ function rmPicture(nb, target){
 			document.getElementById("img"+n).style.display = "none";
 		}
 	}
-	var file = "rmPicture.php?user=Legolas64&password=leff";
+	var file = "rmPicture.php";
 	xhttp.open("POST", file, true);
 	/*ligne necessaire pour faire une requete post*/
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -101,7 +104,7 @@ function newProfilPicture(target){
 			document.getElementById("rmButton").style.display = "flex";
 		}
 	}
-	var file = "newProfilPicture.php?user=Legolas64&password=leff";
+	var file = "newProfilPicture.php";
 	xhttp.open("POST", file, true);
 
 	/*recupere le fichier de l'image et l'envoie*/
@@ -125,7 +128,7 @@ function rmProfilPicture(target){
 			document.getElementById("rmButton").style.display = "none";
 		}
 	}
-	var file = "rmProfilPicture.php?user=Legolas64&password=leff";
+	var file = "rmProfilPicture.php";
 	xhttp.open("POST", file, true);
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	if(target >= 1){
@@ -134,4 +137,17 @@ function rmProfilPicture(target){
 	else{
 		xhttp.send();
 	}
+}
+
+function modifyProfil(target){
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			document.getElementById("result").innerHTML = xhttp.responseText;
+		}
+	}
+	var file = "modifyProfil.php";
+	xhttp.open("POST", file, true);
+	var formData = new FormData(document.getElementById("profil"));
+	xhttp.send(formData);
 }
