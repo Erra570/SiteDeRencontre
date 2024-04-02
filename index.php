@@ -10,7 +10,7 @@
 		<?php include('php/bandeau.html');?>
 		<div class="milieu">
             <button class="bouton">Créer un compte</button>
-            <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous ici</a></p>
+            <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
         </div>
 		<div class="infos">
             <h1>Titre</h1>

@@ -11,7 +11,7 @@ body {
     width: 5vw;
     height: 5vw;
     float: left;
-
+    margin-right: 25px;
 }
 
 .bandeau {
@@ -28,7 +28,7 @@ body {
 }
 
 .bandeau a {
-    margin: 0 15px;
+    margin: 0 25px;
     text-decoration: none;
     color: #343a40;
     transition: color 0.3s ease;
