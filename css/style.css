@@ -20,7 +20,7 @@ body {
     width: 100%;
     top: 0;
     z-index: 100;
-    border-bottom: 3px solid #602320;
+    border-bottom: 5px solid #602320;
     align-items: center;
     display: flex;
     justify-content: center;

@@ -35,7 +35,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 					<h1>Bienvenue dans la partie Administrateur</h1>
 					<div>
 						<div>
-							Selectionner un compte a modifier/supprimer
+							Selectionner un compte à modifier ou supprimer.
 							<select name="user" id="user" onchange="loadProfil()" required>
 								<?php
 								$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
@@ -46,7 +46,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 							</select>
 						</div>
 						<div>
-							Profile de l'utilisateur : 
+							Profil de l'utilisateur : 
 							<div id="profil">
 							</div>
 						</div>

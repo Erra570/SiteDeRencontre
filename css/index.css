@@ -11,8 +11,8 @@ body {
 
 .milieu {
     text-align: center;
-    border: 1px solid #fff;
-    background-color: white;
+    border: 1px solid #f8f9fa;
+    background-color: #f8f9fa;
     border-radius: 15px;
     padding: 30px 30px;
 }
@@ -25,7 +25,7 @@ body {
 .bouton {
     background-color: #a32020;
     border: none;
-    color: white;
+    color: #f8f9fa;
     padding: 20px 54px;
     text-align: center;
     text-decoration: none;
