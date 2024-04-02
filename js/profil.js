@@ -44,12 +44,13 @@ function newPicture(target){
 			var pere = document.getElementById("pictureContener");
 
 			var e = document.createElement("div");
+			e.id = "img"+text[0];
 			e.className = "pictureContener";
 
 			var ip = document.createElement("img");
 			ip.src = "img/poubelle_noire.png";
 			ip.className = "poubelle";
-			ip.onclick = 'rmPicture('+text[0]+','+target+')';
+			ip.setAttribute("onclick", "rmPicture("+text[0]+","+target+")");
 			e.appendChild(ip);
 
 			var i = document.createElement("img");
@@ -80,7 +81,7 @@ function rmPicture(nb, target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
-			document.getElementById("img"+n).style.display = "none";
+			document.getElementById("img"+n).remove();
 		}
 	}
 	var file = "rmPicture.php";
