@@ -28,7 +28,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<link rel="stylesheet" type="text/css" href="css/messagerie.css" media="all" />
 				<script type="text/javascript" src="js/messagerie.js"></script>
 			</head>
-			<body onload="entree('<?php echo $User['Pseudo'];?>')">
+			<body onload="entree('<?php if(isset($_POST['target'])){ echo $target;}?>')">
 				<?php include("php/bandeau.html"); ?>
 				<div class="centreur">
 					<div id="left">

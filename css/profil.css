@@ -18,6 +18,7 @@
 	height: 20vw;
 	width: 20vw;
 	justify-content: center;
+    border-radius: 50%;
 }
 #imgProfilPicture {
 	width: 16vw;
@@ -33,7 +34,7 @@
 	filter: brightness(75%);
 	transition: filter 0.5s ease;
 }
-#imgProfilPicture:hover .plusProfil {
+#profilTop:hover .plusProfil {
 	display: flex;
 	z-index: 1;
 }

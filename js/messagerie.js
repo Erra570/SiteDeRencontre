@@ -1,4 +1,4 @@
-function entree(sender) {
+function entree(target) {
 	document.getElementById("msgToSend").onkeydown = function(e){
 		if(e.which == 13){
 			target = document.getElementById("Reciver").innerHTML;
@@ -34,8 +34,10 @@ function entree(sender) {
 			
 			const formData = new FormData()
 
-			formData.append('sender', sender);
-			formData.append('target', target);
+			if(target >= 1){
+				formData.append('target', target);
+			}
+			formData.append('reciver', reciver);
 
 			xhttp.send(formData);
 		}
