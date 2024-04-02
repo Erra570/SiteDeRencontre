@@ -26,6 +26,8 @@
 }
 .msgTop{
 	height: 7%;
+	display: flex;
+    justify-content: space-between;
 }
 .msgTopLeft{
     align-items: center;
@@ -40,6 +42,13 @@
     object-fit: cover;
     border-radius: 50%;
 }
+.msgTopRight{
+	margin-right: 3%;
+	height: 100%;
+}
+.petitPoints{
+	height: 100%;
+}
 .msgBody{
 	height: 90%;
 	position: relative;
@@ -52,6 +61,14 @@
     margin-bottom: 2vh;
 }
 .msgWriter input[type="text"]{
-    border-radius: 5%;
-	width: 100%;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    background: #dedede;
+    padding: 10px;
+}
+.msgWriter input[type="text"]:focus-visible{
+    border: none;
+    background: #ccc;
+    outline: none;
 }
