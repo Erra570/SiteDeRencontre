@@ -48,9 +48,11 @@ function newPicture(target){
 			e.className = "pictureContener";
 
 			var ip = document.createElement("img");
-			ip.src = "img/poubelle_noire.png";
+			ip.src = "img/annuler2.png";
 			ip.className = "poubelle";
 			ip.setAttribute("onclick", "rmPicture("+text[0]+","+target+")");
+			ip.setAttribute("onmouseover", "this.src='img/annuler.png'");
+			ip.setAttribute("onmouseout", "this.src='img/annuler2.png'");
 			e.appendChild(ip);
 
 			var i = document.createElement("img");

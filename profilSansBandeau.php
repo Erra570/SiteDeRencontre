@@ -96,9 +96,9 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 							$Picture_tab = $bdd->query('SELECT IdImg, ImgFile FROM Image WHERE IdAccount='.$User['IdAccount'].' ORDER BY IdImg');
 							if($Picture=$Picture_tab->fetch()){
 								do{
-									echo '<div class="pictureContener" id="img'.$Picture["IdImg"].'">
-											<img class="poubelle" src="img/poubelle_noire.png" onclick="rmPicture('.$Picture["IdImg"].','.$target.')">
-											<img src="img/'.$User['IdAccount'].'/'.$Picture["ImgFile"].'">
+									echo '<div class="pictureContener" id="img'.$Picture["IdImg"].'">';
+									echo "<img class='poubelle' src='img/annuler2.png' onclick=\"rmPicture(".$Picture['IdImg'].",".$target.")\" onmouseover=\"this.src='img/annuler.png'\" onmouseout=\"this.src='img/annuler2.png'\"/>";
+									echo '<img src="img/'.$User['IdAccount'].'/'.$Picture["ImgFile"].'"/>
 										</div>';
 								}while($Picture=$Picture_tab->fetch());
 							}
