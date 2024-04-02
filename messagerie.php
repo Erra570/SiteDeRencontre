@@ -30,7 +30,29 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 			</head>
 			<body>
 				<?php include("bandeau.html"); ?>
-				<?php include("profilSansBandeau.php"); ?>
+				<div class="centreur">
+					<div id="left">
+						<div>
+							<?php 
+							$ContactId_tab = $bdd->prepare('SELECT IdAsker, IdAccount FROM Contact WHERE (IdAccount = :idaccount OR IdAsker = :idaccount) AND Approval ORDER BY IdAccount');
+							$ContactId_tab->execute(array('user'=>$user, 'password'=>$password));
+							while($ContactId=$ContactId_tab->fetch()){
+								$Contact_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idcontact');
+								$Contact_tab->execute(array('idcontact'=>$ContactId));
+								if($Contact=$Contact_tab->fetch())
+								?>
+								<div>
+									<img src="img/<?php echo $Contact['ProfilPictureFile'];?>">
+								</div>
+								<?php
+							}
+							?>
+						</div>
+					</div>
+					<div class="right" id="modifierHide">
+						
+					</div>
+				</div>
 			</body>
 		</html>
 	<?php }
