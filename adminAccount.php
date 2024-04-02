@@ -24,13 +24,13 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 		<html>
 			<head>
 				<title>Admin</title>
-				<?php include('head.html');?>
+				<?php include('php/head.html');?>
 				<link rel="stylesheet" type="text/css" href="css/admin.css" media="all" />
 				<script type="text/javascript" src="js/admin.js"></script>
 				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
 			<body onload="loadProfil()">
-				<?php include("bandeau.html"); ?>
+				<?php include("php/bandeau.html"); ?>
 				<div class="contener">
 					<h1>Bienvenue dans la partie Administrateur</h1>
 					<div>

@@ -24,12 +24,12 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 		<!DOCTYPE html>
 		<html>
 			<head>
-				<?php include('head.html');?>
+				<?php include('php/head.html');?>
 				<link rel="stylesheet" type="text/css" href="css/messagerie.css" media="all" />
 				<script type="text/javascript" src="js/messagerie.js"></script>
 			</head>
-			<body onload="entree(<?php echo $User['Pseudo'];?>)">
-				<?php include("bandeau.html"); ?>
+			<body onload="entree('<?php echo $User['Pseudo'];?>')">
+				<?php include("php/bandeau.html"); ?>
 				<div class="centreur">
 					<div id="left">
 						<div>

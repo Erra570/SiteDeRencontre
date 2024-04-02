@@ -19,7 +19,7 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 		<html>
 			<head>
 				<title>Admin</title>
-				<?php include('head.html');?>
+				<?php include('php/head.html');?>
 				<script type="text/javascript" src="js/admin.js"></script>
 			</head>
 			<body onload="messageriecheck()">

@@ -31,7 +31,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_FILES['
 		$Extension_fichier=$path_f['extension'];
 		$Extension_autorisée=array('png','jpg','jpeg','webp');
 		if (in_array($Extension_fichier, $Extension_autorisée)){
-			if(move_uploaded_file($_FILES['picture']['tmp_name'],__DIR__."/img/".$User['IdAccount']."/".$Nom_fichier)) {
+			if(move_uploaded_file($_FILES['picture']['tmp_name'],__DIR__."/../img/".$User['IdAccount']."/".$Nom_fichier)) {
 				$tab_idmax = $bdd->prepare('SELECT MAX(IdImg) AS m FROM Image WHERE IdAccount=:idaccount');
 				$tab_idmax->execute(array('idaccount'=>$User['IdAccount']));
 				$idimg = 1;

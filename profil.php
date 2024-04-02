@@ -24,13 +24,13 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 		<!DOCTYPE html>
 		<html>
 			<head>
-				<?php include('head.html');?>
+				<?php include('php/head.html');?>
 				<link rel="stylesheet" type="text/css" href="css/profil.css" media="all" />
 				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
 			<body>
-				<?php include("bandeau.html"); ?>
-				<?php include("profilSansBandeau.php"); ?>
+				<?php include("php/bandeau.html"); ?>
+				<?php include("php/profilSansBandeau.php"); ?>
 			</body>
 		</html>
 	<?php }

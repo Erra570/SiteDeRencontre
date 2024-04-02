@@ -7,7 +7,6 @@ try{
 catch (Exception $e){
 	die('Erreur : '.$e->getMessage());
 }
-
 if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_FILES['profilPicture'])){
 	$user = htmlspecialchars($_SESSION['user']);
 	$password = htmlspecialchars($_SESSION['password']);
@@ -31,7 +30,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_FILES['
 		$Extension_fichier=$path_f['extension'];
 		$Extension_autorisée=array('png','jpg','jpeg','webp');
 		if (in_array($Extension_fichier, $Extension_autorisée)){
-			if(move_uploaded_file($_FILES['profilPicture']['tmp_name'],__DIR__."/img/".$User['IdAccount']."/".$Nom_fichier)) {
+			if(move_uploaded_file($_FILES['profilPicture']['tmp_name'],__DIR__."/../img/".$User['IdAccount']."/".$Nom_fichier)) {
 				$request = $bdd->prepare('UPDATE Account SET ProfilPictureFile=:nomimg WHERE IdAccount = :idaccount');
 				$request->execute(array('idaccount'=>$User['IdAccount'], 'nomimg'=>$Nom_fichier));
 				echo $User['IdAccount']."/".$Nom_fichier;

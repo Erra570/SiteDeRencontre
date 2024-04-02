@@ -36,7 +36,7 @@ function loadProfil(){
 			document.getElementById("profil").innerHTML = xhttp.responseText;
 		}
 	}
-	var file = "profilSansBandeau.php?user=Sifflet_Blanc&password=mlkjhgfdsq";
+	var file = "php/profilSansBandeau.php";
 	xhttp.open("POST", file, true);
 	/*ligne necessaire pour faire une requete post*/
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

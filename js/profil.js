@@ -63,7 +63,7 @@ function newPicture(target){
 			showHide('addPictureContener');
 		}
 	}
-	var file = "newPicture.php";
+	var file = "php/newPicture.php";
 	xhttp.open("POST", file, true);
 
 	/*recupere le fichier de l'image et l'envoie*/
@@ -86,7 +86,7 @@ function rmPicture(nb, target){
 			document.getElementById("img"+n).remove();
 		}
 	}
-	var file = "rmPicture.php";
+	var file = "php/rmPicture.php";
 	xhttp.open("POST", file, true);
 	/*ligne necessaire pour faire une requete post*/
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -107,7 +107,7 @@ function newProfilPicture(target){
 			document.getElementById("rmButton").style.display = "flex";
 		}
 	}
-	var file = "newProfilPicture.php";
+	var file = "php/newProfilPicture.php";
 	xhttp.open("POST", file, true);
 
 	/*recupere le fichier de l'image et l'envoie*/
@@ -131,7 +131,7 @@ function rmProfilPicture(target){
 			document.getElementById("rmButton").style.display = "none";
 		}
 	}
-	var file = "rmProfilPicture.php";
+	var file = "php/rmProfilPicture.php";
 	xhttp.open("POST", file, true);
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	if(target >= 1){
@@ -149,7 +149,7 @@ function modifyProfil(target){
 			document.getElementById("result").innerHTML = xhttp.responseText;
 		}
 	}
-	var file = "modifyProfil.php";
+	var file = "php/modifyProfil.php";
 	xhttp.open("POST", file, true);
 	var formData = new FormData(document.getElementById("profil"));
 	xhttp.send(formData);

@@ -4,10 +4,10 @@
 	<head>
 		<script src="js/index.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/index.css" media="all" />
-		<?php include('head.html');?>
+		<?php include('php/head.html');?>
 	</head>
 	<body>
-		<?php include('bandeau.html');?>
+		<?php include('php/bandeau.html');?>
 		<div class="milieu">
             <button class="bouton">Créer un compte</button>
             <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous ici</a></p>

@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<script type="text/javascript" src="js/inscription.js"></script>
-		<?php include('head.html');?>
+		<?php include('php/head.html');?>
 	</head>
 	<body>
 		<form method="post" action="">
