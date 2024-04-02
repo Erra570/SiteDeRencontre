@@ -1,23 +1,29 @@
 html{
     background-color: #f8f9fa;
 }
+
 body {
     margin: 0;
 }
+
 .logo {
     width: 5vw;
     height: 5vw;
     float: left;
+
 }
 
 .bandeau {
     background-color: #f8f9fa;
-    text-align: center;
-    padding: 20px;
+    padding: 5px;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 100;
+    border-bottom: 3px solid #602320;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .bandeau a {

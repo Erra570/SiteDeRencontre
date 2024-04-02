@@ -1,0 +1,47 @@
+body {
+    background-image: url('../img/placeholder.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-attachment: fixed;
+}
+
+.milieu {
+    text-align: center;
+    border: 1px solid #fff;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px 30px;
+}
+
+.milieu p {
+    margin-top: -1%;
+    font-size: 60%;
+}
+
+.bouton {
+    background-color: #a32020;
+    border: none;
+    color: white;
+    padding: 20px 54px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 15px;
+    
+}
+
+.infos {
+    position: absolute;
+    bottom: -50%;
+    width: 200%;
+    text-align: center;
+    margin-top: 150vh;
+    background-color: #f8f9fa;
+}
