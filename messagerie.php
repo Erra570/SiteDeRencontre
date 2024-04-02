@@ -26,9 +26,9 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 			<head>
 				<?php include('head.html');?>
 				<link rel="stylesheet" type="text/css" href="css/messagerie.css" media="all" />
-				<script type="text/javascript" src="js/profil.js"></script>
+				<script type="text/javascript" src="js/messagerie.js"></script>
 			</head>
-			<body>
+			<body onload="entree(<?php echo $User['Pseudo'];?>)">
 				<?php include("bandeau.html"); ?>
 				<div class="centreur">
 					<div id="left">
@@ -68,19 +68,23 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 						?>
 						<div class="right" id="modifierHide">
 							<div class="msgTop">
-								<div class="msgTopLeft">
+								<a class="msgTopLeft" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
 									<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
-									<h2><?php echo $Contact['Pseudo'];?></h2>
-								</div>
-								<div id="msgTopRight">
-									<div></div>
+									<h2 id="Reciver"><?php echo $Contact['Pseudo'];?></h2>
+								</a>
+								<div class="msgTopRight">
+									<svg class="petitPoints" viewBox="0 0 100 100">
+										<circle r="5" cx="50" cy="25" fill="#b1b1b1" />
+										<circle r="5" cx="50" cy="50" fill="#b1b1b1" />
+										<circle r="5" cx="50" cy="75" fill="#b1b1b1" />
+									</svg>
 								</div>
 							</div>
 							<div class="msgBody">
 								<div id="msgContener">
 								</div>
 								<div class="msgWriter">
-									<input type="text" name="msgToSend" id="msgToSend<?php echo $idcontact;?>">
+									<input type="text" name="msgToSend" id="msgToSend">
 								</div>
 							</div>
 						</div>
