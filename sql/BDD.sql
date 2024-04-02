@@ -107,3 +107,6 @@ INSERT INTO Admin (IdAccount) VALUES
 
 INSERT INTO Image (IdAccount, IdImg, ImgFile) VALUES
 	(2, 1, "Legolas_greenleaf_orlando_bloom_lotr_by_push_pulse-d5vcniw.webp");
+
+INSERT INTO Contact (IdAsker, IdAccount, Approval) VALUES
+	(1,2,TRUE);

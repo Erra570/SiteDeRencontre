@@ -25,7 +25,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 		<html>
 			<head>
 				<?php include('head.html');?>
-				<link rel="stylesheet" type="text/css" href="css/profil.css" media="all" />
+				<link rel="stylesheet" type="text/css" href="css/messagerie.css" media="all" />
 				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
 			<body>
@@ -33,25 +33,58 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<div class="centreur">
 					<div id="left">
 						<div>
+							Discutions
 							<?php 
-							$ContactId_tab = $bdd->prepare('SELECT IdAsker, IdAccount FROM Contact WHERE (IdAccount = :idaccount OR IdAsker = :idaccount) AND Approval ORDER BY IdAccount');
-							$ContactId_tab->execute(array('user'=>$user, 'password'=>$password));
+							$first = 0;
+							$ContactId_tab = $bdd->prepare('SELECT IdAsker, IdAccount FROM Contact WHERE (IdAccount = :idaccount OR IdAsker = :idaccount) AND Approval=1 ORDER BY IdAccount');
+							$ContactId_tab->execute(array('idaccount'=>$User['IdAccount']));
 							while($ContactId=$ContactId_tab->fetch()){
+								$idcontact = $ContactId['IdAccount'];
+								if($ContactId['IdAsker'] != $User['IdAccount']){
+									$idcontact = $ContactId['IdAsker'];
+								}
+
+								if($first == 0){
+									$first = $idcontact;
+								}
+
 								$Contact_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idcontact');
-								$Contact_tab->execute(array('idcontact'=>$ContactId));
+								$Contact_tab->execute(array('idcontact'=>$idcontact));
 								if($Contact=$Contact_tab->fetch())
 								?>
-								<div>
-									<img src="img/<?php echo $Contact['ProfilPictureFile'];?>">
+								<div class="profil">
+									<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
+									<div><?php echo $Contact['Pseudo']; ?></div>
 								</div>
 								<?php
 							}
 							?>
 						</div>
 					</div>
-					<div class="right" id="modifierHide">
-						
-					</div>
+					<?php 
+					$Contact_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idcontact');
+					$Contact_tab->execute(array('idcontact'=>$first));
+					if($Contact=$Contact_tab->fetch()){
+						?>
+						<div class="right" id="modifierHide">
+							<div class="msgTop">
+								<div class="msgTopLeft">
+									<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
+									<h2><?php echo $Contact['Pseudo'];?></h2>
+								</div>
+								<div id="msgTopRight">
+									<div></div>
+								</div>
+							</div>
+							<div class="msgBody">
+								<div id="msgContener">
+								</div>
+								<div class="msgWriter">
+									<input type="text" name="msgToSend" id="msgToSend<?php echo $idcontact;?>">
+								</div>
+							</div>
+						</div>
+					<?php }?>
 				</div>
 			</body>
 		</html>

@@ -1,0 +1,57 @@
+.centreur {
+	margin-top: calc(5vw + 40px);
+	display: flex;
+	width: 100%;
+}
+
+/*style du bandeau de gauche qui contient les compte avec les quelles la discution est engagée ou engageable*/
+#left {
+	display: flex;
+	width: 20vw;
+}
+#left .profil{
+	display: flex;
+    align-items: center;
+}
+#left .profilPicture{
+	width: 20%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/*messagerie ouverte*/
+.right {
+	height: calc(100vh - (5vw + 40px));
+	width: 80vw;
+}
+.msgTop{
+	height: 7%;
+}
+.msgTopLeft{
+    align-items: center;
+	display: flex;
+	height: 100%;
+}
+.msgTopLeft h2{
+	margin-left: 10px;
+}
+.msgTop .profilPicture{
+	height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.msgBody{
+	height: 90%;
+	position: relative;
+}
+.msgWriter{
+	bottom: 0;
+	width: 90%;
+	left: 5%;
+	position: absolute;
+    margin-bottom: 2vh;
+}
+.msgWriter input[type="text"]{
+    border-radius: 5%;
+	width: 100%;
+}
