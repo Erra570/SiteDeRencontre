@@ -7,13 +7,16 @@ try{
 catch (Exception $e){
 	die('Erreur : '.$e->getMessage());
 }
-if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['reciver'])){
+if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['reciver']) AND isset($_POST['content'])){
 	$user = htmlspecialchars($_SESSION['user']);
 	$password = htmlspecialchars($_SESSION['password']);
+	$reciver = htmlspecialchars($_POST['reciver']);
+	$content = htmlspecialchars($_POST['content']);
 	$load = false;
+	echo $reciver;
 	if(isset($_POST['target'])){
 		$target = htmlspecialchars($_POST['target']);
-		$Admin_tab = $bdd->prepare('SELECT IdAccount,Pseudo,Password FROM Account WHERE Pseudo=:user AND Password=:password AND IdAccount IN (SELECT IdAccount FROM Admin)');
+		$Admin_tab = $bdd->prepare('SELECT IdAccount FROM Account WHERE Pseudo=:user AND Password=:password AND IdAccount IN (SELECT IdAccount FROM Admin)');
 		$Admin_tab->execute(array('user'=>$user, 'password'=>$password));
 		$User_tab = $bdd->prepare('SELECT * FROM Account WHERE IdAccount=:idaccount');
 		$User_tab->execute(array('idaccount'=>$target));
@@ -24,17 +27,17 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 		$User_tab->execute(array('user'=>$user, 'password'=>$password));
 		$load = $User=$User_tab->fetch();
 	}
+
+	$Reciver_tab = $bdd->prepare('SELECT IdAccount FROM Account WHERE Pseudo=:user');
+	$Reciver_tab->execute(array('user'=>$reciver));
+	$load = $load && $Reciver=$Reciver_tab->fetch();
+	
 	if($load){
-		$Nom_fichier=$_FILES['profilPicture']['name'];
-		$path_f=pathinfo($Nom_fichier);
-		$Extension_fichier=$path_f['extension'];
-		$Extension_autorisée=array('png','jpg','jpeg','webp');
-		if (in_array($Extension_fichier, $Extension_autorisée)){
-			if(move_uploaded_file($_FILES['profilPicture']['tmp_name'],__DIR__."/../img/".$User['IdAccount']."/".$Nom_fichier)) {
-				$request = $bdd->prepare('UPDATE Account SET ProfilPictureFile=:nomimg WHERE IdAccount = :idaccount');
-				$request->execute(array('idaccount'=>$User['IdAccount'], 'nomimg'=>$Nom_fichier));
-				echo $User['IdAccount']."/".$Nom_fichier;
-			}
+		$Contact_tab = $bdd->prepare('SELECT IdAsker, IdAccount FROM Contact WHERE ((IdAccount = :idaccount1 AND IdAsker = :idaccount2) OR (IdAccount = :idaccount2 AND IdAsker = :idaccount1)) AND Approval=1');
+		$Contact_tab->execute(array('idaccount1'=>$User['IdAccount'], 'idaccount2'=>$Reciver['IdAccount']));
+		if($Contact=$Contact_tab->fetch()){
+			$request = $bdd->prepare('INSERT INTO Message (IdSender, IdRecipient, Content) VALUES (:idsender, :idreciver, :content)');
+			$request->execute(array('idsender'=>$User['IdAccount'], 'idreciver'=>$Reciver['IdAccount'], 'content'=>$content));
 		}
 	}
 	else{

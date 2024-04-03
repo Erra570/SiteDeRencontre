@@ -1,21 +1,45 @@
+function showHide(id){
+	if(document.getElementById(id).style.display == "none" || document.getElementById(id).style.display==''){
+		document.getElementById(id).style.display = "flex";
+	}
+	else{
+		document.getElementById(id).style.display = "none";
+	}
+}
+
 function entree(target) {
 	document.getElementById("msgToSend").onkeydown = function(e){
 		if(e.which == 13){
-			target = document.getElementById("Reciver").innerHTML;
+			reciver = document.getElementById("Reciver").innerHTML;
+			let content = document.getElementById("msgToSend").value;
 
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4) {
-					/*let text = xhttp.responseText.split("&");
+					let tab = document.getElementsByClassName("msg");
 
-					var pere = document.getElementById("pictureContener");
+					var pere = document.getElementById("msgContener");
 
 					var e = document.createElement("div");
-					e.id = "img"+text[0];
-					e.className = "pictureContener";
+					e.className = "sender";
+					e.id = parseInt(tab[tab.length-1].parentNode.id)+1;
 
-					var ip = document.createElement("img");
-					ip.src = "img/poubelle_noire.png";
+					var msg = document.createElement("div");
+					msg.className = "msg";
+
+					var content = document.createElement("div");
+					content.innerHTML = document.getElementById("msgToSend").value;
+					content.className = "content";
+
+					var hour = document.createElement("div");
+					hour.innerHTML = "0 min";
+					hour.className = "hour";
+
+					msg.appendChild(content);
+					msg.appendChild(hour);
+					e.appendChild(msg);
+					pere.appendChild(e);
+					/*ip.src = "img/poubelle_noire.png";
 					ip.className = "poubelle";
 					ip.setAttribute("onclick", "rmPicture("+text[0]+","+target+")");
 					e.appendChild(ip);
@@ -26,10 +50,13 @@ function entree(target) {
 
 					pere.insertBefore(e,pere.lastChild.previousSibling);
 					showHide('addPictureContener');*/
-					console.log("thumbs");
+					console.log(xhttp.responseText);
+					document.location.href = "#"+e.id;
+
+					document.getElementById("msgToSend").value = "";
 				}
 			}
-			var file = "newMsg.php";
+			var file = "php/newMsg.php";
 			xhttp.open("POST", file, true);
 			
 			const formData = new FormData()
@@ -38,8 +65,31 @@ function entree(target) {
 				formData.append('target', target);
 			}
 			formData.append('reciver', reciver);
+			formData.append('content', content);
 
 			xhttp.send(formData);
 		}
 	}
+}
+
+function loadChat(target){
+	let reciver = document.querySelector('input[name="reciver"]:checked').value;
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			document.getElementById("modifierHide").innerHTML = xhttp.responseText;
+			entree(target);
+			let tab = document.getElementsByClassName("msg");
+			document.location.href = "#"+tab[tab.length-1].parentNode.id;
+		}
+	}
+	var file = "php/chat.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "reciver="+reciver;
+	if(target >= 1){
+		post = post+"&target="+target;
+	}
+	xhttp.send(post);
 }

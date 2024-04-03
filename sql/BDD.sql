@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS Message (
 	IdMessage INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	IdSender INT NOT NULL,
 	IdRecipient INT NOT NULL,
-	DateSend DATETIME NOT NULL,
+	DateSend DATETIME NOT NULL DEFAULT current_timestamp(),
 	Content TEXT,
 	FOREIGN KEY (IdSender) REFERENCES Account(IdAccount) ON DELETE CASCADE,
 	FOREIGN KEY (IdRecipient) REFERENCES Account(IdAccount) ON DELETE CASCADE);
@@ -97,7 +97,8 @@ CREATE TABLE IF NOT EXISTS Report (
 	FOREIGN KEY (IdMessage) REFERENCES Message(IdMessage) ON DELETE CASCADE);
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City) VALUES 
-	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau");
+	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau"),
+	(3, "Neeko", "heya", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City");
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, Street, AdressNumber, LoveSituation, Species, HumanoidGauge, WelcomeMessage) VALUES 
 	(2, "Legolas64", "leff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "Stilgard", "Avenue du Palais", 3, "Celib", "Elfe", 9, "Coucou, je suis Legolas :)");
@@ -109,4 +110,5 @@ INSERT INTO Image (IdAccount, IdImg, ImgFile) VALUES
 	(2, 1, "Legolas_greenleaf_orlando_bloom_lotr_by_push_pulse-d5vcniw.webp");
 
 INSERT INTO Contact (IdAsker, IdAccount, Approval) VALUES
-	(1,2,TRUE);
+	(1,2,TRUE),
+	(3,2,TRUE);

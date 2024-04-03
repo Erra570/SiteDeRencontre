@@ -28,12 +28,12 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<link rel="stylesheet" type="text/css" href="css/messagerie.css" media="all" />
 				<script type="text/javascript" src="js/messagerie.js"></script>
 			</head>
-			<body onload="entree('<?php if(isset($_POST['target'])){ echo $target;}?>')">
+			<body onload="loadChat('<?php if(isset($_POST['target'])){ echo $target;}?>');">
 				<?php include("php/bandeau.html"); ?>
 				<div class="centreur">
 					<div id="left">
-						<div>
-							Discutions
+						<div id="discussionOuverte">
+							<h2>Discussions</h2>
 							<?php 
 							$first = 0;
 							$ContactId_tab = $bdd->prepare('SELECT IdAsker, IdAccount FROM Contact WHERE (IdAccount = :idaccount OR IdAsker = :idaccount) AND Approval=1 ORDER BY IdAccount');
@@ -44,18 +44,19 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 									$idcontact = $ContactId['IdAsker'];
 								}
 
-								if($first == 0){
-									$first = $idcontact;
-								}
-
 								$Contact_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idcontact');
 								$Contact_tab->execute(array('idcontact'=>$idcontact));
 								if($Contact=$Contact_tab->fetch())
 								?>
-								<div class="profil">
+								<input type="radio" name="reciver" class="radioCache" 
+									value="<?php echo $Contact['Pseudo']; ?>" 
+									id="<?php echo $Contact['Pseudo']; ?>" 
+									<?php if($first == 0){echo "checked"; $first = 1;}?>
+									onclick="loadChat('<?php if(isset($_POST['target'])){ echo $target;}?>')">
+								<label class="profil" for="<?php echo $Contact['Pseudo']; ?>">
 									<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
 									<div><?php echo $Contact['Pseudo']; ?></div>
-								</div>
+								</label>
 								<?php
 							}
 							?>
@@ -67,26 +68,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 					if($Contact=$Contact_tab->fetch()){
 						?>
 						<div class="right" id="modifierHide">
-							<div class="msgTop">
-								<a class="msgTopLeft" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
-									<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
-									<h2 id="Reciver"><?php echo $Contact['Pseudo'];?></h2>
-								</a>
-								<div class="msgTopRight">
-									<svg class="petitPoints" viewBox="0 0 100 100">
-										<circle r="5" cx="50" cy="25" fill="#b1b1b1" />
-										<circle r="5" cx="50" cy="50" fill="#b1b1b1" />
-										<circle r="5" cx="50" cy="75" fill="#b1b1b1" />
-									</svg>
-								</div>
-							</div>
-							<div class="msgBody">
-								<div id="msgContener">
-								</div>
-								<div class="msgWriter">
-									<input type="text" name="msgToSend" id="msgToSend">
-								</div>
-							</div>
+							
 						</div>
 					<?php }?>
 				</div>
