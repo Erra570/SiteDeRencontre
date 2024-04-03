@@ -120,7 +120,7 @@
 	color: #eee;
 	width: 7vh;
 }
-.line {
+.linePlus {
 	fill:none;
 	stroke:#eee;
 	stroke-width:5.5;
@@ -174,7 +174,7 @@
 #modifierHide{
 	display: none;
 	padding-left: 7vw;
-	width: 73vw;
+	width: 70vw;
 }
 .blocDInfos{
 	margin-left: 2%;
@@ -197,4 +197,39 @@ input[type="text"], [type="number"]{
 }
 input[type="text"]:hover, [type="number"]:hover {
 	border: revert;
+}
+#profils{
+	display: flex;
+	width: 30vw;
+}
+#profils .profilBlockeds{
+	display: flex;
+    align-items: center;
+    border-radius: 1vw;
+    width: 20vw;
+    margin-bottom: 1vw;
+}
+#profils .profilPicture{
+	width: 4vw;
+	height: 4vw;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.croix{
+	color: #343a40;
+	width: 2vw;
+	margin: 1vw 1vw 1vw 2vw;
+    cursor: pointer;
+}
+.line {
+	fill:none;
+	stroke:#343a40;
+	stroke-width:5.5;
+	stroke-linecap:round;
+}
+.croix:hover{
+	color: orangered;
+}
+.croix:hover .line{
+	stroke: orangered;
 }

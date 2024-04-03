@@ -154,3 +154,20 @@ function modifyProfil(target){
 	var formData = new FormData(document.getElementById("profil"));
 	xhttp.send(formData);
 }
+
+function unBlock(reciver, target){
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			document.getElementById(reciver).remove();
+		}
+	}
+	var file = "php/unBlock.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "reciver="+reciver;
+	if(target >= 1){
+		post = post+"&target="+target;
+	}
+	xhttp.send(post);
+}

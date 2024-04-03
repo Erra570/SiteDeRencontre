@@ -1,3 +1,7 @@
+a{
+	text-decoration: none;
+	color: black;
+}
 .centreur {
 	margin-top: calc(5vw + 15px);
 	display: flex;
@@ -6,12 +10,40 @@
 
 /*style du bandeau de gauche qui contient les compte avec les quelles la discution est engagée ou engageable*/
 #left {
+    flex-direction: column;
 	display: flex;
 	width: 20vw;
 	margin-left: 1vw;
 	border-right : solid #8b5e3c 3px;
 	padding-top: 25px;
 	padding-right: 1vw;
+}
+.croix{
+	color: #343a40;
+	width: 2vw;
+	margin: 1vw;
+    cursor: pointer;
+}
+.line {
+	fill:none;
+	stroke:#343a40;
+	stroke-width:8;
+	stroke-linecap:round;
+}
+.vert{
+	margin-left: 3vw;
+}
+.vert:hover{
+	color: #2ecc71;
+}
+.vert:hover .line{
+	stroke: #2ecc71;
+}
+.rouge:hover{
+	color: orangered;
+}
+.rouge:hover .line{
+	stroke: orangered;
 }
 #discussionOuverte{
 	width: 100%;
@@ -73,14 +105,14 @@ input:checked + label{
     position: absolute;
     align-items: center;
     right: 5%;
-    top: calc(5vw + 7vh + 15px + 15px);
+    top: calc(5vw + 7vh + 27px);
     z-index: 1;
     padding: 15px;
-    background: #f8f9fa;
+    background: #F3EDEA;
     border-radius: 10px;
 }
 .red{
-	color : #ff5e3c;
+	color : orangered;
 }
 #spanTroisPoint .bouton{
     cursor: pointer;
@@ -91,7 +123,7 @@ input:checked + label{
     justify-content: center;
 }
 #spanTroisPoint .bouton:hover{
-    background: #d8d9da;
+    background: #EBDCD2;
 }
 /*corp*/
 .msgBody{
@@ -125,6 +157,7 @@ input:checked + label{
 	background: #cadce8;
 }
 .msg{
+	max-width: 50vw;
 	margin-right: 4vw;
 	margin-left: 2.5vw;
 	margin-top: 10px;
@@ -133,8 +166,10 @@ input:checked + label{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    overflow-wrap: break-word;
 }
 .content{
+	width: 100%;
 	font-weight: bold;
 }
 .hour{

@@ -13,7 +13,6 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 	$reciver = htmlspecialchars($_POST['reciver']);
 	$content = htmlspecialchars($_POST['content']);
 	$load = false;
-	echo $reciver;
 	if(isset($_POST['target'])){
 		$target = htmlspecialchars($_POST['target']);
 		$Admin_tab = $bdd->prepare('SELECT IdAccount FROM Account WHERE Pseudo=:user AND Password=:password AND IdAccount IN (SELECT IdAccount FROM Admin)');
@@ -33,17 +32,16 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 	$load = $load && $Reciver=$Reciver_tab->fetch();
 	
 	if($load){
-		$Contact_tab = $bdd->prepare('SELECT IdAsker, IdAccount FROM Contact WHERE ((IdAccount = :idaccount1 AND IdAsker = :idaccount2) OR (IdAccount = :idaccount2 AND IdAsker = :idaccount1)) AND Approval=1');
+		$Contact_tab = $bdd->prepare('SELECT IdAsker, IdAccount FROM Contact WHERE ((IdAccount = :idaccount1 AND IdAsker = :idaccount2) OR (IdAccount = :idaccount2 AND IdAsker = :idaccount1)) AND Approval=1 AND 
+			IdAsker not in (SELECT IdAccount FROM BlackList WHERE IdBlocked = :idaccount1) AND 
+			IdAsker not in (SELECT IdBlocked FROM BlackList WHERE IdAccount = :idaccount1) AND 
+			IdAccount not in (SELECT IdAccount FROM BlackList WHERE IdBlocked = :idaccount1) AND 
+			IdAccount not in (SELECT IdBlocked FROM BlackList WHERE IdAccount = :idaccount1)');
 		$Contact_tab->execute(array('idaccount1'=>$User['IdAccount'], 'idaccount2'=>$Reciver['IdAccount']));
 		if($Contact=$Contact_tab->fetch()){
 			$request = $bdd->prepare('INSERT INTO Message (IdSender, IdRecipient, Content) VALUES (:idsender, :idreciver, :content)');
 			$request->execute(array('idsender'=>$User['IdAccount'], 'idreciver'=>$Reciver['IdAccount'], 'content'=>$content));
 		}
 	}
-	else{
-		echo "1";
-	}
 }
-else{
-	echo "2";
-}?>
+?>

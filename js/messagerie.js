@@ -39,18 +39,6 @@ function entree(target) {
 					msg.appendChild(hour);
 					e.appendChild(msg);
 					pere.appendChild(e);
-					/*ip.src = "img/poubelle_noire.png";
-					ip.className = "poubelle";
-					ip.setAttribute("onclick", "rmPicture("+text[0]+","+target+")");
-					e.appendChild(ip);
-
-					var i = document.createElement("img");
-					i.src = "img/"+text[1];
-					e.appendChild(i);
-
-					pere.insertBefore(e,pere.lastChild.previousSibling);
-					showHide('addPictureContener');*/
-					console.log(xhttp.responseText);
 					document.location.href = "#"+e.id;
 
 					document.getElementById("msgToSend").value = "";
@@ -85,6 +73,77 @@ function loadChat(target){
 		}
 	}
 	var file = "php/chat.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "reciver="+reciver;
+	if(target >= 1){
+		post = post+"&target="+target;
+	}
+	xhttp.send(post);
+}
+
+function block(target){
+	let reciver = document.querySelector('input[name="reciver"]:checked').value;
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			document.getElementById(reciver).remove();
+			document.getElementById("_"+reciver).remove();
+			document.getElementsByClassName("radioCache")[0].checked = 1;
+			loadChat(target);
+		}
+	}
+	var file = "php/block.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "reciver="+reciver;
+	if(target >= 1){
+		post = post+"&target="+target;
+	}
+	xhttp.send(post);
+}
+
+function accept(reciver, target){
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			var pere = document.getElementById("discussionOuverte");
+
+			var input = document.createElement("input");
+			input.type = "radio";
+			input.className = "radioCache";
+			input.value = reciver;
+			input.id = reciver;
+			input.name = "reciver";
+			if(target >= 1){
+				input.setAttribute("onclick", "loadChat('"+target+"')");
+			}
+			else{
+				input.setAttribute("onclick", "loadChat()");
+			}
+
+			var label = document.createElement("label");
+			label.className = "profil";
+			label.htmlFor = reciver;
+			label.id = "_"+reciver;
+
+			var img = document.createElement("img");
+			img.src = "img/"+xhttp.responseText;
+			img.className = "profilPicture";
+
+			var div = document.createElement("div");
+			div.innerHTML = reciver;
+
+			label.appendChild(img);
+			label.appendChild(div);
+			pere.appendChild(input);
+			pere.appendChild(label);
+
+			document.getElementById(reciver).remove();
+		}
+	}
+	var file = "php/accept.php";
 	xhttp.open("POST", file, true);
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	let post = "reciver="+reciver;

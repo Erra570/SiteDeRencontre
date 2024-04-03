@@ -41,8 +41,8 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 						<div>
 							<div class="centreHorizontalement" id="profilTop" onclick="showHide('modifyProfilPictureContener')">
 								<svg class="plus plusProfil" viewBox="0 0 100 100">
-									<path class="line top" d="m 10 50 l 80 0" />
-									<path class="line bottom" d="m 50 10 l 0 80 " />
+									<path class="linePlus top" d="m 10 50 l 80 0" />
+									<path class="linePlus bottom" d="m 50 10 l 0 80 " />
 								</svg>
 								<img id="imgProfilPicture" src="img/<?php echo $User['IdAccount'].'/'.$User['ProfilPictureFile'];?>">
 							</div>
@@ -84,7 +84,6 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 									</div>
 									<div>
 										<input type="button" name="modifierProfil" id="modifierProfil" onclick="modifierApparition(); showHide('sauvgarderChangement'); showHide('annulerChangement'); hideShow('modifierProfil')" value="modifier profil">
-										<input type="button" name="sauvgarderChangement" id="sauvgarderChangement" onclick="modifyProfil(<?php if(isset($_POST['target'])){ echo $target;}?>)" value="sauvgarder changement">
 										<input type="button" name="annulerChangement" id="annulerChangement" onclick="modifierApparition(); showHide('sauvgarderChangement'); showHide('modifierProfil'); showHide('annulerChangement')" value="annuler changement">
 									</div>
 								</div>
@@ -105,8 +104,8 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 						?>
 						<div id="nopicture" class="pictureContener" onclick="showHide('addPictureContener')">
 							<svg class="plus" viewBox="0 0 100 100">
-								<path class="line top" d="m 10 50 l 80 0" />
-								<path class="line bottom" d="m 50 10 l 0 80 " />
+								<path class="linePlus top" d="m 10 50 l 80 0" />
+								<path class="linePlus bottom" d="m 50 10 l 0 80 " />
 							</svg>
 						</div>
 					</div>
@@ -174,6 +173,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 									<input type="text" name="eyeColor" id="eyeColor" value="<?php echo $User['EyeColor'] ?>"><br>
 								</div>
 							</div>
+							<input type="button" name="sauvgarderChangement" id="sauvgarderChangement" onclick="modifyProfil(<?php if(isset($_POST['target'])){ echo $target;}?>)" value="sauvgarder changement">
 						</form>
 						<div>
 							<div class="h3">
@@ -191,6 +191,31 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 								<input type="password" name="password_confirm" id="password_confirm" maxlength="255" minlength="4"/><br>
 								<input type="submit" name="Ajouter" value="Changer">
 							</form>
+						</div>
+						<div>
+							<div class="h3">
+								<h3>Black list</h3><div class="traitSeparation"></div>
+							</div>
+							<div id="profils">
+								<?php
+								$BlockedId_tab = $bdd->prepare('SELECT IdBlocked FROM BlackList WHERE IdAccount = :idaccount ORDER BY IdBlocked');
+								$BlockedId_tab->execute(array('idaccount'=>$User['IdAccount']));
+								while($BlockedId=$BlockedId_tab->fetch()){
+									$Blocked_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idcontact');
+									$Blocked_tab->execute(array('idcontact'=>$BlockedId['IdBlocked']));
+									if($Blocked=$Blocked_tab->fetch()){?>
+										<div class="profilBlockeds" id="<?php echo $Blocked['Pseudo'];?>" onclick="unBlock(<?php echo "'".$Blocked['Pseudo']."'"; if(isset($_POST['target'])){ echo ", '".$target."'";}?>)">
+											<img class="profilPicture" src="img/<?php echo $BlockedId['IdBlocked']."/".$Blocked['ProfilPictureFile'];?>">
+											<div><?php echo $Blocked['Pseudo']; ?></div>
+											<svg class="croix" viewBox="0 0 100 100">
+												<path class="line top" d="m 10 10 l 80 80" />
+												<path class="line bottom" d="m 10 90 l 80 -80 " />
+											</svg>
+										</div>
+									<?php }
+								}
+								?>
+							</div>
 						</div>
 					</div>
 				</div>

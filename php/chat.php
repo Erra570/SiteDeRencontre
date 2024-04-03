@@ -50,10 +50,10 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 						</svg>
 					</div>
 					<div id="spanTroisPoint">
-						<div class="bouton">
-							<a href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">Consulter profil</a>
-						</div>
-						<div class="bouton red">
+						<a class="bouton" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
+							<div>Consulter profil</div>
+						</a>
+						<div class="bouton red" onclick="block('<?php if(isset($_POST['target'])){ echo $target;}?>')">
 							<div>Bloquer</div>
 						</div>
 					</div>
