@@ -16,10 +16,10 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     $User = $User_tab->fetch();
 
     if ($User) {
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     } else {
-        header('Location: login.php?erreur=Identifiant ou mot de passe incorrect');
+        header('Location: ../login.php?erreur=Identifiant ou mot de passe incorrect');
     }
 }
 ?>

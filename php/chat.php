@@ -76,40 +76,14 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 						$Msg_tab = $bdd->prepare('SELECT DATE_FORMAT(DateSend, \'%d/%m/%Y %H:%i\') AS date, DATE_FORMAT(DateSend, \'%Y-%m-%d-%H-%i-%s\') AS dateformat, Content, IdSender, IdMessage FROM Message WHERE ((IdSender = :idaccount1 AND IdRecipient = :idaccount2) OR (IdSender = :idaccount2 AND IdRecipient = :idaccount1)) ORDER BY DateSend');
 						$Msg_tab->execute(array('idaccount1'=>$User['IdAccount'], 'idaccount2'=>$reciver));
 						while($Msg=$Msg_tab->fetch()){
-							?>
-							<div id="<?php echo $Msg['IdMessage'];?>" class="<?php if($Msg['IdSender'] == $User['IdAccount']){echo "sender";}else{echo "reciver";}?>">
-								<div class="msg">
-									<div class="content"><?php echo $Msg['Content'];?></div>
-									<svg class="petitPointsHorizontaux" viewBox="0 0 100 100" onclick="showHide('span<?php echo $Msg['IdMessage'];?>')">
-										<circle r="5" cx="25" cy="50" fill="#602320" />
-										<circle r="5" cx="50" cy="50" fill="#602320" />
-										<circle r="5" cx="75" cy="50" fill="#602320" />
-									</svg>
-									<div class="span" id="span<?php echo $Msg['IdMessage'];?>">
-										<?php if($Msg['IdSender'] == $User['IdAccount']){?>
-											<div class="bouton" onclick="rmMsg('<?php echo $Msg['IdMessage'];?><?php if(isset($_POST['target'])){ echo ','.$target;}?>')">
-												<div>Supprimer</div>
-											</div>
-										<?php } 
-										else{ ?>
-											<div class="bouton red" onclick="reportMsg('<?php echo $Msg['IdMessage'];?><?php if(isset($_POST['target'])){ echo ','.$target;}?>')">
-												<div>Signaler</div>
-											</div>
-										<?php } ?>
-									</div>
-									<div class="hour"><?php 
-										$date_liste=explode('-',date('Y-m-d-H-i-s'));
-										$date_aliste=explode('-',$Msg['dateformat']);
-										$date_=$date_liste['0']*31557600+$date_liste['1']*2629800+$date_liste['2']*86400+$date_liste['3']*3600+$date_liste['4']*60+$date_liste['5'];
-										$date_a=$date_aliste['0']*31557600+$date_aliste['1']*2629800+$date_aliste['2']*86400+$date_aliste['3']*3600+$date_aliste['4']*60+$date_aliste['5'];
-										$Date_=$date_-$date_a;
-										if($Date_<3600){echo intdiv($Date_,60).' min';}
-										elseif($Date_<86400){echo intdiv($Date_,3600).' h';}
-										elseif($Date_<2629800){echo $Msg['date'];}
-									?></div>
-								</div>
-							</div>
-							<?php 
+							$_GET['IdMessage'] = $Msg['IdMessage'];
+							$_GET['IdSender'] = $Msg['IdSender'];
+							$_GET['IdAccount'] = $User['IdAccount'];
+							$_GET['Content'] = $Msg['Content'];
+							$_GET['dateformat'] = $Msg['dateformat'];
+							$_GET['date'] = $Msg['date'];
+							
+							include('msg.php');
 						}
 						?>
 					</div>

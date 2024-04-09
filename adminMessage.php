@@ -12,9 +12,9 @@ catch (Exception $e){
 if(isset($_GET['password']) AND isset($_GET['user'])){
 	$user = htmlspecialchars($_GET['user']);
 	$password = htmlspecialchars($_GET['password']);
-	$User_tab = $bdd->prepare('SELECT IdAccount,Pseudo,Password FROM Account WHERE Pseudo=:user AND Password=:password AND IdAccount IN (SELECT IdAccount FROM Admin)');
-	$User_tab->execute(array('user'=>$user, 'password'=>$password));
-	if($User=$User_tab->fetch()){ ?>
+	$Admin_tab = $bdd->prepare('SELECT IdAccount,Pseudo,Password FROM Account WHERE Pseudo=:user AND Password=:password AND IdAccount IN (SELECT IdAccount FROM Admin)');
+	$Admin_tab->execute(array('user'=>$user, 'password'=>$password));
+	if($Admin=$Admin_tab->fetch()){ ?>
 		<!DOCTYPE html>
 		<html>
 			<head>
@@ -32,14 +32,6 @@ if(isset($_GET['password']) AND isset($_GET['user'])){
 							$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
 							while($User=$User_tab->fetch()){
 								echo '<option id="'.$User['IdAccount'].'" value="'.$User['IdAccount'].'">'.$User['Pseudo'].' ('.$User['Name'].' '.$User['FirstName'].')</option>';
-							}
-							?>
-						</select>
-						<select name="_user" id="_user" required>
-							<?php
-							$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
-							while($User=$User_tab->fetch()){
-								echo '<option id="_'.$User['IdAccount'].'" value="'.$User['IdAccount'].'">'.$User['Pseudo'].' ('.$User['Name'].' '.$User['FirstName'].')</option>';
 							}
 							?>
 						</select>

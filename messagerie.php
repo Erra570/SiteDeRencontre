@@ -99,15 +99,9 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 							?>
 						</div>
 					</div>
-					<?php 
-					$Contact_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idcontact');
-					$Contact_tab->execute(array('idcontact'=>$first));
-					if($Contact=$Contact_tab->fetch()){
-						?>
-						<div class="right" id="modifierHide">
-							
-						</div>
-					<?php }?>
+					<div class="right" id="modifierHide">
+						Il n'y a personne ici
+					</div>
 				</div>
 			</body>
 		</html>

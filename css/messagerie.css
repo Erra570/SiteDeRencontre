@@ -20,8 +20,8 @@ a{
 }
 .croix{
 	color: #343a40;
-	width: 2vw;
-	margin: 1vw;
+	width: 3vh;
+	margin: 1.5vh;
     cursor: pointer;
 }
 .line {
@@ -31,7 +31,6 @@ a{
 	stroke-linecap:round;
 }
 .vert{
-	margin-left: 3vw;
 }
 .vert:hover{
 	color: #2ecc71;
@@ -58,7 +57,9 @@ a{
 }
 #left .profil .pseudo{
 	width: 100%;
-	overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 #left .profilPicture{
 	width: 5.5vh;
@@ -76,7 +77,7 @@ input:checked + label{
 
 /*messagerie top*/
 .right {
-	height: calc(100vh - (5vw + 30px));
+	height: calc(100vh - (5vw + 16px));
 	width: 78vw;
 }
 .msgTop{
@@ -209,14 +210,15 @@ input:checked + label{
     border-radius: 10px;
     top : calc(-1vh - 10px);
     cursor: pointer;
-    right: 2vh;
 }
 .sender .span{
 	background: #d8baa6;
 	color: #ed1216;
+    right: 2vh;
 }
 .reciver .span{
 	background: #a6c4d8;
+    right : calc(-1vh - 75px);
 }
 .hour{
     font-size: 12px;

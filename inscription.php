@@ -13,7 +13,7 @@
 			<h1> Créez votre compte </h1><br>
 		</div>
 
-		<form id="formInscription" method="post" action="validationInscription.php">
+		<form id="formInscription" method="post" action="php/validationInscription.php">
 			<p> <i style="font-size: 12px;"> Déjà membre ? <a href="login.php"> Connectez-vous ici </i></a>.</p><br>
 
 			<label for="user"> Pseudo :</label>

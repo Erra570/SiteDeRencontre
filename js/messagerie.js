@@ -9,37 +9,22 @@ function showHide(id){
 
 function entree(target) {
 	document.getElementById("msgToSend").onkeydown = function(e){
-		if(e.which == 13){
+		if(e.which == 13 && document.getElementById("msgToSend").value!=''){
 			reciver = document.getElementById("Reciver").innerHTML;
 			let content = document.getElementById("msgToSend").value;
 
 			xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4) {
-					let tab = document.getElementsByClassName("msg");
-
 					var pere = document.getElementById("msgContener");
 
-					var e = document.createElement("div");
-					e.className = "sender";
-					e.id = xhttp.responseText;
-
-					var msg = document.createElement("div");
-					msg.className = "msg";
-
-					var content = document.createElement("div");
-					content.innerHTML = document.getElementById("msgToSend").value;
-					content.className = "content";
-
-					var hour = document.createElement("div");
-					hour.innerHTML = "0 min";
-					hour.className = "hour";
-
-					msg.appendChild(content);
-					msg.appendChild(hour);
-					e.appendChild(msg);
+					var e = document.createElement("span");
+					e.innerHTML = xhttp.responseText;
+					
 					pere.appendChild(e);
-					document.location.href = "#"+e.id;
+
+					let tab = document.getElementsByClassName("msg");
+					document.location.href = "#"+tab[tab.length-1].parentNode.id;
 
 					document.getElementById("msgToSend").value = "";
 				}
@@ -60,6 +45,40 @@ function entree(target) {
 	}
 }
 
+function instantane(target){
+	let reciver = document.querySelector('input[name="reciver"]:checked').value;
+
+	setInterval(timer,1000);
+
+	function timer(){
+		xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && xhttp.responseText!='') {
+				var pere = document.getElementById("msgContener");
+
+				var e = document.createElement("span");
+				e.innerHTML = xhttp.responseText;
+				
+				pere.appendChild(e);
+
+				let tab = document.getElementsByClassName("msg");
+				document.location.href = "#"+tab[tab.length-1].parentNode.id;
+				document.getElementById("msgToSend").focus();
+			}
+		}
+		var file = "php/msgInstantane.php";
+		xhttp.open("POST", file, true);
+		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+		let tab = document.getElementsByClassName("msg");
+		let post = "reciver="+reciver+"&last="+tab[tab.length-1].parentNode.id;
+		if(target >= 1){
+			post = post+"&target="+target;
+		}
+		xhttp.send(post);
+	}
+}
+
 function loadChat(target){
 	let reciver = document.querySelector('input[name="reciver"]:checked').value;
 
@@ -68,6 +87,7 @@ function loadChat(target){
 		if (this.readyState == 4) {
 			document.getElementById("modifierHide").innerHTML = xhttp.responseText;
 			entree(target);
+			instantane(target);
 			let tab = document.getElementsByClassName("msg");
 			document.location.href = "#"+tab[tab.length-1].parentNode.id;
 		}

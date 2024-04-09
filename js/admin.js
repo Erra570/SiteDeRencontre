@@ -1,7 +1,7 @@
 var efface = null;
 
 /*fait en sorte que l'on ne puisse pas verifier le message de un utilisateur vers lui meme*/
-function messageriecheck(){
+/*function messageriecheck(){
 	let tmp = document.getElementById("user").value;
 	document.getElementById("_"+tmp).style.display = "none";
 	if(efface != null){
@@ -26,7 +26,7 @@ function messageriecheck(){
 		}
 	}
 	efface = "_"+tmp;
-}
+}*/
 
 function loadProfil(){
 

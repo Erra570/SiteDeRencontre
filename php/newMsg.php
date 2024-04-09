@@ -41,10 +41,17 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 		if($Contact=$Contact_tab->fetch()){
 			$request = $bdd->prepare('INSERT INTO Message (IdSender, IdRecipient, Content) VALUES (:idsender, :idreciver, :content)');
 			$request->execute(array('idsender'=>$User['IdAccount'], 'idreciver'=>$Reciver['IdAccount'], 'content'=>$content));
-			$rep = $bdd->prepare('SELECT IdMessage FROM Message WHERE IdSender = :idsender AND IdRecipient = :idreciver ORDER BY IdMessage DESC');
+			$rep = $bdd->prepare('SELECT DATE_FORMAT(DateSend, \'%d/%m/%Y %H:%i\') AS date, DATE_FORMAT(DateSend, \'%Y-%m-%d-%H-%i-%s\') AS dateformat, Content, IdSender, IdMessage FROM Message WHERE IdSender = :idsender AND IdRecipient = :idreciver ORDER BY IdMessage DESC');
 			$rep->execute(array('idsender'=>$User['IdAccount'], 'idreciver'=>$Reciver['IdAccount']));
 			$Rep=$rep->fetch();
-			echo $Rep['IdMessage'];
+			$_GET['IdMessage'] = $Rep['IdMessage'];
+			$_GET['IdSender'] = $Rep['IdSender'];
+			$_GET['IdAccount'] = $User['IdAccount'];
+			$_GET['Content'] = $Rep['Content'];
+			$_GET['dateformat'] = $Rep['dateformat'];
+			$_GET['date'] = $Rep['date'];
+			
+			include('msg.php');
 		}
 	}
 }

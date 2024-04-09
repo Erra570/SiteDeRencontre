@@ -12,7 +12,7 @@
                                 <h1> Connectez-vous à votre compte </h1>
                         </div>
 
-                        <form class="form" id="formConnexion" method="post" action="verificationConnexion.php">
+                        <form class="form" id="formConnexion" method="post" action="php/verificationConnexion.php">
                                 <label for="user"> Pseudo ou adresse mail :</label> <br>
                                 <input class="inputText" type="text" name="user" id="user" maxlength="255" required/> <br>
 
