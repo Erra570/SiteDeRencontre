@@ -38,10 +38,19 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 			$Liaison_tab->execute(array('idaccount1'=>$User['IdAccount'], 'idaccount2'=>$reciver));
 			if($Liaison=$Liaison_tab->fetch()){?>
 				<div class="msgTop">
-					<a class="msgTopLeft" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
-						<img class="profilPicture" src="img/<?php echo $reciver."/".$Contact['ProfilPictureFile'];?>">
-						<h2 id="Reciver"><?php echo $Contact['Pseudo'];?></h2>
-					</a>
+					<div class="msgTopLeft">
+						<a class="msgTopLeft" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
+							<img class="profilPicture" src="img/<?php echo $reciver."/".$Contact['ProfilPictureFile'];?>">
+							<h2 id="Reciver"><?php echo $Contact['Pseudo'];?></h2>
+						</a>
+						<?php 
+							$Reported_tab = $bdd->prepare('SELECT * FROM ReportAccount WHERE IdReporter=:idaccount AND IdAccount= :idcontact');
+							$Reported_tab->execute(array('idaccount'=>$User['IdAccount'], 'idcontact'=>$reciver));
+							if($Reported=$Reported_tab->fetch()){
+								echo '<div class="signalement">Cette utilisateur été signalé</div>';
+							}
+						?>
+					</div>
 					<div class="msgTopRight" onclick="showHide('spanTroisPoint')">
 						<svg class="petitPoints" viewBox="0 0 100 100">
 							<circle r="5" cx="50" cy="25" fill="#602320" />
@@ -53,6 +62,9 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 						<a class="bouton" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
 							<div>Consulter profil</div>
 						</a>
+						<div class="bouton red" onclick="reportAccount('<?php if(isset($_POST['target'])){ echo $target;}?>'); showHide('spanTroisPoint')">
+							<div>Signaler</div>
+						</div>
 						<div class="bouton red" onclick="block('<?php if(isset($_POST['target'])){ echo $target;}?>')">
 							<div>Bloquer</div>
 						</div>
@@ -61,14 +73,30 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 				<div class="msgBody">
 					<div id="msgContener">
 						<?php
-						$msgNb = 1;
-						$Msg_tab = $bdd->prepare('SELECT DATE_FORMAT(DateSend, \'%d/%m/%Y %H:%i\') AS date, DATE_FORMAT(DateSend, \'%Y-%m-%d-%H-%i-%s\') AS dateformat, Content, IdSender FROM Message WHERE ((IdSender = :idaccount1 AND IdRecipient = :idaccount2) OR (IdSender = :idaccount2 AND IdRecipient = :idaccount1)) ORDER BY DateSend');
+						$Msg_tab = $bdd->prepare('SELECT DATE_FORMAT(DateSend, \'%d/%m/%Y %H:%i\') AS date, DATE_FORMAT(DateSend, \'%Y-%m-%d-%H-%i-%s\') AS dateformat, Content, IdSender, IdMessage FROM Message WHERE ((IdSender = :idaccount1 AND IdRecipient = :idaccount2) OR (IdSender = :idaccount2 AND IdRecipient = :idaccount1)) ORDER BY DateSend');
 						$Msg_tab->execute(array('idaccount1'=>$User['IdAccount'], 'idaccount2'=>$reciver));
 						while($Msg=$Msg_tab->fetch()){
 							?>
-							<div id="<?php echo $msgNb; $msgNb++;?>" class="<?php if($Msg['IdSender'] == $User['IdAccount']){echo "sender";}else{echo "reciver";}?>">
+							<div id="<?php echo $Msg['IdMessage'];?>" class="<?php if($Msg['IdSender'] == $User['IdAccount']){echo "sender";}else{echo "reciver";}?>">
 								<div class="msg">
 									<div class="content"><?php echo $Msg['Content'];?></div>
+									<svg class="petitPointsHorizontaux" viewBox="0 0 100 100" onclick="showHide('span<?php echo $Msg['IdMessage'];?>')">
+										<circle r="5" cx="25" cy="50" fill="#602320" />
+										<circle r="5" cx="50" cy="50" fill="#602320" />
+										<circle r="5" cx="75" cy="50" fill="#602320" />
+									</svg>
+									<div class="span" id="span<?php echo $Msg['IdMessage'];?>">
+										<?php if($Msg['IdSender'] == $User['IdAccount']){?>
+											<div class="bouton" onclick="rmMsg('<?php echo $Msg['IdMessage'];?><?php if(isset($_POST['target'])){ echo ','.$target;}?>')">
+												<div>Supprimer</div>
+											</div>
+										<?php } 
+										else{ ?>
+											<div class="bouton red" onclick="reportMsg('<?php echo $Msg['IdMessage'];?><?php if(isset($_POST['target'])){ echo ','.$target;}?>')">
+												<div>Signaler</div>
+											</div>
+										<?php } ?>
+									</div>
 									<div class="hour"><?php 
 										$date_liste=explode('-',date('Y-m-d-H-i-s'));
 										$date_aliste=explode('-',$Msg['dateformat']);

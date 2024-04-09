@@ -91,14 +91,22 @@ CREATE TABLE IF NOT EXISTS Image (
 	FOREIGN KEY (IdAccount) REFERENCES Account(IdAccount) ON DELETE CASCADE);
 
 
-CREATE TABLE IF NOT EXISTS Report ( 
+CREATE TABLE IF NOT EXISTS ReportAccount ( 
+	IdReporter INT NOT NULL,
+	IdAccount INT NOT NULL,
+	CONSTRAINT cle_pri PRIMARY KEY (IdReporter, IdAccount),
+	FOREIGN KEY (IdReporter) REFERENCES Account(IdAccount) ON DELETE CASCADE,
+	FOREIGN KEY (IdAccount) REFERENCES Account(IdAccount) ON DELETE CASCADE);
+
+CREATE TABLE IF NOT EXISTS ReportMsg ( 
 	IdMessage INT NOT NULL PRIMARY KEY,
-	Why TEXT,
 	FOREIGN KEY (IdMessage) REFERENCES Message(IdMessage) ON DELETE CASCADE);
 
-INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City) VALUES 
-	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau"),
-	(3, "Neeko", "heya", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City");
+INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, LoveSituation) VALUES 
+	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau", "En Couple");
+
+INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, LoveSituation, ProfilPictureFile) VALUES 
+	(3, "Neeko", "heya", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City", "Celib", "wp4491879.webp");
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, Street, AdressNumber, LoveSituation, Species, HumanoidGauge, WelcomeMessage) VALUES 
 	(2, "Legolas64", "leff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "Stilgard", "Avenue du Palais", 3, "Celib", "Elfe", 9, "Coucou, je suis Legolas :)");

@@ -41,6 +41,10 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 		if($Contact=$Contact_tab->fetch()){
 			$request = $bdd->prepare('INSERT INTO Message (IdSender, IdRecipient, Content) VALUES (:idsender, :idreciver, :content)');
 			$request->execute(array('idsender'=>$User['IdAccount'], 'idreciver'=>$Reciver['IdAccount'], 'content'=>$content));
+			$rep = $bdd->prepare('SELECT IdMessage FROM Message WHERE IdSender = :idsender AND IdRecipient = :idreciver ORDER BY IdMessage DESC');
+			$rep->execute(array('idsender'=>$User['IdAccount'], 'idreciver'=>$Reciver['IdAccount']));
+			$Rep=$rep->fetch();
+			echo $Rep['IdMessage'];
 		}
 	}
 }

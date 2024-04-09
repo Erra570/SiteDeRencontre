@@ -92,7 +92,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 
 									<label class="profil" for="<?php echo $Contact['Pseudo'];?>" id="_<?php echo $Contact['Pseudo'];?>">
 										<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
-										<div><?php echo $Contact['Pseudo']; ?></div>
+										<div class="pseudo"><?php echo $Contact['Pseudo']; ?></div>
 									</label>
 								<?php }
 							}

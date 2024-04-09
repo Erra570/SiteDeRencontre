@@ -49,14 +49,21 @@ a{
 	width: 100%;
 }
 #left .profil{
+	height: 6vh;
+	padding: 0.5vh;
 	display: flex;
     align-items: center;
-    border-radius: 1vw;
+    border-radius: 1vh;
     cursor: pointer;
 }
+#left .profil .pseudo{
+	width: 100%;
+	overflow-wrap: break-word;
+}
 #left .profilPicture{
-	width: 4vw;
-	height: 4vw;
+	width: 5.5vh;
+	height: 5.5vh;
+	margin-right: 1vh;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -71,9 +78,9 @@ input:checked + label{
 .right {
 	height: calc(100vh - (5vw + 30px));
 	width: 78vw;
-	padding-top: 15px;
 }
 .msgTop{
+	padding: 1vh;
 	height: 7vh;
 	display: flex;
     justify-content: space-between;
@@ -84,6 +91,10 @@ input:checked + label{
 	height: 100%;
 }
 .msgTopLeft h2{
+	margin-left: 10px;
+}
+.signalement{
+	color: orangered;
 	margin-left: 10px;
 }
 .msgTop .profilPicture{
@@ -167,15 +178,52 @@ input:checked + label{
     flex-direction: column;
     align-items: flex-end;
     overflow-wrap: break-word;
+    position: relative;
 }
 .content{
 	width: 100%;
 	font-weight: bold;
 }
+.msg:hover .petitPointsHorizontaux{
+	display: flex;
+}
+.petitPointsHorizontaux{
+	display: none;
+	position: absolute;
+	top: -1vh;
+	right: -1vh;
+	height: 3vh;
+	border-radius: 0.7vh;
+    cursor: pointer;
+}
+.sender .petitPointsHorizontaux{
+	background: #d8baa6;
+}
+.reciver .petitPointsHorizontaux{
+	background: #a6c4d8;
+}
+.span{
+	display: none;
+    position: absolute;
+    padding: 10px;
+    border-radius: 10px;
+    top : calc(-1vh - 10px);
+    cursor: pointer;
+    right: 2vh;
+}
+.sender .span{
+	background: #d8baa6;
+	color: #ed1216;
+}
+.reciver .span{
+	background: #a6c4d8;
+}
 .hour{
     font-size: 12px;
     color: #88898a;
 }
+
+
 .msgWriter{
 	bottom: 0;
 	margin-right: 4vw;

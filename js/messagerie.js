@@ -22,7 +22,7 @@ function entree(target) {
 
 					var e = document.createElement("div");
 					e.className = "sender";
-					e.id = parseInt(tab[tab.length-1].parentNode.id)+1;
+					e.id = xhttp.responseText;
 
 					var msg = document.createElement("div");
 					msg.className = "msg";
@@ -104,6 +104,24 @@ function block(target){
 	xhttp.send(post);
 }
 
+function reportAccount(target){
+	reciver = document.getElementById("Reciver").innerHTML;
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+		}
+	}
+	var file = "php/reportAccount.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "reciver="+reciver;
+	if(target >= 1){
+		post = post+"&target="+target;
+	}
+	xhttp.send(post);
+}
+
 function accept(reciver, target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -147,6 +165,56 @@ function accept(reciver, target){
 	xhttp.open("POST", file, true);
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	let post = "reciver="+reciver;
+	if(target >= 1){
+		post = post+"&target="+target;
+	}
+	xhttp.send(post);
+}
+
+function reject(reciver, target){
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			document.getElementById(reciver).remove();
+		}
+	}
+	var file = "php/reject.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "reciver="+reciver;
+	if(target >= 1){
+		post = post+"&target="+target;
+	}
+	xhttp.send(post);
+}
+
+function rmMsg(idmsg, target){
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			document.getElementById(idmsg).remove();
+		}
+	}
+	var file = "php/rmMsg.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "idmsg="+idmsg;
+	if(target >= 1){
+		post = post+"&target="+target;
+	}
+	xhttp.send(post);
+}
+
+function reportMsg(idmsg, target){
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+		}
+	}
+	var file = "php/reportMsg.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "idmsg="+idmsg;
 	if(target >= 1){
 		post = post+"&target="+target;
 	}
