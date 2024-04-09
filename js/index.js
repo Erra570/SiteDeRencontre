@@ -5,3 +5,12 @@ window.addEventListener('scroll', function() {
         document.querySelector('.milieu').style.opacity = opacity;
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    var observer = new IntersectionObserver(function(entries) {
+        if(entries[0].isIntersecting === true)
+            document.querySelector('.infos').style.animationPlayState = "running";
+    }, { threshold: [0] });
+
+    observer.observe(document.querySelector('.infos'));
+});

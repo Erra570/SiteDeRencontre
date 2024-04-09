@@ -37,10 +37,26 @@ body {
     
 }
 
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
 .infos {
     position: absolute;
-    bottom: -50%;
+    bottom: -20%;
     text-align: center;
     margin-top: 150vh;
     background-color: #f8f9fa;
+    animation: slideUp 1s ease-out;
+    animation-play-state: paused;
+
 }

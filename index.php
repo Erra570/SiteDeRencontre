@@ -13,8 +13,10 @@
             <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
         </div>
 		<div class="infos">
-            <h1>Titre</h1>
-            <p>Lorem ipsum dolor sit amet</p>
+			<div class="titre">
+            	<h1>Meestic</h1>
+            	<h3>Le site de rencontre pour trouver un amour hors du commun</h3>
+			</div>
         </div>
 	</body>
 </html>
