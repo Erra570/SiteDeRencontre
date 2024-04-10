@@ -62,9 +62,11 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 						<a class="bouton" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
 							<div>Consulter profil</div>
 						</a>
-						<div class="bouton red" onclick="reportAccount('<?php if(isset($_POST['target'])){ echo $target;}?>'); showHide('spanTroisPoint')">
-							<div>Signaler</div>
-						</div>
+						<?php if(!isset($_POST['target'])){ ?>
+							<div class="bouton red" onclick="reportAccount('<?php if(isset($_POST['target'])){ echo $target;}?>'); showHide('spanTroisPoint')">
+								<div>Signaler</div>
+							</div>
+						<?php } ?>
 						<div class="bouton red" onclick="block('<?php if(isset($_POST['target'])){ echo $target;}?>')">
 							<div>Bloquer</div>
 						</div>

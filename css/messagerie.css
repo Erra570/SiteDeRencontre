@@ -217,7 +217,7 @@ input:checked + label{
 }
 .reciver .span{
 	background: #a6c4d8;
-    right : calc(-1vh - 75px);
+    right : calc(-1vh - 85px);
 }
 .hour{
     font-size: 12px;

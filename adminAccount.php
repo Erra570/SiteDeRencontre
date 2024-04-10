@@ -36,6 +36,9 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 					<h1>Bienvenue dans la partie Administrateur</h1>
 					<div>
 						<div class="reglage">
+							<!-- Mettre tout les profils et les messages signalés -->
+						</div>
+						<div class="reglage">
 							<h2>Selectionner un compte à administrer.</h2>
 							<select name="user" id="user" onchange="loadProfil()" required>
 								<?php
@@ -46,20 +49,23 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 								?>
 							</select>
 							<div class="selecteur">
-								<input type="radio" name="type" class="radioCache" 
+								<input type="radio" name="type" class="radioCacher" 
 											value="Account" 
 											id="Account"
 											onclick="loadProfil()" checked>
 								<label class="type" for="Account">
 									<div class="pseudo">Account</div>
 								</label>
-								<input type="radio" name="type" class="radioCache" 
+								<input type="radio" name="type" class="radioCacher" 
 											value="Messagerie" 
 											id="Messagerie"
 											onclick="loadProfil()">
 								<label class="type" for="Messagerie">
 									<div class="pseudo">Messagerie</div>
 								</label>
+							</div>
+							<div id="boutonSuppr">
+								Supprimer Compte
 							</div>
 						</div>
 						<div id="contenerEmulateur">

@@ -34,7 +34,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<link rel="stylesheet" type="text/css" href="css/messagerie.css" media="all" />
 				<script type="text/javascript" src="js/messagerie.js"></script>
 			</head>
-			<body onload="loadChat('<?php if(isset($_POST['target'])){ echo $target;}?>');">
+			<body onload="loadChat('<?php if(isset($_POST['target'])){ echo $target;}?>'); instantane('<?php if(isset($_POST['target'])){ echo $target;}?>');">
 				<div id="centreur">
 					<div id="left">
 						<div id="demandeDeDiscution">

@@ -45,12 +45,13 @@ function entree(target) {
 	}
 }
 
-function instantane(target){
-	let reciver = document.querySelector('input[name="reciver"]:checked').value;
 
+function instantane(target){
+	console.log("instantane");
 	setInterval(timer,1000);
 
 	function timer(){
+		let reciver = document.querySelector('input[name="reciver"]:checked').value;
 		xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && xhttp.responseText!='') {
@@ -94,13 +95,13 @@ function loadChat(target){
 		if (this.readyState == 4) {
 			document.getElementById("modifierHide").innerHTML = xhttp.responseText;
 			entree(target);
-			instantane(target);
 			let tab = document.getElementsByClassName("msg");
 			if(tab.length != 0){
 				document.location.href = "#"+tab[tab.length-1].parentNode.id;
 			}
 			if(target >= 1){
 				document.getElementById("msgWriter").style.width = '64vw';
+				document.getElementById("spanTroisPoint").style.top = 'calc(7vh + 12px)';
 			}
 		}
 	}
@@ -122,8 +123,14 @@ function block(target){
 		if (this.readyState == 4) {
 			document.getElementById(reciver).remove();
 			document.getElementById("_"+reciver).remove();
-			document.getElementsByClassName("radioCache")[0].checked = 1;
-			loadChat(target);
+			let tab = document.getElementsByClassName("radioCache");
+			if(tab.length != 0){
+				tab[0].checked = 1;
+				loadChat(target);
+			}
+			else{
+				document.getElementById("modifierHide").innerHTML = "Il n'y a personne ici";
+			}
 		}
 	}
 	var file = "php/block.php";
