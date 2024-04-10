@@ -106,10 +106,10 @@ INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, D
 	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau", "En Couple");
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, LoveSituation, ProfilPictureFile) VALUES 
-	(3, "Neeko", "heya", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City", "Celib", "wp4491879.webp");
+	(3, "Neeko", "heyaaa", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City", "Celib", "wp4491879.webp");
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, Street, AdressNumber, LoveSituation, Species, HumanoidGauge, WelcomeMessage) VALUES 
-	(2, "Legolas64", "leff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "Stilgard", "Avenue du Palais", 3, "Celib", "Elfe", 9, "Coucou, je suis Legolas :)");
+	(2, "Legolas64", "leffff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "Stilgard", "Avenue du Palais", 3, "Celib", "Elfe", 9, "Coucou, je suis Legolas :)");
 
 INSERT INTO Admin (IdAccount) VALUES
 	(1);
@@ -119,4 +119,4 @@ INSERT INTO Image (IdAccount, IdImg, ImgFile) VALUES
 
 INSERT INTO Contact (IdAsker, IdAccount, Approval) VALUES
 	(1,2,TRUE),
-	(3,2,TRUE);
+	(3,2,NULL);

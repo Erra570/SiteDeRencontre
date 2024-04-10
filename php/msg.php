@@ -11,13 +11,13 @@ if(isset($_GET['IdMessage']) AND isset($_GET['IdSender']) AND isset($_GET['IdAcc
 				<circle r="5" cx="75" cy="50" fill="#602320" />
 			</svg>
 			<div class="span" id="span<?php echo $_GET['IdMessage'];?>">
-				<?php if($_GET['IdSender'] == $_GET['IdAccount']){?>
-					<div class="bouton" onclick="rmMsg('<?php echo $_GET['IdMessage'];?><?php if(isset($_POST['target'])){ echo ','.$target;}?>')">
+				<?php if($_GET['IdSender'] == $_GET['IdAccount'] || isset($_POST['target'])){?>
+					<div class="bouton" onclick="rmMsg(<?php echo $_GET['IdMessage'];?><?php if(isset($_POST['target'])){ echo ','.$target;}?>)">
 						<div>Supprimer</div>
 					</div>
 				<?php } 
 				else{ ?>
-					<div class="bouton red" onclick="reportMsg('<?php echo $_GET['IdMessage'];?><?php if(isset($_POST['target'])){ echo ','.$target;}?>')">
+					<div class="bouton red" onclick="reportMsg('<?php echo $_GET['IdMessage'];?><?php if(isset($_POST['target'])){ echo ','.$target;}?>'); showHide('span<?php echo $_GET['IdMessage'];?>')">
 						<div>Signaler</div>
 					</div>
 				<?php } ?>

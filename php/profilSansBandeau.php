@@ -36,7 +36,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
 			<body>
-				<div class="centreur">
+				<div id="centreur">
 					<div id="profilPres">
 						<div>
 							<div class="centreHorizontalement" id="profilTop" onclick="showHide('modifyProfilPictureContener')">
@@ -127,7 +127,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 						<div id="result"></div>
 						<form id="profil" method="post">
 							<div class="blocDInfos">
-								<?php if(isset($_POST['target'])){ echo '<input type="text" name="target" id="target" style="display: none" value="'.$target.'"/>';}?>
+								<?php if(isset($_POST['target'])){ echo '<input type="text" name="target" style="display: none" value="'.$target.'"/>';}?>
 								<label for="pseudo">Pseudo : </label>
 								<input type="text" name="pseudo" id="pseudo" value="<?php echo $User['Pseudo'] ?>" required><br>
 								<label for="name">Nom :</label>
@@ -180,7 +180,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 								<h3>Changer le mot de passe</h3><div class="traitSeparation"></div>
 							</div>
 							<form method="post" action="modifyMDP.php?user=<?php echo $User['Pseudo'];?>&password=<?php echo $User['Password'];?>">
-								<?php if(isset($_POST['target'])){ echo '<input type="text" name="target" id="target" style="display: none" value="'.$target.'"/>';}
+								<?php if(isset($_POST['target'])){ echo '<input type="text" name="target" style="display: none" value="'.$target.'"/>';}
 								else{?>
 									<label for="password">Mot de passe :</label><br>
 									<input type="password" name="password" id="password" maxlength="255" minlength="4"/><br>

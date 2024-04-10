@@ -87,7 +87,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 						}
 						?>
 					</div>
-					<div class="msgWriter">
+					<div id="msgWriter">
 						<input type="text" name="msgToSend" id="msgToSend">
 					</div>
 				</div>

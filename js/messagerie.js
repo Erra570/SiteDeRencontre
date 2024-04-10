@@ -62,7 +62,9 @@ function instantane(target){
 				pere.appendChild(e);
 
 				let tab = document.getElementsByClassName("msg");
-				document.location.href = "#"+tab[tab.length-1].parentNode.id;
+				if(tab.length != 0){
+					document.location.href = "#"+tab[tab.length-1].parentNode.id;
+				}
 				document.getElementById("msgToSend").focus();
 			}
 		}
@@ -71,7 +73,12 @@ function instantane(target){
 		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
 		let tab = document.getElementsByClassName("msg");
-		let post = "reciver="+reciver+"&last="+tab[tab.length-1].parentNode.id;
+		let post = "reciver="+reciver+"&last=";
+		if(tab.length == 0){
+			post = post + 0;
+		}else{
+			post = post +tab[tab.length-1].parentNode.id;
+		}
 		if(target >= 1){
 			post = post+"&target="+target;
 		}
@@ -89,7 +96,12 @@ function loadChat(target){
 			entree(target);
 			instantane(target);
 			let tab = document.getElementsByClassName("msg");
-			document.location.href = "#"+tab[tab.length-1].parentNode.id;
+			if(tab.length != 0){
+				document.location.href = "#"+tab[tab.length-1].parentNode.id;
+			}
+			if(target >= 1){
+				document.getElementById("msgWriter").style.width = '64vw';
+			}
 		}
 	}
 	var file = "php/chat.php";

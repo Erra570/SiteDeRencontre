@@ -26,6 +26,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<title>Admin</title>
 				<?php include('php/head.html');?>
 				<link rel="stylesheet" type="text/css" href="css/admin.css" media="all" />
+				<script type="text/javascript" src="js/messagerie.js"></script>
 				<script type="text/javascript" src="js/admin.js"></script>
 				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
@@ -34,8 +35,8 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<div class="contener">
 					<h1>Bienvenue dans la partie Administrateur</h1>
 					<div>
-						<div>
-							Selectionner un compte à modifier ou supprimer.
+						<div class="reglage">
+							<h2>Selectionner un compte à administrer.</h2>
 							<select name="user" id="user" onchange="loadProfil()" required>
 								<?php
 								$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
@@ -44,10 +45,25 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 								}
 								?>
 							</select>
+							<div class="selecteur">
+								<input type="radio" name="type" class="radioCache" 
+											value="Account" 
+											id="Account"
+											onclick="loadProfil()" checked>
+								<label class="type" for="Account">
+									<div class="pseudo">Account</div>
+								</label>
+								<input type="radio" name="type" class="radioCache" 
+											value="Messagerie" 
+											id="Messagerie"
+											onclick="loadProfil()">
+								<label class="type" for="Messagerie">
+									<div class="pseudo">Messagerie</div>
+								</label>
+							</div>
 						</div>
-						<div>
-							Profil de l'utilisateur : 
-							<div id="profil">
+						<div id="contenerEmulateur">
+							<div id="emulateur">
 							</div>
 						</div>
 					</div>

@@ -27,8 +27,14 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['i
 		$load = $User=$User_tab->fetch();
 	}
 	if($load){
-		$request = $bdd->prepare('DELETE FROM Message WHERE IdMessage = :idmsg AND IdSender = :idSender');
-		$request->execute(array('idmsg'=>$idmsg, 'idSender'=>$User['IdAccount']));
+		if(isset($_POST['target'])){
+			$request = $bdd->prepare('DELETE FROM Message WHERE IdMessage = :idmsg');
+			$request->execute(array('idmsg'=>$idmsg));
+		}
+		else{
+			$request = $bdd->prepare('DELETE FROM Message WHERE IdMessage = :idmsg AND IdSender = :idSender');
+			$request->execute(array('idmsg'=>$idmsg, 'idSender'=>$User['IdAccount']));
+		}
 	}
 }
 ?>
