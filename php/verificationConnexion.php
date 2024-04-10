@@ -13,9 +13,11 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
     $password = htmlspecialchars($_POST['password']);
     $User_tab = $bdd->prepare('SELECT Pseudo,Password FROM Account WHERE (Pseudo=:user OR Mail=:user) AND Password=:password');
     $User_tab->execute(array('user'=>$user, 'password'=>$password));
-    $User = $User_tab->fetch();
 
-    if ($User) {
+
+    if ($User = $User_tab->fetch()) {
+        $_SESSION['user'] = $user;
+        $_SESSION['password'] = $password;
         header("Location: ../index.php");
         exit();
     } else {
