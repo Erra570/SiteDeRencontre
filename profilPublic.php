@@ -33,7 +33,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_GET['cu
 				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
 			<body>
-				<?php include("php/bandeau.html"); ?>
+				<?php include("php/header.php"); ?>
 				<div id="centreur">
 					<div id="profilPres">
 						<div>

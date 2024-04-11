@@ -29,7 +29,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<script type="text/javascript" src="js/profil.js"></script>
 			</head>
 			<body>
-				<?php include("php/bandeau.html"); ?>
+				<?php include("php/header.php"); ?>
 				<?php include("php/profilSansBandeau.php"); ?>
 			</body>
 		</html>
