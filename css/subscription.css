@@ -24,9 +24,11 @@
 	margin: 10px;
 	background-color: #efe4dc;
     cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 .abonnement:hover{
 	background-color: #ebc7b0;
+	transition: background-color 0.3s ease;
 }
 .radioCache{
 	display: none;
@@ -42,9 +44,11 @@ input:checked + label{
 	border-radius: 7px;
 	background-color: #efe4dc;
     cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 #bouton:hover{
 	background-color: #ebc7b0;
+	transition: background-color 0.3s ease;
 }
 form{
 	display: flex;

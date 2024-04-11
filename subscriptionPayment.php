@@ -30,7 +30,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['t
 			</head>
 			<body>
 				<?php include("php/header.php"); ?>
-				<div id="centreur">
+				<div class="centre">
 					<div id="contener">
 						<h2>Paiement</h2>
 						<form method="post" action="php/verificationSubscriptionPayment.php">
