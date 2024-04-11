@@ -8,7 +8,7 @@
 	</head>
 	<body onload="confirmPassword()">
 		<?php include('php/header.php'); ?>
-		
+		<div class="centre">
 		<div id=titreInscription>
 			<h1> Créez votre compte </h1><br>
 		</div>
@@ -57,7 +57,7 @@
 			
 			<input class="bouton" type="submit" id="submit" name="Inscription" value="s'inscrire"/>
 		</form>
-
+		</div>
 		<br>
 
 		<?php include('php/footer.php'); ?>
