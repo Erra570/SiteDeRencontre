@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-                <?php include('head.html');?>
+                <?php include('php/head.html');?>
                 <link rel="stylesheet" type="text/css" href="css/login.css" media="all" />
 	</head>
 	<body>
-                <?php include('bandeau.html') ?>
+                <?php include('php/bandeau.html') ?>
                 
                 <div class="centre">
                         <div class="titre">

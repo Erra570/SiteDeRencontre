@@ -15,6 +15,7 @@ body {
     background-color: #f8f9fa;
     border-radius: 15px;
     padding: 30px 30px;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .milieu p {
@@ -34,9 +35,12 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 15px;
-    
+    transition: background-color 0.3s ease;
 }
 
+.bouton:hover {
+    background-color: orangered;
+}
 
 @keyframes slideUp {
     0% {
@@ -49,10 +53,18 @@ body {
     }
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 .infos {
     position: absolute;
-    bottom: -20%;
+    bottom: -18%;
     text-align: center;
     margin-top: 150vh;
     background-color: #f8f9fa;
@@ -60,3 +72,66 @@ body {
     animation-play-state: paused;
 
 }
+
+.text1 {
+    left: 0;
+    position: absolute;
+    display: flex;
+    bottom: -40%;
+    margin-left: 10%;
+    background-color: #f8f9fa;
+    animation: fadeIn 1.5s ease-out;
+    animation-play-state: paused;
+}
+
+.text1 p {
+    position: absolute;
+    margin-top: 70%;
+    margin-left: -30%;
+    width: 17.2vw;
+    text-justify: inter-word;
+    text-align: justify;
+}
+
+
+.text2 {
+    left: 0;
+    position: absolute;
+    display: flex;
+    bottom: -40%;
+    margin-left: 45%;
+    background-color: #f8f9fa;
+    animation: fadeIn 1.5s ease-out;
+    animation-play-state: paused;
+}
+
+.text2 p {
+    position: absolute;
+    margin-top: 70%;
+    margin-left: -30%;
+    width: 17.2vw;
+    text-justify: inter-word;
+    text-align: justify;
+}
+
+
+.text3 {
+    left: 0;
+    position: absolute;
+    display: flex;
+    bottom: -40%;
+    margin-left: 80%;
+    background-color: #f8f9fa;
+    animation: fadeIn 1.5s ease-out;
+    animation-play-state: paused;
+}
+
+.text3 p {
+    position: absolute;
+    margin-top: 70%;
+    margin-left: -30%;
+    width: 17.2vw;
+    text-justify: inter-word;
+    text-align: justify;
+}
+
