@@ -143,6 +143,7 @@ function block(target){
 	xhttp.send(post);
 }
 
+//afficher le message
 function reportAccount(target){
 	reciver = document.getElementById("Reciver").innerHTML;
 

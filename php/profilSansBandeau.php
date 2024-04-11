@@ -134,7 +134,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 								<input type="text" name="name" id="name" value="<?php echo $User['Name'] ?>" required><br>
 								<label for="firstName">Prenom :</label>
 								<input type="text" name="firstName" id="firstName" value="<?php echo $User['FirstName'] ?>" required><br>
-								<label for="firstname">Mail :</label>
+								<label for="mail">Mail :</label>
 								<input type="text" name="mail" id="mail" value="<?php echo $User['Mail'] ?>" required><br>
 							</div>
 							<div>

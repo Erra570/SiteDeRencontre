@@ -47,7 +47,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 							$Reported_tab = $bdd->prepare('SELECT * FROM ReportAccount WHERE IdReporter=:idaccount AND IdAccount= :idcontact');
 							$Reported_tab->execute(array('idaccount'=>$User['IdAccount'], 'idcontact'=>$reciver));
 							if($Reported=$Reported_tab->fetch()){
-								echo '<div class="signalement">Cette utilisateur été signalé</div>';
+								echo '<div class="signalement">Cette utilisateur a été signalé</div>';
 							}
 						?>
 					</div>

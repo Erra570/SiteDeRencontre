@@ -36,6 +36,12 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 					<h1>Bienvenue dans la partie Administrateur</h1>
 					<div>
 						<div class="reglage">
+							<?php 
+								$Report_tap = $bdd->query('SELECT * FROM ReportAccount ORDER BY IdAccount');
+								while($Report=$Report_tap->fetch()){
+									echo $Report['IdAccount'];
+								}
+							?>
 							<!-- Mettre tout les profils et les messages signalés -->
 						</div>
 						<div class="reglage">

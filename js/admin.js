@@ -1,7 +1,12 @@
 function loadProfil(){
 
 	let type = document.querySelector('input[name="type"]:checked').value;
+	let target = document.getElementById("user").value;
 
+	loadknownProfil(target, type);
+}
+
+function loadknownProfil(target, type){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
@@ -21,5 +26,6 @@ function loadProfil(){
 	xhttp.open("POST", file, true);
 	/*ligne necessaire pour faire une requete post*/
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	xhttp.send("target="+document.getElementById("user").value);
+	xhttp.send("target="+target);
+
 }
