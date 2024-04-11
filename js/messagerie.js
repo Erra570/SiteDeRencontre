@@ -93,11 +93,11 @@ function loadChat(target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
-			document.getElementById("modifierHide").innerHTML = xhttp.responseText;
+			document.getElementById("right").innerHTML = xhttp.responseText;
 			entree(target);
 			let tab = document.getElementsByClassName("msg");
-			if(tab.length != 0){
-				document.location.href = "#"+tab[tab.length-1].parentNode.id;
+			if(tab.length != 0 && !(target >= 1)){
+				document.location.href = "#hour"+tab[tab.length-1].parentNode.id;
 			}
 			if(target >= 1){
 				document.getElementById("msgWriter").style.width = '64vw';
@@ -150,6 +150,18 @@ function reportAccount(target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
+			if(!!document.getElementById("signalement")){
+				document.getElementById("signalement").innerHTML = "Cet utilisateur a déjà été signalé"
+			}
+			else{
+				var pere = document.getElementById("msgTopLeft");
+
+				var elt = document.createElement("div");
+				elt.id = "signalement";
+				elt.innerHTML = "Cet utilisateur a été signalé";
+
+				pere.appendChild(elt);
+			}
 		}
 	}
 	var file = "php/reportAccount.php";

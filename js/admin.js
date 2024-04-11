@@ -6,7 +6,8 @@ function loadProfil(){
 	loadknownProfil(target, type);
 }
 
-function loadknownProfil(target, type){
+function loadknownProfil(target, type, idMsg){
+	document.getElementById("user").value = target;
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
@@ -16,6 +17,8 @@ function loadknownProfil(target, type){
 
 			if(type=="Messagerie"){
 				loadChat(document.getElementById("user").value);
+				document.location.href = "#hour"+idMsg;
+				document.getElementById(idMsg).style = "filter: drop-shadow(0 0 0.1rem #602320);"
 			}
 		}
 	}

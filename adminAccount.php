@@ -26,6 +26,8 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<title>Admin</title>
 				<?php include('php/head.html');?>
 				<link rel="stylesheet" type="text/css" href="css/admin.css" media="all" />
+				<link rel="stylesheet" type="text/css" href="css/messagerie.css" media="all" />
+				<link rel="stylesheet" type="text/css" href="css/profil.css" media="all" />
 				<script type="text/javascript" src="js/messagerie.js"></script>
 				<script type="text/javascript" src="js/admin.js"></script>
 				<script type="text/javascript" src="js/profil.js"></script>
@@ -35,14 +37,68 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<div class="contener">
 					<h1>Bienvenue dans la partie Administrateur</h1>
 					<div>
-						<div class="reglage">
+						<div id="contenerSignalement">
+							<h3>Comptes signalés</h3>
+							<div>
 							<?php 
 								$Report_tap = $bdd->query('SELECT * FROM ReportAccount ORDER BY IdAccount');
-								while($Report=$Report_tap->fetch()){
-									echo $Report['IdAccount'];
+								while($Report=$Report_tap->fetch()){ 
+									$AccountReport_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount = :idaccount');
+									$AccountReport_tab->execute(array('idaccount'=>$Report['IdAccount']));
+									if($AccountReport=$AccountReport_tab->fetch()){
+										?>
+										<div>
+											<?php echo $AccountReport['Pseudo']; ?>
+										</div>
+									<?php }
 								}
 							?>
-							<!-- Mettre tout les profils et les messages signalés -->
+							</div>
+							<h3>Messages signalés</h3>
+							<div id="MsgReported">
+							<?php 
+								$Report_tap = $bdd->query('SELECT * FROM ReportMsg ORDER BY IdMessage');
+								while($Report=$Report_tap->fetch()){
+									$MsgReport_tab = $bdd->prepare('SELECT DATE_FORMAT(DateSend, \'%d/%m/%Y %H:%i\') AS date, DATE_FORMAT(DateSend, \'%Y-%m-%d-%H-%i-%s\') AS dateformat, Content, IdSender, IdRecipient, IdMessage FROM Message WHERE IdMessage = :idmessage');
+									$MsgReport_tab->execute(array('idmessage'=>$Report['IdMessage']));
+									if($MsgReport=$MsgReport_tab->fetch()){
+
+										$Sender_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idsender');
+										$Sender_tab->execute(array('idsender'=>$MsgReport['IdSender']));
+										$Sender = $Sender_tab->fetch();
+
+										$Reporter_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idsender');
+										$Reporter_tab->execute(array('idsender'=>$MsgReport['IdRecipient']));
+										$Reporter = $Reporter_tab->fetch();
+										?>
+										<div class="MsgReported">
+											<div onclick="loadknownProfil('<?php echo $MsgReport['IdRecipient'];?>','Messagerie','<?php echo $MsgReport['IdMessage'];?>')">
+											<?php 
+												$_GET['IdMessage'] = $MsgReport['IdMessage'];
+												$_GET['IdSender'] = $MsgReport['IdSender'];
+												$_GET['IdAccount'] = $MsgReport['IdSender'];
+												$_GET['Content'] = $MsgReport['Content'];
+												$_GET['dateformat'] = $MsgReport['dateformat'];
+												$_GET['date'] = $MsgReport['date'];
+												
+												include('php/msg.php');
+											?>
+											</div>
+											<div class="profilReport" id="Sender" onclick="loadknownProfil('<?php echo $MsgReport['IdSender'];?>','Account')">
+												<img class="profilPicture" src="img/<?php echo $MsgReport['IdSender']."/".$Sender['ProfilPictureFile'];?>">
+												<div class="pseudo"><?php echo $Sender['Pseudo']; ?></div>
+											</div>
+											<div id="ReporterContener">
+												<div class="profilReport" id="Reporter" onclick="loadknownProfil('<?php echo $MsgReport['IdRecipient'];?>','Account')">
+													<div class="pseudo"><?php echo $Reporter['Pseudo']; ?></div>
+													<img class="profilPicture" src="img/<?php echo $MsgReport['IdRecipient']."/".$Reporter['ProfilPictureFile'];?>">
+												</div>
+											</div>
+										</div>
+									<?php }
+								}
+							?>
+							</div>
 						</div>
 						<div class="reglage">
 							<h2>Selectionner un compte à administrer.</h2>

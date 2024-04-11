@@ -21,8 +21,18 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 	$User_tab = $bdd->prepare('SELECT * FROM Account WHERE Pseudo=:user AND Password=:password');
 	$User_tab->execute(array('user'=>$user, 'password'=>$password));
 	if($User=$User_tab->fetch()){ ?>
-		<?php include("php/bandeau.html"); ?>
-		<?php include("php/messagerieSansBandeau.php"); ?>
+		<!DOCTYPE html>
+		<html>
+			<head>
+				<?php include('php/head.html');?>
+				<link rel="stylesheet" type="text/css" href="css/messagerie.css" media="all" />
+				<script type="text/javascript" src="js/messagerie.js"></script>
+			</head>
+			<body>
+				<?php include("php/bandeau.html"); ?>
+				<?php include("php/messagerieSansBandeau.php"); ?>
+			</body>
+		</html>
 	<?php }
 	else{header('Location: /');}
 }

@@ -22,7 +22,7 @@ if(isset($_GET['IdMessage']) AND isset($_GET['IdSender']) AND isset($_GET['IdAcc
 					</div>
 				<?php } ?>
 			</div>
-			<div class="hour"><?php 
+			<div class="hour" id="hour<?php echo $_GET['IdMessage'];?>"><?php 
 				$date_liste=explode('-',date('Y-m-d-H-i-s'));
 				$date_aliste=explode('-',$_GET['dateformat']);
 				$date_=$date_liste['0']*31557600+$date_liste['1']*2629800+$date_liste['2']*86400+$date_liste['3']*3600+$date_liste['4']*60+$date_liste['5'];
@@ -35,8 +35,5 @@ if(isset($_GET['IdMessage']) AND isset($_GET['IdSender']) AND isset($_GET['IdAcc
 		</div>
 	</div>
 <?php
-}
-else{
-	echo "if";
 }
 ?>

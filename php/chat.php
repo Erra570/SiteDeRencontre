@@ -38,8 +38,8 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 			$Liaison_tab->execute(array('idaccount1'=>$User['IdAccount'], 'idaccount2'=>$reciver));
 			if($Liaison=$Liaison_tab->fetch()){?>
 				<div class="msgTop">
-					<div class="msgTopLeft">
-						<a class="msgTopLeft" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
+					<div id="msgTopLeft" class="msgTopLeft">
+						<a class="msgTopLeft" href="profilPublic.php?currentUser=<?php echo $Contact['Pseudo'];?>">
 							<img class="profilPicture" src="img/<?php echo $reciver."/".$Contact['ProfilPictureFile'];?>">
 							<h2 id="Reciver"><?php echo $Contact['Pseudo'];?></h2>
 						</a>
@@ -47,7 +47,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 							$Reported_tab = $bdd->prepare('SELECT * FROM ReportAccount WHERE IdReporter=:idaccount AND IdAccount= :idcontact');
 							$Reported_tab->execute(array('idaccount'=>$User['IdAccount'], 'idcontact'=>$reciver));
 							if($Reported=$Reported_tab->fetch()){
-								echo '<div class="signalement">Cette utilisateur a été signalé</div>';
+								echo '<div id="signalement">Cet utilisateur a été signalé</div>';
 							}
 						?>
 					</div>
@@ -59,7 +59,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 						</svg>
 					</div>
 					<div id="spanTroisPoint">
-						<a class="bouton" href="profilPublic.php?user=<?php echo $Contact['Pseudo'];?>">
+						<a class="bouton" href="profilPublic.php?currentUser=<?php echo $Contact['Pseudo'];?>">
 							<div>Consulter profil</div>
 						</a>
 						<?php if(!isset($_POST['target'])){ ?>
