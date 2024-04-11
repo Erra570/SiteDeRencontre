@@ -37,7 +37,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 								<input type="radio" name="typeAbonnement" class="radioCache" value="1" id="radio1" checked>
 
 								<label class="abonnement" for="radio1">
-									<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
+									<img class="picture" src="img/DragonNiv1.png<?php echo $idcontact.$Contact['ProfilPictureFile'];?>">
 									<h3>1 mois</h3>
 									<div>8.99 €</div>
 									<div>soit 8.99 €/mois</div>
@@ -47,7 +47,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 								<input type="radio" name="typeAbonnement" class="radioCache" value="6" id="radio6">
 
 								<label class="abonnement" for="radio6">
-									<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
+									<img class="picture" src="img/DragonNiv2.png<?php echo $idcontact.$Contact['ProfilPictureFile'];?>">
 									<h3>6 mois</h3>
 									<div>42,99 €</div>
 									<div>soit 7.17 €/mois</div>
@@ -57,7 +57,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 								<input type="radio" name="typeAbonnement" class="radioCache" value="12" id="radio12">
 
 								<label class="abonnement" for="radio12">
-									<img class="profilPicture" src="img/<?php echo $idcontact."/".$Contact['ProfilPictureFile'];?>">
+									<img class="picture" src="img/DragonNiv3.png<?php echo $idcontact.$Contact['ProfilPictureFile'];?>">
 									<h3>12 mois</h3>
 									<div>74.99 €</div>
 									<div>soit 6.25 €/mois</div>
