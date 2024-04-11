@@ -42,9 +42,9 @@
 			<input class="inputText" type="text" name="Species" id="Species" maxlength="127"/><br>
 
 			<label for="Sexe"> Sexe : </label>
-			<input type="radio" name="Sexe" id="M" value="M"/> masculin
-			<input type="radio" name="Sexe" id="F" value="F"/> feminin 
-			<input type="radio" name="Sexe" id="A" value="A"/> autre <br><br><br>
+			<input type="radio" name="Sexe" id="M" value="M"/><label for="M">masculin</label>
+			<input type="radio" name="Sexe" id="F" value="F"/><label for="F">feminin</label>
+			<input type="radio" name="Sexe" id="A" value="A"/><label for="A">autre</label><br><br><br>
 
 			<label for="contry"> Pays : </label>
 			<input class="inputText" type="text" name="contry" id="contry" maxlength="127" required /><br>
