@@ -60,7 +60,6 @@ CREATE TABLE IF NOT EXISTS Subscription (
 	CONSTRAINT cle_pri PRIMARY KEY (IdAccount, Start),
 	FOREIGN KEY (IdAccount) REFERENCES Account(IdAccount) ON DELETE CASCADE);
 
-
 CREATE TABLE IF NOT EXISTS BlackList ( 
 	IdAccount INT NOT NULL,
 	IdBlocked INT NOT NULL,

@@ -1,0 +1,61 @@
+#centreur {
+	margin-top: calc(5vw + 15px);
+	height: calc(100vh - (5vw + 15px));
+	display: flex;
+	width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+#contener{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#abonnements{
+	display: flex;
+}
+.abonnement{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	padding: 10px;
+	border-radius: 10px;
+	margin: 10px;
+	background-color: #efe4dc;
+    cursor: pointer;
+}
+.abonnement:hover{
+	background-color: #ebc7b0;
+}
+.radioCache{
+	display: none;
+}
+input:checked + label{
+	background-color: #e6b698;
+	filter: drop-shadow(0 0 0.1rem #602320);
+}
+#bouton{
+	text-decoration: none;
+	color: black;
+	padding: 7px;
+	border-radius: 7px;
+	background-color: #efe4dc;
+    cursor: pointer;
+}
+#bouton:hover{
+	background-color: #ebc7b0;
+}
+form{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input{
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.droit{
+	display: flex;
+}

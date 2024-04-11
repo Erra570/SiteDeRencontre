@@ -31,6 +31,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 			<body>
 				<?php include("php/header.php"); ?>
 				<?php include("php/profilSansBandeau.php"); ?>
+				<?php include('php/footer.php'); ?>
 			</body>
 		</html>
 	<?php }
@@ -38,4 +39,3 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 }
 else{header('Location: /');}?>
 
-<?php include('php/footer.php'); ?>
