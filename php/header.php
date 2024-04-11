@@ -28,7 +28,7 @@ if (isset($_SESSION['user']) AND isset($_SESSION['password'])){
                 <a href="messagerie.php">Messagerie</a></li>
                 <a href="admin.php">Gestion</a></li>
                 <a href="profil.php"><?php echo "$user (admin)"; ?></a></li>
-                <a href="deconnexion.php"> Se déconnecter </a></li>
+                <a href="php/deconnexion.php"> Se déconnecter </a></li>
             </div>
     <?php } else if ($test=$estAbonne->fetch()) { ?>
             <div class="bandeau">
@@ -37,7 +37,7 @@ if (isset($_SESSION['user']) AND isset($_SESSION['password'])){
                     <a href="recherche.php">Recherche</a></li>
                     <a href="messagerie.php">Messagerie</a></li>
                     <a href="profil.php"><?php echo $user; ?></a></li>
-                    <a href="deconnexion.php"> Se déconnecter </a></li>
+                    <a href="php/deconnexion.php"> Se déconnecter </a></li>
             </div>
     <?php } else { ?>
             <div class="bandeau">
@@ -46,7 +46,7 @@ if (isset($_SESSION['user']) AND isset($_SESSION['password'])){
                 <a href="subscription.php">Abonnements</a></li>
                 <a href="recherche.php">Recherche</a></li>
                 <a href="profil.php"><?php echo $user; ?></a></li>
-                <a href="deconnexion.php"> Se déconnecter </a></li>
+                <a href="php/deconnexion.php"> Se déconnecter </a></li>
             </div>
     <?php } 
     } else { ?>
