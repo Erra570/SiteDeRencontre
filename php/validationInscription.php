@@ -29,6 +29,10 @@ if (isset($_POST['Inscription'])) {
     $User = $bdd->prepare($query);
 
     $User->execute([$pseudo, $password, $sexe, $prenom, $nom, $mail, $date_de_naissance, $country, $city, $street]);
+    $User_tab = $bdd->query("SELECT IdAccount FROM Account WHERE Pseudo = '".$pseudo."'");
+    $NewUser=$User_tab->fetch();
+
+    shell_exec('cp -R '.__DIR__.'/../img/0 '.__DIR__.'/../img/'.$NewUser['IdAccount']);
 
     header('Location: ../profil.php');
  } 
