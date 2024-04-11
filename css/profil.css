@@ -21,6 +21,16 @@
     border-radius: 50%;
 	transition: filter 0.3s ease;
 }
+#askContact{
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #efe4dc;
+    cursor: pointer;
+    margin-left: 15px;
+}
+#askContact:hover{
+	background-color: #ebc7b0;
+}
 #imgProfilPicture {
 	width: 16vw;
 	height: 16vw;

@@ -21,10 +21,11 @@ if(isset($_GET['password']) AND isset($_GET['user']) AND isset($_POST['password'
 		if($password == $passwordp && $newPassword == $password_confirm){
 			$request = $bdd->prepare('UPDATE Account SET Password=:newpassword WHERE Pseudo=:user AND Password=:password');
 			$request->execute(array('user'=>$user, 'password'=>$password, 'newpassword'=>$newPassword));
-			header('Location: profil.php?user='.$user.'&password='.$newPassword);
+			$_SESSION['password'] = $newPassword;
+			header('Location: ../profil.php');
 		}
 		else{
-			header('Location: profil.php?user='.$user.'&password='.$password);
+			header('Location: ../profil.php');
 		}
 	}
 	else{header('Location: /');}

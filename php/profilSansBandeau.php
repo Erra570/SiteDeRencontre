@@ -28,6 +28,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 		$load = $User=$User_tab->fetch();
 	}
 	if($load){ ?>
+		<body onload="confirmPassword()">
 		<div id="centreur">
 			<div id="profilPres">
 				<div>
@@ -177,7 +178,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 					<div class="h3">
 						<h3>Changer le mot de passe</h3><div class="traitSeparation"></div>
 					</div>
-					<form method="post" action="modifyMDP.php?user=<?php echo $User['Pseudo'];?>&password=<?php echo $User['Password'];?>">
+					<form method="post" action="php/modifyMDP.php?user=<?php echo $User['Pseudo'];?>&password=<?php echo $User['Password'];?>">
 						<?php if(isset($_POST['target'])){ echo '<input type="text" name="target" style="display: none" value="'.$target.'"/>';}
 						else{?>
 							<label for="password">Mot de passe :</label><br>
@@ -187,7 +188,8 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 						<input type="password" name="newPassword" id="newPassword" maxlength="255" minlength="4"/><br>
 						<label for="password_confirm">Confirmation du mot de passe :</label><br>
 						<input type="password" name="password_confirm" id="password_confirm" maxlength="255" minlength="4"/><br>
-						<input type="submit" name="Ajouter" value="Changer">
+						<span id="password_error" style="color: red; display: none;">Les mots de passe ne correspondent pas.</span> <br>
+						<input type="submit" name="Ajouter" id="submit" value="Changer">
 					</form>
 				</div>
 				<div>
@@ -217,6 +219,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				</div>
 			</div>
 		</div>
+		</body>
 	<?php }
 	else{
 		header('Location: /');
