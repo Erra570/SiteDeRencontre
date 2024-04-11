@@ -130,11 +130,10 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 						</div>
 					</div>
 				<div>
+				<?php include('php/footer.html'); ?>
 			</body>
 		</html>
 	<?php }
 	else{header('Location: /');}
 }
 else{header('Location: /');}?>
-
-<?php include('php/footer.php'); ?>

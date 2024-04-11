@@ -33,7 +33,7 @@
                         <p> <i style="font-size: 12px;"> Pas de compte ? <a href="inscription.php"> Créez-en un </i></a>.</p><br>   
                 </div>
 
-                <?php include('php/footer.php'); ?>
+                <?php include('php/footer.html'); ?>
                 
 	</body>
 </html>

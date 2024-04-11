@@ -79,6 +79,6 @@ body {
     font-size: 12px;
   }
 
-  #password_error {
-    margin-top: -100%;
+  #rouge {
+    color: red;
   }
