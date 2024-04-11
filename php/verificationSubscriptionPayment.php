@@ -25,7 +25,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['t
             $request = $bdd->prepare('INSERT INTO Subscription (IdAccount, End) VALUES (:idaccount, DATE_ADD(current_timestamp(), INTERVAL :duration MONTH))');
             $request->execute(array('idaccount'=>$User['IdAccount'], 'duration'=>htmlspecialchars($_POST['typeAbonnement'])));
         }
-        header('Location: /profil.php');
+        header('Location: ../profil.php');
     }
     else{header('Location: /');}
 }

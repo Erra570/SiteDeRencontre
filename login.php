@@ -30,7 +30,7 @@
                             
                         
                         <br> <br>  
-                        <a href=inscription.php> <i style="font-size: 12px;"> Pas de compte ? créez en un> </i> </a>   
+                        <p> <i style="font-size: 12px;"> Pas de compte ? <a href="inscription.php"> Créez-en un </i></a>.</p><br>   
                 </div>
 
                 <?php include('php/footer.php'); ?>

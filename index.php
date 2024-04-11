@@ -7,7 +7,9 @@
 		<?php include('php/head.html');?>
 	</head>
 	<body>
+
 		<?php include('php/header.php');?>
+		
 		<div class="milieu">
 			<button class="bouton" onclick="window.location.href='inscription.php'">Créer un compte</button>
             <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
