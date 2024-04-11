@@ -8,12 +8,6 @@ catch (Exception $e){
 	die('Erreur : '.$e->getMessage());
 }
 
-/*a supprimer a terme*/
-if(isset($_GET['password']) AND isset($_GET['user'])){
-	$_SESSION['user'] = htmlspecialchars($_GET['user']);
-	$_SESSION['password'] = htmlspecialchars($_GET['password']);
-}
-
 if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 	$user = htmlspecialchars($_SESSION['user']);
 	$password = htmlspecialchars($_SESSION['password']);
