@@ -41,17 +41,17 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
                 				
                             if ($result->rowCount() > 0) { ?>
                                 <h2>Résultats de la recherche :</h2>
-                                <a id="profils" href="profilPublic.php?currentUser=<?php echo $row['Pseudo']; ?>">
+                                <div id="profils">
                                     <?php
                                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
-                                        <div class="profil">
+                                        <a class="profil" href="profilPublic.php?currentUser=<?php echo $row['Pseudo']; ?>">
                                             <img class="profilPicture" src="img/<?php echo $row['IdAccount']."/".$row['ProfilPictureFile'];?>">
                                             <div class="pseudo"><?php echo $row['Pseudo']; ?></div>
                                             <div class="pseudo"><?php echo $row['FirstName']; ?></div>
                                             <div class="pseudo"><?php echo $row['Name']; ?></div>
-                                        </div>
+                                        </a>
                                     <?php } ?>
-                                </a>
+                                </div>
                             <?php
                             } else {
                                 echo "Aucun résultat trouvé.";
