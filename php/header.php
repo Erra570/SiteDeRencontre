@@ -18,7 +18,7 @@ if (isset($_SESSION['user']) AND isset($_SESSION['password'])){
     $estAbonne = $bdd->prepare('SELECT IdAccount,Pseudo,Password FROM Account WHERE Pseudo=:user AND Password=:password AND IdAccount IN (SELECT IdAccount FROM Subscription)');
 	$estAbonne->execute(array('user'=>$user, 'password'=>$password));
 
-    if ($User=$estAdmin->fetch()) { ?>
+    if ($test=$estAdmin->fetch()) { ?>
         <!DOCTYPE html>
         <html>
             <div class="bandeau">
@@ -30,7 +30,7 @@ if (isset($_SESSION['user']) AND isset($_SESSION['password'])){
                 <a href="profil.php"><?php echo "$user (admin)"; ?></a></li>
                 <a href="deconnexion.php"> Se déconnecter </a></li>
             </div>
-    <?php } else if ($User=$estAbonne->fetch()) { ?>
+    <?php } else if ($test=$estAbonne->fetch()) { ?>
             <div class="bandeau">
                     <div class ="logo"><a href="index.php"><img src="img/logo.png", width = 100%></a></div>
                     <a href="index.php">Accueil</a></li>

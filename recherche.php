@@ -14,7 +14,7 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
     $User_tab = $bdd->prepare('SELECT * FROM Account WHERE Pseudo=:user AND Password=:password');
     $User_tab->execute(array('user' => $user, 'password' => $password));
     
-    if ($User = $User_tab->fetch()) { ?>
+    if($User = $User_tab->fetch()){ ?>
 
         <!DOCTYPE html>
         <html>
@@ -34,28 +34,73 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
                             </div>
                             <div>
                                 <label for="Sexe"> Sexe : </label>
-                                <input type="checkbox" name="M" id="M" checked><label for="M">masculin</label>
-                                <input type="checkbox" name="F" id="F" checked><label for="F">feminin</label> 
-                                <input type="checkbox" name="A" id="A" checked><label for="A">autre</label>
+                                <input type="checkbox" name="M" id="M" <?php if(isset($_POST['M']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
+                                <label for="M">masculin</label>
+                                <input type="checkbox" name="F" id="F" <?php if(isset($_POST['F']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
+                                <label for="F">feminin</label> 
+                                <input type="checkbox" name="A" id="A" <?php if(isset($_POST['A']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
+                                <label for="A">autre</label>
 
                                 <label for="Sexe"> Age : </label>
-                                <input type="number" name="minAge" id="minAge" min="0" max="1000"><label for="minAge">min</label>
-                                <input type="number" name="maxAge" id="maxAge" min="0" max="1000"/><label for="maxAge">max</label>
+                                <input type="number" name="minAge" id="minAge" min="0" max="10000" value="<?php if(isset($_POST['minAge'])){echo htmlspecialchars($_POST['minAge']);} ?>">
+                                <label for="minAge">min</label>
+                                <input type="number" name="maxAge" id="maxAge" min="0" max="10000" value="<?php if(isset($_POST['maxAge'])){echo htmlspecialchars($_POST['maxAge']);} ?>">
+                                <label for="maxAge">max</label>
 
                                 <label for="love">Situation amoureuse : </label>
-                                <input type="checkbox" name="love" id="C" value="Celibataire" checked><label for="M">Celibataire</label>
-                                <input type="checkbox" name="love" id="E" value="En couple" checked><label for="F">En couple</label> 
-                                <input type="checkbox" name="love" id="D" value="Divorce" checked><label for="A">Divorce</label>
+                                <input type="checkbox" name="C" id="C" value="Celibataire" <?php if(isset($_POST['C']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
+                                <label for="M">Celibataire</label>
+                                <input type="checkbox" name="E" id="E" value="En couple" <?php if(isset($_POST['E']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
+                                <label for="F">En couple</label> 
+                                <input type="checkbox" name="D" id="D" value="Divorce" <?php if(isset($_POST['D']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
+                                <label for="A">Divorce</label>
 
                                 <label for="Sexe">Humain : </label>
-                                <input type="number" name="minHumain" id="minHumain" min="0" max="10"><label for="minHumain">min</label>
-                                <input type="number" name="maxHumain" id="maxHumain" min="0" max="10"/><label for="maxHumain">max</label>
+                                <input type="number" name="minHumain" id="minHumain" min="0" max="10" value="<?php if(isset($_POST['minHumain'])){echo htmlspecialchars($_POST['minHumain']);} ?>">
+                                <label for="minHumain">min</label>
+                                <input type="number" name="maxHumain" id="maxHumain" min="0" max="10" value="<?php if(isset($_POST['maxHumain'])){echo htmlspecialchars($_POST['maxHumain']);} ?>">
+                                <label for="maxHumain">max</label>
                             </div>
                         </form>
                         <?php
                         if (isset($_POST['search_user'])) {
                             $search_user = htmlspecialchars($_POST['search_user']);
-                            $sql = "SELECT * FROM Account WHERE (Pseudo LIKE '%$search_user%' OR Name LIKE '%$search_user%' OR FirstName LIKE '%$search_user%') AND IdAccount <> ".$User['IdAccount']." ORDER BY rand()";
+                            $sql = "SELECT IdAccount, Pseudo, FirstName, Name, ProfilPictureFile FROM Account WHERE (Pseudo LIKE '%$search_user%' OR Name LIKE '%$search_user%' OR FirstName LIKE '%$search_user%') AND";
+
+                            if(!isset($_POST['M'])){
+                                $sql = $sql." Sexe <> 'M' AND";
+                            }
+                            if(!isset($_POST['F'])){
+                                $sql = $sql." Sexe <> 'F' AND";
+                            }
+                            if(!isset($_POST['A'])){
+                                $sql = $sql." Sexe <> 'A' AND";
+                            }
+
+                            if(isset($_POST['minAge']) && htmlspecialchars($_POST['minAge'])!=''){
+                                $sql = $sql.' DATEDIFF(current_timestamp(), DateOfBirth)/365 >= '.htmlspecialchars($_POST['minAge']).' AND';
+                            }
+                            if(isset($_POST['maxAge']) && htmlspecialchars($_POST['maxAge'])!=''){
+                                $sql = $sql.' DATEDIFF(current_timestamp(), DateOfBirth)/365 <= '.htmlspecialchars($_POST['maxAge']).' AND';
+                            }
+
+                            if(!isset($_POST['C'])){
+                                $sql = $sql." LoveSituation <> 'Celibataire' AND";
+                            }
+                            if(!isset($_POST['E'])){
+                                $sql = $sql." LoveSituation <> 'En couple' AND";
+                            }
+                            if(!isset($_POST['D'])){
+                                $sql = $sql." LoveSituation <> 'Divorce' AND";
+                            }
+
+                            if(isset($_POST['minHumain']) && htmlspecialchars($_POST['minHumain'])!=''){
+                                $sql = $sql.' HumanoidGauge >= '.htmlspecialchars($_POST['minHumain']).' AND';
+                            }
+                            if(isset($_POST['maxHumain']) && htmlspecialchars($_POST['maxHumain'])!=''){
+                                $sql = $sql.' HumanoidGauge <= '.htmlspecialchars($_POST['maxHumain']).' AND';
+                            }
+                            $sql = $sql." IdAccount <> ".$User['IdAccount']." ORDER BY rand()";
                         }
                         else{
                             $sql = "SELECT * FROM Account WHERE IdAccount <> ".$User['IdAccount']." ORDER BY rand()";
@@ -63,7 +108,7 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
                     
                     
                         $result = $bdd->query($sql);
-            				
+                            
                         if ($result->rowCount() > 0) { ?>
                             <h2>Résultats de la recherche :</h2>
                             <div id="profils">
@@ -83,10 +128,10 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
                         } ?>
                     </div>
                 </div>
+                <?php include("php/footer.php"); ?>
             </body>
         </html>
-    <?php
-    } 
+    <?php }
     else{header('Location: /');}
 }
 else{header('Location: /');}

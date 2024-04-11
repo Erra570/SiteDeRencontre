@@ -99,7 +99,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 					<div class="reglage">
 						<select name="user" id="user" onchange="loadProfil()" required>
 							<?php
-							$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account ORDER BY IdAccount');
+							$User_tab = $bdd->query('SELECT IdAccount, Pseudo, FirstName, Name FROM Account WHERE IdAccount <> '.$User['IdAccount'].' ORDER BY IdAccount');
 							while($User=$User_tab->fetch()){
 								echo '<option id="option'.$User['IdAccount'].'" value="'.$User['IdAccount'].'">'.$User['Pseudo'].'</option>';
 							}
