@@ -16,6 +16,7 @@ body {
     background-color: #f8f9fa;
     border-radius: 15px;
     padding: 30px 30px;
+    animation: fadeIn 0.7s ease-in-out;
 }
 
 .milieu p {
@@ -23,13 +24,6 @@ body {
     font-size: 75%;
 }
 
-.centre {
-    text-align: center;
-    border: 1px solid #f8f9fa;
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    padding: 30px 30px;
-}
 .bouton {
     background-color: #a32020;
     border: none;
@@ -52,6 +46,17 @@ body {
 @keyframes slideUp {
     0% {
         transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
         opacity: 0;
     }
     100% {
@@ -142,3 +147,13 @@ body {
     text-align: justify;
 }
 
+.textBas {
+    font-family: 'Papyrus';
+    left: 41%;
+    position: absolute;
+    display: flex;
+    bottom: -70%;
+    background-color: #f8f9fa;
+    animation: slideDown 1s ease-out;
+    animation-play-state: paused;
+}
