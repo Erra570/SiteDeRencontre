@@ -12,7 +12,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['p
 	isset($_POST['name']) AND isset($_POST['firstName']) AND isset($_POST['mail']) AND 
 	isset($_POST['country']) AND isset($_POST['city']) AND isset($_POST['street']) AND 
 	isset($_POST['adressNumber']) AND isset($_POST['sexe']) AND isset($_POST['dateOfBirth']) AND 
-	isset($_POST['species']) AND isset($_POST['humanoidGauge']) AND isset($_POST['size']) AND 
+	isset($_POST['species']) AND isset($_POST['humanoidGauge']) AND isset($_POST['love']) AND isset($_POST['size']) AND 
 	isset($_POST['weight']) AND isset($_POST['eyeColor'])){
 
 	$user = htmlspecialchars($_SESSION['user']);
@@ -49,6 +49,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['p
 		$sexe = htmlspecialchars($_POST['sexe']);
 		$dateOfBirth = htmlspecialchars($_POST['dateOfBirth']);
 		$species = htmlspecialchars($_POST['species']);
+		$love = htmlspecialchars($_POST['love']);
 		$humanoidGauge = htmlspecialchars($_POST['humanoidGauge']);
 		if($humanoidGauge == ""){
 			$humanoidGauge = null;
@@ -76,6 +77,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['p
 			DateOfBirth = :dateOfBirth,
 			Species = :species,
 			HumanoidGauge = :humanoidGauge,
+			LoveSituation = :love,
 			Size = :size,
 			Weight = :weight,
 			EyeColor = :eyeColor
@@ -93,6 +95,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['p
 			'dateOfBirth' => $dateOfBirth,
 			'species' => $species,
 			'humanoidGauge' => $humanoidGauge,
+			'love' => $love,
 			'size' => $size,
 			'weight' => $weight,
 			'eyeColor' => $eyeColor));

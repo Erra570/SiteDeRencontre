@@ -39,15 +39,15 @@
 			<input class="inputText" type="date" name="date_de_naissance" id="date_de_naissance" maxlength="32" required /><br>
 
 			<label for="Species"> Espece : </label>
-			<input class="inputText" type="text" name="Species" id="Species" maxlength="127" value=""/><br>
+			<input class="inputText" type="text" name="Species" id="Species" maxlength="127"/><br>
 
 			<label for="Sexe"> Sexe : </label>
-			<input type="radio" name="Sexe" id="Sexe"/> masculin
-			<input type="radio" name="Sexe" id="Sexe"/> feminin 
-			<input type="radio" name="Sexe" id="Sexe"/> autre <br><br><br>
+			<input type="radio" name="Sexe" id="M" value="M"/> masculin
+			<input type="radio" name="Sexe" id="F" value="F"/> feminin 
+			<input type="radio" name="Sexe" id="A" value="A"/> autre <br><br><br>
 
 			<label for="contry"> Pays : </label>
-			<input class="inputText" type="text" name="contry" id="contry" maxlength="127" value="" required /><br>
+			<input class="inputText" type="text" name="contry" id="contry" maxlength="127" required /><br>
 
 			<label for="city"> Ville : </label>
 			<input class="inputText" type="text" name="city" id="city" maxlength="127" required /><br>

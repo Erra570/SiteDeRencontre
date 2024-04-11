@@ -4,8 +4,17 @@
     justify-content: center;
 	width: 100%;
 }
+#percent{
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #profils{
+	width: 100%;
 	display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .profil {
     width: 12vw;
@@ -22,4 +31,12 @@
 	width: 10vw;
     object-fit: cover;
     border-radius: 50%;
+}
+form{
+	display: flex;
+    flex-direction: column;
+}
+form div{
+	display: flex;
+	justify-content: center;
 }
