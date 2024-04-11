@@ -1,3 +1,16 @@
+body {
+  background-image: url('../img/fond.jpeg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-attachment: fixed;
+}
+
+
 #formConnexion {
     margin-top: 5em;
 }
@@ -21,7 +34,12 @@
 }
 
 .centre {
-    text-align: center;
+  text-align: center;
+  border: 1px solid #f8f9fa;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  padding: 30px 30px;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .inputText {
@@ -41,7 +59,7 @@
 
   .bouton {
     color: #FFFFFF;
-    background-color: #4c4d4c;
+    background-color: #a32020;
     border: none;
     padding: 12px 24px;
     line-height: 1;
@@ -50,7 +68,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
-    transition: 0.6s ease;
+    transition: 0.4s ease;
     height: 3em;
     opacity: 0.75;
   }
