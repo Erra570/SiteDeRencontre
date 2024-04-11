@@ -24,7 +24,7 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
             $sql = "SELECT * FROM Account WHERE Pseudo LIKE '%$search_user%' OR Name LIKE '%$search_user%' OR FirstName LIKE '%$search_user%'";
         
             $result = $bdd->query($sql);
-        
+				
             if ($result->rowCount() > 0) {
                 echo "<h2>Résultats de la recherche :</h2>";
                 echo "<ul>";
@@ -43,9 +43,16 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
     echo "Veuillez vous connecter.";
 }
 ?>
-
-<form method="post" class="form">
-    <label for="search_user">Rechercher un utilisateur :</label>
-    <input type="text" name="search_user" id="search_user">
-    <input type="submit" value="Rechercher">
-</form>
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/recherche.css" media="all" />
+	</head>
+	<body>
+		<form method="post" class="form">
+    		<label for="search_user">Rechercher un utilisateur :</label>
+    		<input type="text" name="search_user" id="search_user">
+    		<input type="submit" value="Rechercher">
+		</form>
+	</body>
+</html>
