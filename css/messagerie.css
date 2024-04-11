@@ -10,14 +10,22 @@ a{
 
 /*style du bandeau de gauche qui contient les compte avec les quelles la discution est engagée ou engageable*/
 #left {
+	background-color : #f8f5f4;
     flex-direction: column;
 	display: flex;
 	width: 20vw;
-	margin-left: 1vw;
+	margin-left: 0vw;
 	border-right : solid #8b5e3c 3px;
 	padding-top: 25px;
 	padding-right: 1vw;
+	transition: background-color 0.2s ease;
 }
+
+
+#left h2{
+	margin-left: 1vw;
+}
+
 .croix{
 	color: #343a40;
 	width: 3vh;
@@ -34,27 +42,43 @@ a{
 }
 .vert:hover{
 	color: #2ecc71;
+	transition: color 0.2s ease;
 }
 .vert:hover .line{
 	stroke: #2ecc71;
+	transition: stroke 0.2s ease;
 }
 .rouge:hover{
 	color: orangered;
+	transition: color 0.2s ease;
 }
 .rouge:hover .line{
 	stroke: orangered;
+	transition: stroke 0.2s ease;
 }
 #discussionOuverte{
 	width: 100%;
 }
 #left .profil{
+	margin-left: 1vw;
 	height: 6vh;
 	padding: 0.5vh;
 	display: flex;
     align-items: center;
     border-radius: 1vh;
     cursor: pointer;
+	transition: background-color 0.2s ease;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
 }
+
+#left .profil:hover{
+	background-color: #ebc7b0;
+	transition: background-color 0.2s ease;
+	opacity: 1;
+	transition: opacity 0.2s ease;
+}
+
 #left .profil .pseudo{
 	width: 100%;
     text-overflow: ellipsis;
@@ -72,7 +96,7 @@ a{
 	display: none;
 }
 input:checked + label{
-	background: #d8d9da;
+	background: #ebc7b0;
 }
 
 /*messagerie top*/
@@ -90,6 +114,12 @@ input:checked + label{
     align-items: center;
 	display: flex;
 	height: 100%;
+	opacity: 0.75;
+	transition: opacity 0.3s ease;
+}
+.msgTopLeft:hover{
+	opacity: 1;
+	transition: opacity 0.3s ease;
 }
 .msgTopLeft h2{
 	margin-left: 10px;
@@ -110,7 +140,15 @@ input:checked + label{
 }
 .petitPoints{
 	height: 100%;
+	transition: transform 0.3s ease;
 }
+
+.petitPoints:hover{
+	transform: rotate(90deg);
+	transition: transform 0.3s ease;
+}
+
+
 #spanTroisPoint{
 	display: none;
     flex-direction: column;
@@ -123,6 +161,7 @@ input:checked + label{
     background: #F3EDEA;
     border-radius: 10px;
 }
+
 .red{
 	color : orangered;
 }
@@ -141,6 +180,8 @@ input:checked + label{
 .msgBody{
 	height: 90%;
 	position: relative;
+	background: rgb(248,245,244);
+	background: linear-gradient(0deg, rgb(246, 241, 240) 0%, rgba(248,249,250,1) 100%);
 }
 #msgContener{
 	display: flex;
@@ -179,6 +220,12 @@ input:checked + label{
     align-items: flex-end;
     overflow-wrap: break-word;
     position: relative;
+	transition: filter 0.1s ease;
+}
+
+.msg:hover {
+	filter: drop-shadow(0 0 0.1rem #602320);
+	transition: filter 0.1s ease;
 }
 .content{
 	width: 100%;

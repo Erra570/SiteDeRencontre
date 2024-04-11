@@ -51,7 +51,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 							}
 						?>
 					</div>
-					<div class="msgTopRight" onclick="showHide('spanTroisPoint')">
+					<div class="msgTopRight" onclick="showHide('spanTroisPoint')" >
 						<svg class="petitPoints" viewBox="0 0 100 100">
 							<circle r="5" cx="50" cy="25" fill="#602320" />
 							<circle r="5" cx="50" cy="50" fill="#602320" />
