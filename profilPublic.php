@@ -92,6 +92,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_GET['cu
 						?>
 					</div>
 				</div>
+				<?php include("php/footer.html"); ?>
 			</body>
 		</html>
 	<?php }

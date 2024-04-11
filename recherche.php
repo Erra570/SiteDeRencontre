@@ -128,7 +128,7 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
                         } ?>
                     </div>
                 </div>
-                <?php include("php/footer.php"); ?>
+                <?php include("php/footer.html"); ?>
             </body>
         </html>
     <?php }

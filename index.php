@@ -40,7 +40,7 @@
 			<h1>Rejoignez-nous !</h1>
 		</div>
 
-		<?php include('php/footer.php'); ?>
+		<?php include('php/footer.html'); ?>
 		
 	</body>
 </html>

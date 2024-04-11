@@ -32,11 +32,14 @@
     object-fit: cover;
     border-radius: 50%;
 }
-form{
+
+.form{
 	display: flex;
     flex-direction: column;
+
 }
-form div{
+
+.form div{
 	display: flex;
 	justify-content: center;
 }
