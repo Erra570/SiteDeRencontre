@@ -30,7 +30,7 @@ body {
   padding: 30px;
   max-width: 80%;
   max-height: 70%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .inputText {
