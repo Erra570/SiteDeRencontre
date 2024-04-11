@@ -6,7 +6,7 @@
 		<?php include('php/head.html');?>
         <link rel="stylesheet" type="text/css" href="css/login.css" media="all" />
 	</head>
-	<body>
+	<body onload="confirmPassword()">
 		<?php include('php/header.php'); ?>
 		
 		<div id=titreInscription>
@@ -55,7 +55,7 @@
 			<label for="street"> Rue : </label>
 			<input class="inputText" type="text" name="street" id="street" maxlength="127"/><br>
 			
-			<input class="bouton" type="submit" name="Inscription" value="s'inscrire"/>
+			<input class="bouton" type="submit" id="submit" name="Inscription" value="s'inscrire"/>
 		</form>
 
 		<br>
