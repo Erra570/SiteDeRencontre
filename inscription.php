@@ -7,9 +7,9 @@
         <link rel="stylesheet" type="text/css" href="css/login.css" media="all" />
 	</head>
 	<body>
-		<?php include('bandeau.html'); ?>
+		<?php include('php/header.php'); ?>
 		
-		<div class=titre>
+		<div id=titreInscription>
 			<h1> Créez votre compte </h1><br>
 		</div>
 
@@ -57,6 +57,10 @@
 			
 			<input class="bouton" type="submit" name="Inscription" value="s'inscrire"/>
 		</form>
+
+		<br>
+
+		<?php include('php/footer.php'); ?>
 		
 	</body>
 </html>

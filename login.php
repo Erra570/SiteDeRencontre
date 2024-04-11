@@ -5,10 +5,10 @@
                 <link rel="stylesheet" type="text/css" href="css/login.css" media="all" />
 	</head>
 	<body>
-                <?php include('php/bandeau.html') ?>
+                <?php include('php/header.php') ?>
                 
                 <div class="centre">
-                        <div class="titre">
+                        <div id="titreLogin">
                                 <h1> Connectez-vous à votre compte </h1>
                         </div>
 
@@ -32,6 +32,8 @@
                         <br> <br>  
                         <a href=inscription.php> <i style="font-size: 12px;"> Pas de compte ? créez en un> </i> </a>   
                 </div>
+
+                <?php include('php/footer.php'); ?>
                 
 	</body>
 </html>

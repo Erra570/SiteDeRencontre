@@ -10,9 +10,14 @@
     margin-left: 40%;
 }
 
-.titre {
-   text-align: center;
-    margin-top: 10em;
+#titreInscription {
+    margin-left: 40%;
+    margin-top: 8em;
+}
+
+#titreLogin {
+  text-align: center;
+  margin-top: 8em;
 }
 
 .centre {

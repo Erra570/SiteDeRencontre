@@ -7,7 +7,7 @@
 		<?php include('php/head.html');?>
 	</head>
 	<body>
-		<?php include('php/bandeau.html');?>
+		<?php include('php/header.php');?>
 		<div class="milieu">
 			<button class="bouton" onclick="window.location.href='inscription.php'">Créer un compte</button>
             <p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>
@@ -28,6 +28,8 @@
 			<div class ="image3"><img src="img/oiseau.png", width = 80%></div>
 			<p>Recherchez les profils qui VOUS correspondent, aussi improbables puissent-ils être.</p>
 		</div>
+
+		<?php include('php/footer.php'); ?>
 		
 	</body>
 </html>

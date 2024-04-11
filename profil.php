@@ -37,3 +37,5 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 	else{header('Location: /');}
 }
 else{header('Location: /');}?>
+
+<?php include('php/footer.php'); ?>
