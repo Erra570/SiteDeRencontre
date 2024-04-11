@@ -45,12 +45,5 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['r
 			include('msg.php');
 		}
 	}
-	else{
-		echo "2";
-	}
-}
-else{
-	echo '1';
-	print_r($_SESSION);
 }
 ?>
