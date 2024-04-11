@@ -31,9 +31,9 @@
 			<label for="password"> Mot de passe :</label>
 			<input class="inputText" type="password" name="password" id="password" maxlength="255" minlength="6" required /> <br>
 
+			<span id="password_error" style="color: red; display: none;">Les mots de passe ne correspondent pas.</span> <br>
 			<label for="password_confirm"> Confirmation du mot de passe :</label>
 			<input class="inputText" type="password" name="password_confirm" id="password_confirm" maxlength="255" minlength="6" required /><br>
-			<span id="password_error" style="color: red; display: none;">Les mots de passe ne correspondent pas.</span> <br>
 
 			<label for="date_de_naissance"> Date de naissance : </label>
 			<input class="inputText" type="date" name="date_de_naissance" id="date_de_naissance" maxlength="32" required /><br>
