@@ -1,6 +1,7 @@
 .contener {
-	margin-top: calc(5vw + 40px);
-	width: 100%;
+	margin-top: calc(5vw + 10px);
+	width: calc(100% - 40px);
+	padding: 20px;
 }
 
 #contenerSignalement{
@@ -16,7 +17,7 @@
     border-radius: 1vh;
     cursor: pointer;
 }
-#MsgReported{
+.Reported{
 	display: flex;	
 }
 .MsgReported{
@@ -49,8 +50,15 @@
 }
 
 .reglage{
+	width: 100%;
 	display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.reglage div{
+	margin-left: 5px;
+	margin-right: 5px;
 }
 #user{
 	height: fit-content;
@@ -63,11 +71,22 @@
 }
 .selecteur label{
 	padding: 10px;
-	border-radius: 10px;
 	background-color: #e0e1e2;
 }
-input:checked + label{
-	background: #c8c9ca;
+#Account + label{
+	border-radius: 10px 0px 0px 10px;
+}
+#Messagerie + label{
+	border-radius: 0px 10px 10px 0px;
+}
+#boutonSuppr{
+	padding: 10px;
+	background-color: #e0e1e2;
+	border-radius: 10px;
+    cursor: pointer;
+}
+#boutonSuppr:hover{
+	background: #ebc7b0;
 }
 
 #contenerEmulateur{

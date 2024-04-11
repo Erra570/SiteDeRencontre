@@ -219,21 +219,21 @@ input[type="text"]:hover, [type="number"]:hover {
     object-fit: cover;
     border-radius: 50%;
 }
-.croix{
+#profils .croix{
 	color: #343a40;
 	width: 2vw;
 	margin: 1vw 1vw 1vw 2vw;
     cursor: pointer;
 }
-.line {
+#profils .line {
 	fill:none;
 	stroke:#343a40;
 	stroke-width:5.5;
 	stroke-linecap:round;
 }
-.croix:hover{
+#profils .croix:hover{
 	color: orangered;
 }
-.croix:hover .line{
+#profils .croix:hover .line{
 	stroke: orangered;
 }

@@ -24,7 +24,9 @@ function entree(target) {
 					pere.appendChild(e);
 
 					let tab = document.getElementsByClassName("msg");
-					document.location.href = "#"+tab[tab.length-1].parentNode.id;
+					if(tab.length != 0){
+						document.location.href = "#"+tab[tab.length-1].parentNode.id;
+					}
 
 					document.getElementById("msgToSend").value = "";
 				}
@@ -87,7 +89,7 @@ function instantane(target){
 	}
 }
 
-function loadChat(target){
+function loadChat(target, idMsg){
 	let reciver = document.querySelector('input[name="reciver"]:checked').value;
 
 	xhttp = new XMLHttpRequest();
@@ -100,6 +102,10 @@ function loadChat(target){
 				document.location.href = "#hour"+tab[tab.length-1].parentNode.id;
 			}
 			if(target >= 1){
+				if(idMsg){
+					document.location.href = "#hour"+idMsg;
+					document.getElementById(idMsg).style = "filter: drop-shadow(0 0 0.1rem #602320);";
+				}
 				document.getElementById("msgWriter").style.width = '64vw';
 				document.getElementById("spanTroisPoint").style.top = 'calc(7vh + 12px)';
 			}

@@ -53,20 +53,6 @@ CREATE TABLE IF NOT EXISTS Message (
 	FOREIGN KEY (IdSender) REFERENCES Account(IdAccount) ON DELETE CASCADE,
 	FOREIGN KEY (IdRecipient) REFERENCES Account(IdAccount) ON DELETE CASCADE);
 
-
-CREATE TABLE IF NOT EXISTS Interest ( 
-	IdInterest INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Interest VARCHAR(255) NOT NULL);
-
-
-CREATE TABLE IF NOT EXISTS InterestLink ( 
-	IdAccount INT NOT NULL,
-	IdInterest INT NOT NULL,
-	CONSTRAINT cle_pri PRIMARY KEY (IdAccount, IdInterest),
-	FOREIGN KEY (IdAccount) REFERENCES Account(IdAccount) ON DELETE CASCADE,
-	FOREIGN KEY (IdInterest) REFERENCES Interest(IdInterest) ON DELETE CASCADE);
-
-
 CREATE TABLE IF NOT EXISTS Subscription (
 	IdAccount INT NOT NULL,
 	Start DATETIME NOT NULL DEFAULT current_timestamp(),
@@ -106,7 +92,8 @@ INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, D
 	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau", "En Couple");
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, LoveSituation, ProfilPictureFile) VALUES 
-	(3, "Neeko", "heyaaa", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City", "Celib", "wp4491879.webp");
+	(3, "Neeko", "heyaaa", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City", "Celib", "wp4491879.webp"), 
+	(4, "Hornet", "Silksong", "F", "Hornet", "Hollow", "Hornet@next.com", "2017-03-17", "Hallownest", "Vertchemin", "Celib", "wp4377292.webp");
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, Street, AdressNumber, LoveSituation, Species, HumanoidGauge, WelcomeMessage) VALUES 
 	(2, "Legolas64", "leffff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "Stilgard", "Avenue du Palais", 3, "Celib", "Elfe", 9, "Coucou, je suis Legolas :)");
@@ -119,4 +106,16 @@ INSERT INTO Image (IdAccount, IdImg, ImgFile) VALUES
 
 INSERT INTO Contact (IdAsker, IdAccount, Approval) VALUES
 	(1,2,TRUE),
-	(3,2,NULL);
+	(2,3,TRUE),
+	(1,3,TRUE),
+	(4,2,NULL);
+
+INSERT INTO Message (IdSender, IdRecipient, DateSend, Content) VALUES
+	(3, 2, "2024-04-11 17:42:27", "La beauté brille de l'intérieur, là où le cœur danse."),
+	(3, 2, "2024-04-11 17:43:59", "Je suis normal ! Tout est normal. Rien n'est suspect.");
+
+INSERT INTO ReportAccount (IdReporter, IdAccount) VALUES
+	(2,3);
+
+INSERT INTO ReportMsg (IdMessage) VALUES
+	(2);
