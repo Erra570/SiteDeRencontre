@@ -88,14 +88,14 @@ CREATE TABLE IF NOT EXISTS ReportMsg (
 	FOREIGN KEY (IdMessage) REFERENCES Message(IdMessage) ON DELETE CASCADE);
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, LoveSituation) VALUES 
-	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau", "En Couple");
+	(1, "Sifflet_Blanc", "mlkjhgfdsq", "M", "Florent", "Crahay--Boudou", "flo.crahay@gmail.com", "2003-11-19", "France", "Pau", "En couple");
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, LoveSituation, ProfilPictureFile) VALUES 
-	(3, "Neeko", "heyaaa", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City", "Celib", "wp4491879.webp"), 
-	(4, "Hornet", "Silksong", "F", "Hornet", "Hollow", "Hornet@next.com", "2017-03-17", "Hallownest", "Vertchemin", "Celib", "wp4377292.webp");
+	(3, "Neeko", "heyaaa", "F", "Neeko", "Oovi", "neeko@gmail.com", "2018-12-05", "Oovi-Kat Island", "City", "Celibataire", "wp4491879.webp"), 
+	(4, "Hornet", "Silksong", "F", "Hornet", "Hollow", "Hornet@next.com", "2017-03-17", "Hallownest", "Vertchemin", "Celibataire", "wp4377292.webp");
 
 INSERT INTO Account (IdAccount, Pseudo, Password, Sexe, FirstName, Name, Mail, DateOfBirth, Country, City, Street, AdressNumber, LoveSituation, Species, HumanoidGauge, WelcomeMessage) VALUES 
-	(2, "Legolas64", "leffff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "Stilgard", "Avenue du Palais", 3, "Celib", "Elfe", 9, "Coucou, je suis Legolas :)");
+	(2, "Legolas64", "leffff", "M", "Legolas", "Elfe", "legolaslelfedu64@gmail.com", "103-07-09", "Terre du milieu", "Stilgard", "Avenue du Palais", 3, "Celibataire", "Elfe", 9, "Coucou, je suis Legolas :)");
 
 INSERT INTO Admin (IdAccount) VALUES
 	(1);

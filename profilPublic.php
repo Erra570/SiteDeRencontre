@@ -30,6 +30,14 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_GET['cu
 				<div id="centreur">
 					<div id="profilPres">
 						<div>
+							<?php 
+								$AskerId_tab = $bdd->prepare('SELECT IdAsker FROM Contact WHERE (IdAccount = :idaccount1 AND IdAsker = :idaccount2) OR (IdAccount = :idaccount2 AND IdAsker = :idaccount1)');
+								$AskerId_tab->execute(array('idaccount1'=>$User['IdAccount'], 'idaccount2'=>$CurrentUser['IdAccount']));
+								if($AskerId=$AskerId_tab->fetch()){}
+								else{ ?>
+									<div id="askContact" onclick="contact(<?php echo $CurrentUser['IdAccount']; ?>)">Envoyer une demande de contacte</div>
+								<?php }
+							?>
 							<div class="centreHorizontalement" id="profilTop" onclick="showHide('modifyProfilPictureContener')">
 								<img id="imgProfilPicture" src="img/<?php echo $CurrentUser['IdAccount'].'/'.$CurrentUser['ProfilPictureFile'];?>">
 							</div>

@@ -150,13 +150,19 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 						</div>
 						<div class="blocDInfos">
 							<label for="sexe">Sexe : </label>
-							<input type="text" name="sexe" id="sexe" value="<?php echo $User['Sexe'] ?>"><br>
+                            <input type="radio" name="sexe" id="M" value="M" <?php if($User['Sexe']=='M'){ echo "checked";} ?>><label for="M">masculin</label>
+                            <input type="radio" name="sexe" id="F" value="F" <?php if($User['Sexe']=='F'){ echo "checked";} ?>><label for="F">feminin</label> 
+                            <input type="radio" name="sexe" id="A" value="A" <?php if($User['Sexe']=='A'){ echo "checked";} ?>><label for="A">autre</label><br>
 							<label for="dateOfBirth">Date de naissance : </label>
 							<input type="date" name="dateOfBirth" id="dateOfBirth" value="<?php echo $User['DateOfBirth'] ?>"><br>
 							<label for="species">Espece : </label>
 							<input type="text" name="species" id="species" value="<?php echo $User['Species'] ?>"><br>
 							<label for="humanoidGauge">Jauge humanitée : </label>
 							<input type="range" name="humanoidGauge" id="humanoidGauge" min="0" max="10" value="<?php echo $User['HumanoidGauge'] ?>"><br>
+							<label for="love">Situation amoureuse : </label>
+                            <input type="radio" name="love" id="C" value="Celibataire" <?php if($User['LoveSituation']=='Celibataire'){ echo "checked";} ?>><label for="M">Celibataire</label>
+                            <input type="radio" name="love" id="E" value="En couple" <?php if($User['LoveSituation']=='En couple'){ echo "checked";} ?>><label for="F">En couple</label> 
+                            <input type="radio" name="love" id="D" value="Divorce" <?php if($User['LoveSituation']=='Divorce'){ echo "checked";} ?>><label for="A">Divorce</label><br>
 							<label for="size">Taille : </label>
 							<input type="number" name="size" id="size" min="0" value="<?php echo $User['Size'] ?>"><br>
 							<label for="weight">Poids : </label>

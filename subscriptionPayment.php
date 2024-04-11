@@ -37,7 +37,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['t
 							<input type="radio" name="typeAbonnement" value="<?php echo $_POST['typeAbonnement']; ?>" checked style="display: none;">
 							<div class="droit">
 	                            <label for="NumCarte">Numéro de la carte</label> <br>
-	                            <input class="inputText" type="text" name="NumCarte" id="NumCarte" minlength="19" maxlength="19" required/> <br>
+	                            <input class="inputText" type="text" name="NumCarte" id="NumCarte" minlength="16" maxlength="16" required/> <br>
 	                        </div>
 	                        <div class="droit">
 	                            <label for="Titulaire">Titulaire de la carte</label> <br>

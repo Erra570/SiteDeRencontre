@@ -171,3 +171,17 @@ function unBlock(reciver, target){
 	}
 	xhttp.send(post);
 }
+
+function contact(id){
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4) {
+			document.getElementById("askContact").innerHTML = "Demande Envoyée";
+		}
+	}
+	var file = "php/askContact.php";
+	xhttp.open("POST", file, true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let post = "id="+id;
+	xhttp.send(post);
+}
