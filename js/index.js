@@ -34,5 +34,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }, { threshold: [0] });
 
     observer4.observe(document.querySelector('.text3'));
+
+    
+    var observer5 = new IntersectionObserver(function(entries) {
+        if(entries[0].isIntersecting === true)
+            document.querySelector('.textBas').style.animationPlayState = "running";
+    }, { threshold: [0] });
+
+    observer5.observe(document.querySelector('.textBas'));
+    
 });
 
