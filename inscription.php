@@ -35,7 +35,7 @@
 			<label for="password_confirm"> Confirmation du mot de passe :</label>
 			<input class="inputText" type="password" name="password_confirm" id="password_confirm" maxlength="255" minlength="6" required /><br>
 
-			<label for="date_de_naissance"> Date de naissance : </label>
+			<label for="date_de_naissance"> Date de naissance <span id=rouge> * </span>: </label>
 			<input class="inputText" type="date" name="date_de_naissance" id="date_de_naissance" maxlength="32" required /><br>
 
 			<label for="Species"> Espece : </label>

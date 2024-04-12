@@ -24,7 +24,6 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 			<body>
 				<?php include("php/header.php"); ?>
 				<?php include("php/messagerieSansBandeau.php"); ?>
-				<?php include('php/footer.html'); ?>
 			</body>
 		</html>
 	<?php }

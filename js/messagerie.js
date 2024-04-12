@@ -149,7 +149,6 @@ function block(target){
 	xhttp.send(post);
 }
 
-//afficher le message
 function reportAccount(target){
 	reciver = document.getElementById("Reciver").innerHTML;
 
@@ -210,6 +209,7 @@ function accept(reciver, target){
 
 			var div = document.createElement("div");
 			div.innerHTML = reciver;
+			div.className = "pseudo";
 
 			label.appendChild(img);
 			label.appendChild(div);

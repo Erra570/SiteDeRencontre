@@ -150,6 +150,10 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 							<h3>Descriptif</h3><div class="traitSeparation"></div>
 						</div>
 						<div class="blocDInfos">
+							<div style="display: flex;">
+								<label for="welcomeMessage">Description : </label>
+								<textarea type="textarea" name="welcomeMessage" id="welcomeMessage" value="<?php echo $User['WelcomeMessage'] ?>"></textarea><br>
+							</div>
 							<label for="sexe">Sexe : </label>
                             <input type="radio" name="sexe" id="M" value="M" <?php if($User['Sexe']=='M'){ echo "checked";} ?>><label for="M">masculin</label>
                             <input type="radio" name="sexe" id="F" value="F" <?php if($User['Sexe']=='F'){ echo "checked";} ?>><label for="F">feminin</label> 

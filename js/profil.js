@@ -146,7 +146,6 @@ function modifyProfil(target){
 	xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4) {
-			document.getElementById("result").innerHTML = xhttp.responseText;
 		}
 	}
 	var file = "php/modifyProfil.php";

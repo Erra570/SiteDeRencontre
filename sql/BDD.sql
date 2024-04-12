@@ -118,3 +118,8 @@ INSERT INTO ReportAccount (IdReporter, IdAccount) VALUES
 
 INSERT INTO ReportMsg (IdMessage) VALUES
 	(2);
+
+INSERT INTO Subscription (IdAccount, Start, End) VALUES
+	(2, current_timestamp(), DATE_ADD(current_timestamp(), INTERVAL 6 MONTH)),
+	(3, current_timestamp(), DATE_ADD(current_timestamp(), INTERVAL 6 MONTH)),
+	(4, current_timestamp(), DATE_ADD(current_timestamp(), INTERVAL 6 MONTH));

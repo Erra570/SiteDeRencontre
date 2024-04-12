@@ -31,7 +31,7 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
                         <form method="post" class="form">
                             <div>
                                 <label for="search_user">Rechercher un utilisateur :</label>
-                                <input type="text" name="search_user" id="search_user">
+                                <input type="text" name="search_user" id="search_user" <?php if(isset($_POST['search_user'])){echo 'value="'.htmlspecialchars($_POST['search_user']).'"';} ?>>
                                 <input type="submit" id="submit" value="Rechercher"><br>
                             </div>
                             <div id="formMore" style="display: none;">

@@ -14,8 +14,11 @@ function loadknownProfil(target, type, sender, idMsg){
 		if (this.readyState == 4) {
 			if(idMsg){
 				let msg = document.getElementById(idMsg);
+				let spanmsg = document.getElementById('span'+idMsg);
 				if(msg){
 					msg.id = '';
+					spanmsg.style.display = "none";
+					spanmsg.id = '';
 				}
 			}
 			document.getElementById("emulateur").innerHTML = xhttp.responseText;

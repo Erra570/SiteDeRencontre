@@ -10,10 +10,7 @@ catch (Exception $e){
 
 if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['pseudo']) AND 
 	isset($_POST['name']) AND isset($_POST['firstName']) AND isset($_POST['mail']) AND 
-	isset($_POST['country']) AND isset($_POST['city']) AND isset($_POST['street']) AND 
-	isset($_POST['adressNumber']) AND isset($_POST['sexe']) AND isset($_POST['dateOfBirth']) AND 
-	isset($_POST['species']) AND isset($_POST['humanoidGauge']) AND isset($_POST['love']) AND isset($_POST['size']) AND 
-	isset($_POST['weight']) AND isset($_POST['eyeColor'])){
+	isset($_POST['country']) AND isset($_POST['city']) AND isset($_POST['sexe']) AND isset($_POST['dateOfBirth'])){
 
 	$user = htmlspecialchars($_SESSION['user']);
 	$password = htmlspecialchars($_SESSION['password']);
@@ -33,6 +30,16 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['p
 		$load = $User=$User_tab->fetch();
 	}
 	if($load){
+		$req = 'UPDATE Account SET 
+			Pseudo = :pseudo,
+			Name = :name,
+			FirstName = :firstName,
+			Mail = :mail,
+			Country = :country,
+			City = :city,
+			Sexe = :sexe,
+			DateOfBirth = :dateOfBirth';
+
 		$pseudo = htmlspecialchars($_POST['pseudo']);
 		$name = htmlspecialchars($_POST['name']);
 		$firstName = htmlspecialchars($_POST['firstName']);
@@ -40,48 +47,70 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['p
 
 		$country = htmlspecialchars($_POST['country']);
 		$city = htmlspecialchars($_POST['city']);
-		$street = htmlspecialchars($_POST['street']);
-		$adressNumber = htmlspecialchars($_POST['adressNumber']);
-		if($adressNumber == ""){
-			$adressNumber = null;
+
+		if(isset($_POST['street'])){
+			$street = htmlspecialchars($_POST['street']);
+			$req = $req.", Street = '".$street."'";
+		}
+
+		if(isset($_POST['adressNumber']) AND htmlspecialchars($_POST['adressNumber']) != ''){
+			$adressNumber = htmlspecialchars($_POST['adressNumber']);
+			$req = $req.', AdressNumber = '.$adressNumber;
+		}
+		else{
+			$req = $req.', adressNumber = NULL';
+		}
+
+		if(isset($_POST['welcomeMessage'])){
+			$welcomeMessage = htmlspecialchars($_POST['welcomeMessage']);
+			$req = $req.", WelcomeMessage = '".$welcomeMessage."'";
 		}
 
 		$sexe = htmlspecialchars($_POST['sexe']);
 		$dateOfBirth = htmlspecialchars($_POST['dateOfBirth']);
-		$species = htmlspecialchars($_POST['species']);
-		$love = htmlspecialchars($_POST['love']);
-		$humanoidGauge = htmlspecialchars($_POST['humanoidGauge']);
-		if($humanoidGauge == ""){
-			$humanoidGauge = null;
-		}
-		$size = htmlspecialchars($_POST['size']);
-		if($size == ""){
-			$size = null;
-		}
-		$weight = htmlspecialchars($_POST['weight']);
-		if($weight == ""){
-			$weight = null;
-		}
-		$eyeColor = htmlspecialchars($_POST['eyeColor']);
 
-		$request = $bdd->prepare('UPDATE Account SET 
-			Pseudo = :pseudo,
-			Name = :name,
-			FirstName = :firstName,
-			Mail = :mail,
-			Country = :country,
-			City = :city,
-			Street = :street,
-			AdressNumber = :adressNumber,
-			Sexe = :sexe,
-			DateOfBirth = :dateOfBirth,
-			Species = :species,
-			HumanoidGauge = :humanoidGauge,
-			LoveSituation = :love,
-			Size = :size,
-			Weight = :weight,
-			EyeColor = :eyeColor
-			WHERE IdAccount = :idaccount');
+		if(isset($_POST['species'])){
+			$species = htmlspecialchars($_POST['species']);
+			$req = $req.", Species = '".$species."'";
+		}
+
+		if(isset($_POST['love']) AND htmlspecialchars($_POST['love']) != ''){
+			$love = htmlspecialchars($_POST['love']);
+			$req = $req.", LoveSituation = '".$love."'";
+		}
+
+		if(isset($_POST['humanoidGauge']) AND htmlspecialchars($_POST['humanoidGauge']) != ''){
+			$humanoidGauge = htmlspecialchars($_POST['humanoidGauge']);
+			$req = $req.', HumanoidGauge = '.$humanoidGauge;
+		}
+		else{
+			$req = $req.', HumanoidGauge = NULL';
+		}
+
+		if(isset($_POST['size']) AND htmlspecialchars($_POST['size']) != ''){
+			$size = htmlspecialchars($_POST['size']);
+			$req = $req.', Size = '.$size;
+		}
+		else{
+			$req = $req.', Size = NULL';
+		}
+
+		if(isset($_POST['weight']) AND htmlspecialchars($_POST['weight']) != ''){
+			$weight = htmlspecialchars($_POST['weight']);
+			$req = $req.', Weight = '.$weight;
+		}
+		else{
+			$req = $req.', Weight = NULL';
+		}
+
+		if(isset($_POST['eyeColor'])){
+			$eyeColor = htmlspecialchars($_POST['eyeColor']);
+			$req = $req.", EyeColor = '".$eyeColor."'";
+		}
+
+		$req = $req.' WHERE IdAccount = :idaccount';
+
+		$request = $bdd->prepare($req);
 		$request->execute(array('idaccount'=>$User['IdAccount'], 
 			'pseudo' => $pseudo,
 			'name' => $name,
@@ -89,16 +118,8 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['p
 			'mail' => $mail,
 			'country' => $country,
 			'city' => $city,
-			'street' => $street,
-			'adressNumber' => $adressNumber,
 			'sexe' => $sexe,
-			'dateOfBirth' => $dateOfBirth,
-			'species' => $species,
-			'humanoidGauge' => $humanoidGauge,
-			'love' => $love,
-			'size' => $size,
-			'weight' => $weight,
-			'eyeColor' => $eyeColor));
+			'dateOfBirth' => $dateOfBirth));
 	}
 }
 ?>
