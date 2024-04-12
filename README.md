@@ -34,6 +34,6 @@ Utilisateur Classique, Inscrit, Abonné, ayant déjà accepté l'Admin comme con
 **Lien GitHub du projet :** https://github.com/Erra570/SiteDeRencontre
 
 ## Auteurs
-**Florent Crahay--Boudou** (https://github.com/Sifflet-Blanc)
-**Rubens Tueux** (https://github.com/RubensGHub)
-**Finana Tom** (https://github.com/Erra570)
+ - **Florent Crahay--Boudou** (https://github.com/Sifflet-Blanc)
+ - **Rubens Tueux** (https://github.com/RubensGHub)
+ - **Finana Tom** (https://github.com/Erra570)
