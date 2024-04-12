@@ -38,3 +38,11 @@ body {
 .bandeau a:hover {
     color: orangered
 }
+
+.footer a {
+    margin: 0 25px;
+    text-decoration: none;
+    color: #343a40;
+    transition: color 0.3s ease;
+    font-size: 20px;
+}

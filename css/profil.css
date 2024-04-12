@@ -254,3 +254,7 @@ input[type="text"]:hover, [type="number"]:hover {
 #profils .croix:hover .line{
 	stroke: orangered;
 }
+
+#footer {
+	margin-top: 12%;
+}

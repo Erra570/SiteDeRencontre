@@ -60,7 +60,8 @@
 		</div>
 		<br>
 
-		<?php include('php/footer.html'); ?>
-		
+		<div id=footer>
+			<?php include('php/footer.html'); ?>
+		</div>
 	</body>
 </html>

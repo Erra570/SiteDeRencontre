@@ -24,7 +24,11 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 			<body>
 				<?php include("php/header.php"); ?>
 				<?php include("php/profilSansBandeau.php"); ?>
-				<?php include('php/footer.html'); ?>
+				<center>
+					<div id="footer">
+						<?php include('php/footer.html'); ?>
+					</div>
+				</center>
 			</body>
 		</html>
 	<?php }
