@@ -31,7 +31,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				<?php include("php/header.php"); ?>
 				<div id="centreur">
 					<div id="contener">
-						<h2>Choisi un abonnement</h2>
+						<h2>Choisissez un abonnement</h2>
 						<form method="post" action="subscriptionPayment.php">
 							<div id="abonnements">
 								<input type="radio" name="typeAbonnement" class="radioCache" value="1" id="radio1" checked>

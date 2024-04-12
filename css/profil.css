@@ -21,6 +21,18 @@
     border-radius: 50%;
 	transition: filter 0.3s ease;
 }
+#askContact{
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #efe4dc;
+    cursor: pointer;
+    margin-left: 15px;
+	transition: background-color 0.3s ease;
+}
+#askContact:hover{
+	background-color: #ebc7b0;
+	transition: background-color 0.3s ease;
+}
 #imgProfilPicture {
 	width: 16vw;
 	height: 16vw;
@@ -30,6 +42,11 @@
 .plusProfil {
 	display: none;
 	position: absolute;
+}
+
+#profilTop #imgProfilPicture{
+	filter: brightness(100%);
+	transition: filter 0.5s ease;
 }
 #profilTop #imgProfilPicture:hover{
 	filter: brightness(75%);

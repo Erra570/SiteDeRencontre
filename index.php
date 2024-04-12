@@ -14,7 +14,7 @@
 		$utilisateurConnecte = isset($_SESSION['user']) && isset($_SESSION['password']);
 		if ($utilisateurConnecte) {
         	echo "<h2>Ravi de vous revoir, " . $user . ".</h2>";
-			echo "<h3>Vous êtes connecté.</h3>";
+			echo "<h3>Vous êtes connecté(e).</h3>";
     	} else {
 			echo '<button class="bouton" onclick="window.location.href=\'inscription.php\'">Créer un compte</button>';
         	echo '<p>Vous avez déjà un compte ? <a href="login.php">Connectez-vous</a></p>';

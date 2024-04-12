@@ -15,7 +15,13 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_GET['cu
 	$User_tab->execute(array('user'=>$user, 'password'=>$password));
 	$CurrentUser_tab = $bdd->prepare('SELECT * FROM Account WHERE Pseudo=:user');
 	$CurrentUser_tab->execute(array('user'=>htmlspecialchars($_GET['currentUser'])));
-	if($User=$User_tab->fetch() && $CurrentUser=$CurrentUser_tab->fetch()){ 
+
+	$load = true;
+	$load = $load && $CurrentUser=$CurrentUser_tab->fetch();
+	$load = $load && $User=$User_tab->fetch();
+
+
+	if($load){ 
 
 		?>
 		<!DOCTYPE html>
@@ -31,11 +37,24 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_GET['cu
 					<div id="profilPres">
 						<div>
 							<?php 
+								$bouton = false;
+
+								$estAbonne = $bdd->prepare('SELECT * FROM Account WHERE IdAccount = :idaccount AND IdAccount IN (SELECT IdAccount FROM Subscription)');
+								$estAbonne->execute(array('idaccount'=>$User['IdAccount']));
+
+								$bouton = $bouton || $est1=$estAbonne->fetch();
+
+								$estAdmin = $bdd->prepare('SELECT * FROM Account WHERE IdAccount = :idaccount AND IdAccount IN (SELECT IdAccount FROM Admin)');
+								$estAdmin->execute(array('idaccount'=>$User['IdAccount']));
+
+								$bouton = $bouton || $est2=$estAdmin->fetch();
+
 								$AskerId_tab = $bdd->prepare('SELECT IdAsker FROM Contact WHERE (IdAccount = :idaccount1 AND IdAsker = :idaccount2) OR (IdAccount = :idaccount2 AND IdAsker = :idaccount1)');
 								$AskerId_tab->execute(array('idaccount1'=>$User['IdAccount'], 'idaccount2'=>$CurrentUser['IdAccount']));
-								if($AskerId=$AskerId_tab->fetch()){}
-								else{ ?>
-									<div id="askContact" onclick="contact(<?php echo $CurrentUser['IdAccount']; ?>)">Envoyer une demande de contacte</div>
+
+
+								if(!($AskerId=$AskerId_tab->fetch()) && $bouton){ ?>
+									<div id="askContact" onclick="contact(<?php echo $CurrentUser['IdAccount']; ?>)">Envoyer une demande de contact</div>
 								<?php }
 							?>
 							<div class="centreHorizontalement" id="profilTop" onclick="showHide('modifyProfilPictureContener')">
