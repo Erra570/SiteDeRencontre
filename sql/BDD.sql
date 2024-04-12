@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS Account (
 	EyeColor VARCHAR(30),
 	Smoker INT(1),
 	ProfilPictureFile VARCHAR(255) NOT NULL DEFAULT "ProfilDefaultPicture.png",
-	WelcomeMessage TEXT);
+	WelcomeMessage TEXT,
+	CONSTRAINT Pseudo UNIQUE (Pseudo));
 
 
 CREATE TABLE IF NOT EXISTS Admin (
@@ -66,6 +67,13 @@ CREATE TABLE IF NOT EXISTS BlackList (
 	CONSTRAINT cle_pri PRIMARY KEY (IdAccount, IdBlocked),
 	FOREIGN KEY (IdAccount) REFERENCES Account(IdAccount) ON DELETE CASCADE,
 	FOREIGN KEY (IdBlocked) REFERENCES Account(IdAccount) ON DELETE CASCADE);
+
+CREATE TABLE IF NOT EXISTS Visite ( 
+	IdAccount INT NOT NULL,
+	IdVisiteur INT NOT NULL,
+	CONSTRAINT cle_pri PRIMARY KEY (IdAccount, IdVisiteur),
+	FOREIGN KEY (IdAccount) REFERENCES Account(IdAccount) ON DELETE CASCADE,
+	FOREIGN KEY (IdVisiteur) REFERENCES Account(IdAccount) ON DELETE CASCADE);
 
 
 CREATE TABLE IF NOT EXISTS Image ( 

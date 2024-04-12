@@ -19,6 +19,8 @@
 }
 .Reported{
 	display: flex;	
+    width: 95vw;
+    flex-wrap: wrap;
 }
 .MsgReported{
 	background-color: #efe4dc;

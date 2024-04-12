@@ -22,6 +22,8 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_GET['cu
 
 
 	if($load){ 
+		$request = $bdd->prepare('INSERT INTO Visite (IdAccount, IdVisiteur) VALUES (:idaccount, :idvisiteur) ON DUPLICATE KEY UPDATE IdAccount = IdAccount');
+		$request->execute(array('idaccount'=>$CurrentUser['IdAccount'], 'idvisiteur'=>$User['IdAccount']));
 
 		?>
 		<!DOCTYPE html>

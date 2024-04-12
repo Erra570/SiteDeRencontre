@@ -16,6 +16,7 @@
 		<form id="formInscription" method="post" action="php/validationInscription.php">
 			<p> <i style="font-size: 12px;"> Déjà membre ? <a href="login.php"> Connectez-vous ici </i></a>.</p><br>
 
+			<?php if(isset($_GET['erreur']) AND htmlspecialchars($_GET['erreur']) == "existe"){ ?><div id=rouge>Le Pseudo ou l'email existe déjà</div> <?php } ?>
 			<label for="user"> Pseudo <span id=rouge> * </span>: </label> 
 			<input class="inputText" type="text" name="user" id="user" maxlength="255" required/><br>
 

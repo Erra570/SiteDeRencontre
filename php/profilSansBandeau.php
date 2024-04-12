@@ -198,9 +198,29 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 				</div>
 				<div>
 					<div class="h3">
+						<h3>Visiteurs</h3><div class="traitSeparation"></div>
+					</div>
+					<div class="profils">
+						<?php
+						$VisiteurId_tab = $bdd->prepare('SELECT IdVisiteur FROM Visite WHERE IdAccount = :idaccount ORDER BY IdVisiteur');
+						$VisiteurId_tab->execute(array('idaccount'=>$User['IdAccount']));
+						while($VisiteurId=$VisiteurId_tab->fetch()){							$Visiteur_tab = $bdd->prepare('SELECT Pseudo, ProfilPictureFile FROM Account WHERE IdAccount=:idcontact');
+							$Visiteur_tab->execute(array('idcontact'=>$VisiteurId['IdVisiteur']));
+							if($Visiteur=$Visiteur_tab->fetch()){?>
+								<div class="profilBlockeds" id="<?php echo $Visiteur['Pseudo'];?>" onclick="unBlock(<?php echo "'".$Visiteur['Pseudo']."'"; if(isset($_POST['target'])){ echo ", '".$target."'";}?>)">
+									<img class="profilPicture" src="img/<?php echo $VisiteurId['IdVisiteur']."/".$Visiteur['ProfilPictureFile'];?>">
+									<div><?php echo $Visiteur['Pseudo']; ?></div>
+								</div>
+							<?php }
+						}
+						?>
+					</div>
+				</div>
+				<div>
+					<div class="h3">
 						<h3>Black list</h3><div class="traitSeparation"></div>
 					</div>
-					<div id="profils">
+					<div class="profils">
 						<?php
 						$BlockedId_tab = $bdd->prepare('SELECT IdBlocked FROM BlackList WHERE IdAccount = :idaccount ORDER BY IdBlocked');
 						$BlockedId_tab->execute(array('idaccount'=>$User['IdAccount']));
