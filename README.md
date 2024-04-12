@@ -25,7 +25,7 @@ Utilisateur Admin :
  - Nom de compte : Admin
  - Mot de Passe : azertyuiop
 
-Utilisateur Classique, Inscrit, Abonné, ayant déjà accepté l'Admin comme contact :
+Utilisateur classique, inscrit, abonné, ayant déjà accepté l'Admin comme contact :
  - Nom de compte : Legolas64
  - Mot de Passe : leffff
 
