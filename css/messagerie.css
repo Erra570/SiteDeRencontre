@@ -37,8 +37,7 @@ a{
 	stroke-width:8;
 	stroke-linecap:round;
 }
-.vert{
-}
+
 .vert:hover{
 	color: #2ecc71;
 	transition: color 0.2s ease;
