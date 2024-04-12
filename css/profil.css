@@ -220,7 +220,6 @@ input[type="text"]:hover, [type="number"]:hover {
 }
 .profils{
 	display: flex;
-	width: 30vw;
     width: 79vw;
     flex-wrap: wrap;
 }
