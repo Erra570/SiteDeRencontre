@@ -82,7 +82,7 @@ a{
 	width: 15%;
 }
 #left .profil .pseudo{
-	width: calc(100% - 7vh);;
+	width: calc(100% - 7vh);
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
