@@ -21,45 +21,50 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
             <head>
                 <?php include("php/head.html"); ?>
                 <link rel="stylesheet" type="text/css" href="css/recherche.css" media="all" />
+				<script src="js/recherche.js"></script>
             </head>
             <body>
-                <?php include("php/header.php"); ?>
+                <?php include("php/header.php"); ?>	
                 <div id="contener">
                     <div id="percent">
+						<button id="moreButton">Filtres</button>
                         <form method="post" class="form">
                             <div>
                                 <label for="search_user">Rechercher un utilisateur :</label>
                                 <input type="text" name="search_user" id="search_user">
-                                <input type="submit" value="Rechercher"><br>
+                                <input type="submit" id="submit" value="Rechercher"><br>
                             </div>
-                            <div>
+                            <div id="formMore" style="display: none;">
                                 <label for="Sexe"> Sexe : </label>
+								<label for="M">masculin</label>
                                 <input type="checkbox" name="M" id="M" <?php if(isset($_POST['M']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
-                                <label for="M">masculin</label>
-                                <input type="checkbox" name="F" id="F" <?php if(isset($_POST['F']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
-                                <label for="F">feminin</label> 
-                                <input type="checkbox" name="A" id="A" <?php if(isset($_POST['A']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
+                                <label for="F">feminin</label>
+								<input type="checkbox" name="F" id="F" <?php if(isset($_POST['F']) OR !isset($_POST['search_user'])){ echo "checked";} ?>> 
                                 <label for="A">autre</label>
-
-                                <label for="Sexe"> Age : </label>
+								<input type="checkbox" name="A" id="A" <?php if(isset($_POST['A']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
+								<br>
+                                <label for="Age"> Age : </label>
+								<label for="minAge">min</label>
                                 <input type="number" name="minAge" id="minAge" min="0" max="10000" value="<?php if(isset($_POST['minAge'])){echo htmlspecialchars($_POST['minAge']);} ?>">
-                                <label for="minAge">min</label>
-                                <input type="number" name="maxAge" id="maxAge" min="0" max="10000" value="<?php if(isset($_POST['maxAge'])){echo htmlspecialchars($_POST['maxAge']);} ?>">
                                 <label for="maxAge">max</label>
+                                <input type="number" name="maxAge" id="maxAge" min="0" max="10000" value="<?php if(isset($_POST['maxAge'])){echo htmlspecialchars($_POST['maxAge']);} ?>">
+                                <br>
 
                                 <label for="love">Situation amoureuse : </label>
+								<label for="M">Celibataire</label>
                                 <input type="checkbox" name="C" id="C" value="Celibataire" <?php if(isset($_POST['C']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
-                                <label for="M">Celibataire</label>
+                                <label for="F">En couple</label>
                                 <input type="checkbox" name="E" id="E" value="En couple" <?php if(isset($_POST['E']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
-                                <label for="F">En couple</label> 
+								<label for="A">Divorce</label>
                                 <input type="checkbox" name="D" id="D" value="Divorce" <?php if(isset($_POST['D']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
-                                <label for="A">Divorce</label>
-
-                                <label for="Sexe">Humain : </label>
+                                
+								<br>
+                                <label for="Humain">Humain : </label>
+								<label for="minHumain">min</label>
                                 <input type="number" name="minHumain" id="minHumain" min="0" max="10" value="<?php if(isset($_POST['minHumain'])){echo htmlspecialchars($_POST['minHumain']);} ?>">
-                                <label for="minHumain">min</label>
-                                <input type="number" name="maxHumain" id="maxHumain" min="0" max="10" value="<?php if(isset($_POST['maxHumain'])){echo htmlspecialchars($_POST['maxHumain']);} ?>">
                                 <label for="maxHumain">max</label>
+                                <input type="number" name="maxHumain" id="maxHumain" min="0" max="10" value="<?php if(isset($_POST['maxHumain'])){echo htmlspecialchars($_POST['maxHumain']);} ?>">
+                                
                             </div>
                         </form>
                         <?php
