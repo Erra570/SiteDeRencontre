@@ -101,7 +101,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 					</div>
 				</div>
 				<div class="right" id="right">
-					Il n'y a personne ici
+					<p>Il n'y a personne ici</p>
 				</div>
 			</div>
 		</body>

@@ -108,6 +108,13 @@ input:checked + label{
 	height: calc(100vh - (5vw + 16px));
 	width: 78vw;
 }
+
+.right p {
+	margin-left: 3vw;
+	font-size: 3vw;
+	font-family: 'Papyrus';
+}
+
 .msgTop{
 	padding: 1vh;
 	height: 7vh;

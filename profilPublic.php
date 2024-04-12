@@ -54,7 +54,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_GET['cu
 
 
 								if(!($AskerId=$AskerId_tab->fetch()) && $bouton){ ?>
-									<div id="askContact" onclick="contact(<?php echo $CurrentUser['IdAccount']; ?>)">Envoyer une demande de contacte</div>
+									<div id="askContact" onclick="contact(<?php echo $CurrentUser['IdAccount']; ?>)">Envoyer une demande de contact</div>
 								<?php }
 							?>
 							<div class="centreHorizontalement" id="profilTop" onclick="showHide('modifyProfilPictureContener')">
