@@ -8,6 +8,7 @@ body {
     height: 100vh;
     margin: 0;
     background-attachment: fixed;
+    flex-direction: column;
 }
 
 .milieu {
@@ -156,4 +157,9 @@ body {
     background-color: #f8f9fa;
     animation: slideDown 1s ease-out;
     animation-play-state: paused;
+}
+
+#footer {
+    position: absolute;
+    bottom: -80%;
 }

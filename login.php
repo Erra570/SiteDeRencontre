@@ -21,14 +21,13 @@
 
                                 <input class="bouton" type="submit" name="connexion" value="se connecter"/> <br>
                         </form>
-
+                        
                         <?php
                                 if (isset($_GET["erreur"])) {
-                                        echo "<p> <b>" . $_GET["erreur"] . "</b> </p>";
+                                        echo "<p style='color: red;'> <b>" . $_GET["erreur"] . "</b> </p>";
                                 }
                         ?>
                             
-                        
                         <br> <br>  
                         <p> <i style="font-size: 12px;"> Pas de compte ? <a href="inscription.php"> Créez-en un </i></a>.</p><br>   
                 </div>

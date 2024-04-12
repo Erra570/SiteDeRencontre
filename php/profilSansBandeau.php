@@ -157,7 +157,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user'])){
 							<input type="date" name="dateOfBirth" id="dateOfBirth" value="<?php echo $User['DateOfBirth'] ?>"><br>
 							<label for="species">Espece : </label>
 							<input type="text" name="species" id="species" value="<?php echo $User['Species'] ?>"><br>
-							<label for="humanoidGauge">Jauge humanitée : </label>
+							<label for="humanoidGauge"> Jauge d'humanité : </label>
 							<input type="range" name="humanoidGauge" id="humanoidGauge" min="0" max="10" value="<?php echo $User['HumanoidGauge'] ?>"><br>
 							<label for="love">Situation amoureuse : </label>
                             <input type="radio" name="love" id="C" value="Celibataire" <?php if($User['LoveSituation']=='Celibataire'){ echo "checked";} ?>><label for="M">Celibataire</label>

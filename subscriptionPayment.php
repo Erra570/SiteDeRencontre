@@ -61,7 +61,7 @@ if(isset($_SESSION['password']) AND isset($_SESSION['user']) AND isset($_POST['t
 						</form>
 					</div>
 				</div>
-				<?php include('php/footer.php'); ?>
+				<?php include('php/footer.html'); ?>
 			</body>
 		</html>
 	<?php }
