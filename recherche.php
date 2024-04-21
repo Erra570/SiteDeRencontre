@@ -51,11 +51,11 @@ if (isset($_SESSION['password']) && isset($_SESSION['user'])) {
                                 <br>
 
                                 <label for="love">Situation amoureuse : </label>
-								<label for="M">Celibataire</label>
+								<label for="C">Celibataire</label>
                                 <input type="checkbox" name="C" id="C" value="Celibataire" <?php if(isset($_POST['C']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
-                                <label for="F">En couple</label>
+                                <label for="E">En couple</label>
                                 <input type="checkbox" name="E" id="E" value="En couple" <?php if(isset($_POST['E']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
-								<label for="A">Divorce</label>
+								<label for="D">Divorce</label>
                                 <input type="checkbox" name="D" id="D" value="Divorce" <?php if(isset($_POST['D']) OR !isset($_POST['search_user'])){ echo "checked";} ?>>
                                 
 								<br>
